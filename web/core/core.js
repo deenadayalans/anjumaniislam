@@ -399,6 +399,27 @@
     render(cur);
   });
 
+  /* ---- collage: shuffled, jittered 2x2 so the cards sit differently on every visit; overlaps stay thin so labels are never covered ---- */
+  $$('[data-collage]').forEach(c => {
+    const tiles = $$('.tile', c); if (tiles.length !== 4) return;
+    const r = (a, b) => a + Math.random() * (b - a), h = 1.1;
+    const sx = r(45, 55), ly = r(50, 62), ry = r(46, 58), off = r(1, 7), a = r(0, 4), b = r(0, 3);
+    const slots = [
+      { l: 0, t: 0, w: sx + h, ht: ly + h, s: 'l' },
+      { l: sx - h, t: off, w: 100 - sx + h, ht: ry - off + h, s: 'r' },
+      { l: a, t: ly - h, w: sx + h - a, ht: 100 - ly + h - r(0, 3), s: 'l' },
+      { l: sx - h + b, t: ry - h, w: 100 - sx + h - b, ht: 100 - ry + h, s: 'r' }
+    ];
+    const order = [0, 1, 2, 3].sort(() => Math.random() - .5);
+    slots.forEach((s, k) => {
+      const t = tiles[order[k]], st = t.style, sign = k === 0 || k === 3 ? -1 : 1;
+      st.left = s.l + '%'; st.top = s.t + '%'; st.width = s.w + '%'; st.height = s.ht + '%'; st.right = 'auto'; st.bottom = 'auto';
+      st.transform = `rotate(${(sign * r(1.5, 4.5)).toFixed(1)}deg)`; t.dataset.side = s.s;
+    });
+    const spin = $('.spin', c);
+    if (spin) { spin.style.left = `calc(${sx}% - ${spin.offsetWidth / 2}px)`; spin.style.top = `calc(${(ly + ry) / 2}% - ${spin.offsetHeight / 2}px)`; }
+  });
+
   /* ---- rotating words ---- */
   $$('[data-rotate]').forEach(el => {
     const words = el.dataset.rotate.split('|'); let i = 0;

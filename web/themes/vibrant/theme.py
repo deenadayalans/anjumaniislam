@@ -88,7 +88,7 @@ def home():
   <h1 data-r data-i="1">Your next big <span class="word" data-rotate="adventure|breakthrough|friendship|career">adventure</span> starts here.</h1>
   <p class="lead" data-r data-i="3">Robotics, horse riding, aviation, archery and NEET / JEE coaching — on a 174-acre hill campus where lifelong friendships begin and the future is bright.</p>
   <div class="cta" data-r data-i="4"><a class="btn y" href="admissions.html#enquire">Apply for admission {ARROW}</a><a class="btn w" href="life.html">See what we do</a></div></div>
-  <div class="collage" data-r="zoom" data-i="2">
+  <div class="collage" data-r="zoom" data-i="2" data-collage>
     <div class="tile t1" data-par=".05">{ic("chip")}<b>Robotics &amp; AI</b></div><div class="tile t2" data-par="-.06">{ic("plane")}<b>Basic Aviation</b></div><div class="tile t3" data-par=".08">{ic("target")}<b>Archery</b></div><div class="tile t4" data-par="-.04">{ic("star")}<b>Horse riding</b></div>
     <svg class="spin" viewBox="0 0 200 200" aria-hidden="true"><defs><path id="circ" d="M100,100 m-78,0 a78,78 0 1,1 156,0 a78,78 0 1,1 -156,0"/></defs><circle cx="100" cy="100" r="98" fill="#073b30"/><text fill="#ffc933" font-size="14" font-weight="700"><textPath href="#circ" textLength="480" lengthAdjust="spacing">PANCHGANI ★ BOARDING ★ 174 ACRES ★ SINCE 1874 ★ </textPath></text><path d="M100 70l8 20 22 2-17 14 6 22-19-12-19 12 6-22-17-14 22-2z" fill="#ff6b4a"/></svg>
   </div></div><svg class="wave" viewBox="0 0 1440 80" preserveAspectRatio="none" aria-hidden="true"><path d="M0 40c240 60 480 60 720 10s480-40 720 0v30H0z"/></svg></section>

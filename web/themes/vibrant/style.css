@@ -35,13 +35,15 @@ h1 em,h2 em{font-style:italic;color:var(--c)}p{margin:0 0 1em}.wrap{max-width:12
 
 /* hero */
 .hero{background:var(--g);color:var(--pale1);position:relative;overflow:hidden;padding:80px 0 130px;border-bottom:var(--bw) solid var(--gd)}
-.hero h1{color:#fff}.hero h1 .word{color:var(--y);font-style:italic;display:inline-block;border-bottom:6px solid var(--c)}
+.hero h1{color:#fff}.hero h1 .word{color:var(--y);font-style:italic;display:inline-block;padding:0 .08em .04em 0;border-bottom:6px solid var(--c)}
 .hero .lead{font-size:1.15rem;margin:22px 0 32px;max-width:520px}.hero .pill{background:var(--y)}
 .hero-in{display:grid;grid-template-columns:1.1fr 1fr;gap:40px;align-items:center;position:relative;z-index:2}
 .collage{position:relative;height:480px}
 .tile{position:absolute;border:var(--bw) solid var(--gd);border-radius:26px;box-shadow:6px 6px 0 var(--gd);display:flex;flex-direction:column;justify-content:flex-end;padding:18px;gap:6px;color:var(--gd);font-size:1rem;animation:bob 5s ease-in-out infinite}
-.tile .ic{width:2.6em;height:2.6em;position:absolute;top:16px;right:16px}.tile b{font-family:var(--disp);font-size:1.3rem}
+.tile .ic{width:2.6em;height:2.6em;position:absolute;top:30px;right:16px}.tile b{font-family:var(--disp);font-size:1.3rem}
 .t1{left:0;top:0;width:54%;height:60%;background:var(--y);transform:rotate(-4deg)}.t2{right:0;top:6%;width:46%;height:42%;background:var(--s);transform:rotate(4deg);animation-delay:-1.5s}.t3{right:4%;bottom:0;width:50%;height:44%;background:var(--c);color:#fff;transform:rotate(-2deg);animation-delay:-3s}.t3 b{color:#fff}.t4{left:4%;bottom:2%;width:42%;height:34%;background:var(--l);transform:rotate(5deg);animation-delay:-2s}
+.t1,.t3{z-index:2}.t2,.t4{z-index:1}.t2:not([data-side]){align-items:flex-end}
+.tile[data-side=r]{align-items:flex-end;text-align:right}.tile[data-side=l] .ic{left:16px;right:auto}
 @keyframes bob{50%{translate:0 -12px}}
 .spin{position:absolute;left:38%;top:34%;width:150px;animation:spin 14s linear infinite;z-index:3;filter:drop-shadow(4px 4px 0 var(--gd))}@keyframes spin{to{rotate:360deg}}
 .spin circle{fill:var(--gd)}.spin text{fill:var(--y)}.spin>path{fill:var(--c)}
