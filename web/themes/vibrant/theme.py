@@ -9,6 +9,19 @@ META = dict(
     fonts="Fraunces · Poppins",
 )
 FONTS = "https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,600;0,9..144,800;1,9..144,700&family=Poppins:wght@400;500;600;700&display=swap"
+GF = "https://fonts.googleapis.com/css2?family="
+FONTSETS = [
+    dict(id="fraunces", name="Fraunces and Poppins"),
+    dict(id="bricolage", name="Bricolage and Nunito", url=GF + "Bricolage+Grotesque:wght@600;700;800&family=Nunito:wght@400;600;700;800&display=swap", css="--disp:'Bricolage Grotesque',system-ui,sans-serif;--sans:'Nunito',system-ui,sans-serif"),
+    dict(id="baloo", name="Baloo and Nunito", url=GF + "Baloo+2:wght@600;700;800&family=Nunito:wght@400;600;700;800&display=swap", css="--disp:'Baloo 2',system-ui,sans-serif;--sans:'Nunito',system-ui,sans-serif"),
+    dict(id="fredoka", name="Fredoka and Quicksand", url=GF + "Fredoka:wght@500;600;700&family=Quicksand:wght@500;600;700&display=swap", css="--disp:'Fredoka',system-ui,sans-serif;--sans:'Quicksand',system-ui,sans-serif"),
+]
+PALETTES = [
+    dict(id="sunny", name="Sunny Green", sw=["#0e7a5f", "#ffc933", "#ff6b4a"], css=""),
+    dict(id="ivory", name="Ivory and Gold (minimal)", sw=["#faf6ec", "#d9b86a", "#3a342a"], css="--g:#3a342a;--gd:#1f1b14;--y:#d9b86a;--c:#9a7430;--s:#e8e2d4;--l:#cfc7b4;--cream:#faf6ec;--ink:#1f1b14;--muted:#6f6a5c;--mint:#efe9da;--pale1:#f3ecda;--pale2:#e3dbc6;--pale3:#cfc6ad;--pale4:#b9ae92;--confetti:#d9b86a,#9a7430,#e8e2d4,#cfc7b4,#3a342a;--sc0:#f6efdc;--sc1:#e8e2d4;--sc2:#9a8a68;--sc3:#3a342a;--sc4:#9a7430;--sc5:#d9b86a"),
+    dict(id="ocean", name="Ocean Pop", sw=["#0369a1", "#fde047", "#fb923c"], css="--g:#0369a1;--gd:#082f49;--y:#fde047;--c:#fb923c;--s:#67e8f9;--l:#a5b4fc;--cream:#f0f9ff;--ink:#0c2233;--muted:#4f6b80;--confetti:#fde047,#fb923c,#67e8f9,#a5b4fc,#0369a1;--sc0:#e0f2fe;--sc1:#67e8f9;--sc2:#0369a1;--sc3:#082f49;--sc4:#fb923c;--sc5:#fde047"),
+    dict(id="bubblegum", name="Bubblegum", sw=["#7c3aed", "#ffd84d", "#ff5fa2"], css="--g:#7c3aed;--gd:#2a1052;--y:#ffd84d;--c:#ff5fa2;--s:#5ce1e6;--l:#c4b5fd;--cream:#fff4fb;--ink:#241036;--muted:#6b5a80;--confetti:#ffd84d,#ff5fa2,#5ce1e6,#c4b5fd,#7c3aed;--sc0:#fde7f3;--sc1:#5ce1e6;--sc2:#7c3aed;--sc3:#2a1052;--sc4:#ff5fa2;--sc5:#ffd84d"),
+]
 ARROW = ic("arrow")
 COLS = ["y", "c", "s", "l", "g"]
 
@@ -19,7 +32,7 @@ def sh(title, tag="", sub=""):
 
 def layout(slug, title, body, hero=""):
     nav = "".join(f'<a href="{s}.html"{" class=cur" if s == slug else ""}>{l}</a>' for s, l in PAGES[1:])
-    return head(f"{title} — {C.SCHOOL['name']}", "Boarding school and junior college in Panchgani — part of Anjuman-I-Islam, founded 1874.", FONTS, "#0e7a5f") + f'''
+    return head(f"{title} — {C.SCHOOL['name']}", "Boarding school and junior college in Panchgani — part of Anjuman-I-Islam, founded 1874.", FONTS, "#0e7a5f", ("vibrant", PALETTES, FONTSETS)) + f'''
 <body data-cursor>
 <div class="curtain"></div><div class="progress"><i></i></div><a class="skip" href="#main">Skip to content</a>
 <header class="hdr" data-header><div class="wrap hdr-in">

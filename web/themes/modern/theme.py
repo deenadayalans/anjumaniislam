@@ -9,6 +9,20 @@ META = dict(
     fonts="Inter · Instrument Serif",
 )
 FONTS = "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Instrument+Serif:ital@0;1&display=swap"
+GF = "https://fonts.googleapis.com/css2?family="
+FONTSETS = [
+    dict(id="inter", name="Inter and Instrument Serif"),
+    dict(id="jakarta", name="Jakarta and Playfair", url=GF + "Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@1,400&display=swap", css="--sans:'Plus Jakarta Sans',system-ui,sans-serif;--serif:'Playfair Display',Georgia,serif"),
+    dict(id="manrope", name="Manrope and Newsreader", url=GF + "Manrope:wght@400;500;600;700;800&family=Newsreader:ital,wght@1,400&display=swap", css="--sans:'Manrope',system-ui,sans-serif;--serif:'Newsreader',Georgia,serif"),
+    dict(id="outfit", name="Outfit and DM Serif", url=GF + "Outfit:wght@400;500;600;700;800&family=DM+Serif+Display:ital@1&display=swap", css="--sans:'Outfit',system-ui,sans-serif;--serif:'DM Serif Display',Georgia,serif"),
+]
+PALETTES = [
+    dict(id="blue", name="Blue and Teal", sw=["#2563eb", "#0d9488", "#0b1f3a"], css=""),
+    dict(id="ivory", name="Ivory and Gold (minimal)", sw=["#ffffff", "#b8924f", "#26231f"], css="--navy:#26231f;--blue:#b8924f;--blue-d:#8a6a2f;--blue-l:#e3c98f;--teal:#cfb06a;--teal-l:#f0e2bd;--vio:#8c7b5a;--bg:#fff;--alt:#f6f1e7;--line:#e8dfcd;--ink:#26231f;--muted:#6f6a5c;--bar-bg:rgba(120,110,90,.15);--sc0:#f6f1e7;--sc1:#e8dcc0;--sc2:#cfb27a;--sc3:#8a6a2f;--sc4:#b8924f;--sc5:#fff"),
+    dict(id="violet", name="Violet and Pink", sw=["#7c3aed", "#db2777", "#1b1038"], css="--navy:#1b1038;--blue:#7c3aed;--blue-d:#6d28d9;--blue-l:#c4b5fd;--teal:#db2777;--teal-l:#f9a8d4;--vio:#4f46e5;--alt:#f6f3fc;--line:#e6e0f3;--ink:#1a1033;--sc0:#efe9fd;--sc1:#cbb8f5;--sc2:#8f6fe0;--sc3:#6d28d9;--sc4:#db2777"),
+    dict(id="emerald", name="Emerald and Sky", sw=["#059669", "#0ea5e9", "#062a22"], css="--navy:#062a22;--blue:#059669;--blue-d:#047857;--blue-l:#6ee7b7;--teal:#0ea5e9;--teal-l:#7dd3fc;--vio:#0d9488;--alt:#f1f8f5;--line:#dcebe4;--ink:#0b1f19;--sc0:#e1f5ec;--sc1:#a7e0c6;--sc2:#4cb98f;--sc3:#047857;--sc4:#0ea5e9"),
+    dict(id="sunset", name="Sunset and Rose", sw=["#ea580c", "#e11d48", "#2a1208"], css="--navy:#2a1208;--blue:#ea580c;--blue-d:#c2410c;--blue-l:#fdba74;--teal:#e11d48;--teal-l:#fda4af;--vio:#f59e0b;--alt:#fdf6f1;--line:#f0e1d8;--ink:#2a1208;--sc0:#fdeadd;--sc1:#f8c4a2;--sc2:#ef8a52;--sc3:#c2410c;--sc4:#e11d48"),
+]
 ARROW = ic("arrow")
 
 
@@ -18,10 +32,10 @@ def sh(tag, title, sub="", dark=False):
 
 def layout(slug, title, body, hero=""):
     nav = "".join(f'<a href="{s}.html"{" class=cur" if s == slug else ""}>{l}</a>' for s, l in PAGES[1:])
-    return head(f"{title} — {C.SCHOOL['name']}", "Boarding school and junior college in Panchgani — part of Anjuman-I-Islam, founded 1874.", FONTS, "#0b1f3a") + f'''
+    return head(f"{title} — {C.SCHOOL['name']}", "Boarding school and junior college in Panchgani — part of Anjuman-I-Islam, founded 1874.", FONTS, "#0b1f3a", ("modern", PALETTES, FONTSETS)) + f'''
 <body>
 <div class="progress"><i></i></div><a class="skip" href="#main">Skip to content</a>
-<header class="hdr" data-header data-hide><div class="wrap hdr-in">
+<header class="hdr" data-header><div class="wrap hdr-in">
   <a class="brand" href="index.html"><img class="school-logo" src="assets/real/school-logo-sm.png" alt=""><span><b>Anjuman-I-Islam</b><small>Public School &amp; Jr. College · Panchgani</small></span></a>
   <nav class="nav">{nav}</nav>
   <a class="btn grad sm" href="admissions.html#enquire" data-mag>Apply now {ARROW}</a>
@@ -177,7 +191,7 @@ def academics():
 <section class="sec alt"><div class="wrap">{sh("Programmes", "Primary to <em>Jr. College</em>")}<div data-tabs><div class="filters tabbar">{tabs}</div>{prog}</div><p class="note">Panchgani: Primary (un-aided), High School (aided), Jr. College (un-aided).</p></div></section>
 <section class="sec dark"><div class="mesh sm"><i></i><i></i></div><div class="wrap">{sh("Competitive coaching", "Prepare for the exams that <em>open doors</em>", esc(C.COACHING_NOTE))}{exam_tracks("tracks")}</div></section>
 <section class="sec"><div class="wrap">{sh("Facilities", "Spaces built for <em>discovery</em>")}<div class="bento three">{fac}</div></div></section>
-<section class="sec alt"><div class="wrap split"><div><p class="tag" data-r>Faculty &amp; staff</p><h2 data-split>Mentors, role models and <em>pillars of support</em></h2><p data-r>Teachers with a passion for their subjects, dorm in-charges offering guidance, and administrative and support staff keeping the campus safe, clean and welcoming.</p>{checklist(["Subject teachers", "Dorm in-charges", "Academic advisors", "Kitchen &amp; maintenance teams"], "checks")}</div>{scene("portrait", "Faculty", ratio="4/3")}</div></section>'''
+<section class="sec alt"><div class="wrap split"><div><p class="tag" data-r>Faculty &amp; staff</p><h2 data-split>Mentors, role models and <em>pillars of support</em></h2><p data-r>Teachers with a passion for their subjects, dorm in-charges offering guidance, and administrative and support staff keeping the campus safe, clean and welcoming.</p>{checklist(["Subject teachers", "Dorm in-charges", "Academic advisors", "Kitchen & maintenance teams"], "checks")}</div>{scene("portrait", "Faculty", ratio="4/3")}</div></section>'''
     return layout("academics", "Academics", body, phero("Academics", "Learning that goes <em>beyond the books</em>", "Rigorous academics, personal advising and competitive coaching on one campus."))
 
 

@@ -11,6 +11,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).parent.resolve()
 sys.path.insert(0, str(ROOT))
+from common import palette_css  # noqa: E402
 DIST = ROOT / "dist"
 THEMES = ["heritage", "modern", "vibrant", "hillstation"]
 DOMAIN = "www.anjumaniislam.com"
@@ -32,6 +33,7 @@ def build():
         shutil.copytree(ROOT / "assets" / "real", out / "assets" / "real")
         shutil.copy(ROOT / "core" / "core.js", out / "assets" / "core.js")
         css = (ROOT / "core" / "base.css").read_text() + "\n" + (ROOT / "themes" / slug / "style.css").read_text()
+        css += "\n" + palette_css(getattr(mod, "PALETTES", []), getattr(mod, "FONTSETS", []))
         (out / "assets" / "style.css").write_text(css)
         pages = mod.build()
         for name, html in pages.items():

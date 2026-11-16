@@ -3,12 +3,25 @@ from common import *
 import content as C
 
 META = dict(
-    slug="heritage", name="Heritage", palette=["#0f4c3a", "#c9a24b", "#fbf7ec"],
+    slug="heritage", name="Heritage", palette=["#3a2f1d", "#b8924f", "#f8f3e8"],
     tagline="A century of learning, rooted in values",
-    blurb="Emerald and gold, arch windows and letterpress detail. A gold line draws itself down the Roll of Honour as you scroll through 150 years of presidents. Dignified, trusted, timeless.",
+    blurb="Ivory and golden beige, arch windows and letterpress detail. A gold line draws itself down the Roll of Honour as you scroll through 150 years of presidents. Also in emerald, navy and burgundy. Dignified, trusted, timeless.",
     fonts="Cormorant Garamond · Lato",
 )
+PALETTES = [
+    dict(id="ivory", name="Ivory and Gold", sw=["#ffffff", "#b8924f", "#3a2f1d"], css="--paper:#fff;--ivory:#f8f3e8;--line:#e7dcc3;--bar-bg:#efe7d3;--emerald:#3a2f1d;--deep:#1c160b;--gold:#b8924f;--gold-l:#dcc28d;--gold-d:#86652a;--ink:#2e281c;--muted:#6f6650;--s1:#fcf9f2;--s2:#f0e4cb;--glow:#fff;--h-on:#1c160b;--on1:#463c28;--on2:#55492f;--on3:#665a3e;--em-on:#86652a;--card-on:rgba(255,255,255,.7);--util-tx:#d9cdb0;--ftr-bg:#241c10;--ftr-tx:#cdbf9f;--sh-rgb:28,22,11;--hb-t:#efe3c9;--hb-b:#fbf6ea;--sc0:#f6eedb;--sc1:#e8d9b4;--sc2:#cfb27a;--sc3:#7a6234;--sc4:#b8924f;--sc5:#f7ebc6"),
+    dict(id="emerald", name="Emerald and Gold", sw=["#0f4c3a", "#c9a24b", "#fbf7ec"], css=""),
+    dict(id="navy", name="Navy and Steel", sw=["#1d3461", "#7f9cc4", "#f4f7fb"], css="--emerald:#1d3461;--deep:#0e1a38;--gold:#7f9cc4;--gold-l:#c3d3ea;--gold-d:#3f5f90;--paper:#fbfcfe;--ivory:#f1f5fa;--line:#dbe3ee;--bar-bg:#e3eaf3;--ink:#1d2536;--muted:#5d6678;--glow:#2f5099;--on1:#e2e9f6;--on2:#c4d0e8;--on3:#b3c1de;--util-tx:#b9c6e2;--ftr-bg:#09112a;--ftr-tx:#a3b1d1;--sh-rgb:14,26,56;--hb-t:#d3def2;--hb-b:#f1f5fa;--sc0:#e3eaf7;--sc1:#a9bde3;--sc2:#5b7cc0;--sc3:#1d3461;--sc4:#7f9cc4;--sc5:#dbe6f5"),
+    dict(id="burgundy", name="Burgundy and Rose", sw=["#6d1f2c", "#d98a9b", "#fdf6f6"], css="--emerald:#6d1f2c;--deep:#3a0e17;--gold:#d98a9b;--gold-l:#f1c4cd;--gold-d:#a23a54;--paper:#fffafa;--ivory:#fbf0f1;--line:#ecd5d9;--bar-bg:#f2dde0;--ink:#2e1f22;--muted:#6e5f62;--glow:#963a48;--on1:#f6e6e8;--on2:#ecd0d4;--on3:#e0bec4;--util-tx:#e4c4ca;--ftr-bg:#2a0a11;--ftr-tx:#c9a2aa;--sh-rgb:58,14,23;--hb-t:#f1d9dc;--hb-b:#fbf0f1;--sc0:#f6e4e6;--sc1:#e8b9c1;--sc2:#c4707f;--sc3:#6d1f2c;--sc4:#d98a9b;--sc5:#f8dce1"),
+]
 FONTS = "https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Lato:wght@400;700;900&display=swap"
+GF = "https://fonts.googleapis.com/css2?family="
+FONTSETS = [
+    dict(id="cormorant", name="Cormorant and Lato"),
+    dict(id="playfair", name="Playfair and Source Sans", url=GF + "Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Source+Sans+3:wght@400;700;900&display=swap", css="--serif:'Playfair Display',Georgia,serif;--sans:'Source Sans 3',system-ui,sans-serif"),
+    dict(id="baskerville", name="Baskerville and Work Sans", url=GF + "Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Work+Sans:wght@400;700;900&display=swap", css="--serif:'Libre Baskerville',Georgia,serif;--sans:'Work Sans',system-ui,sans-serif"),
+    dict(id="lora", name="Lora and Nunito Sans", url=GF + "Lora:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Nunito+Sans:wght@400;700;900&display=swap", css="--serif:'Lora',Georgia,serif;--sans:'Nunito Sans',system-ui,sans-serif"),
+]
 STAR = '<svg class="star8" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 1l2.6 6.4L21 4.5l-2.9 6.2L24 12l-5.9 1.3 2.9 6.2-6.4-2.9L12 23l-2.6-6.4L3 19.5l2.9-6.2L0 12l5.9-1.3L3 4.5l6.4 2.9z"/></svg>'
 PATTERN = '<svg class="pat" width="100%" height="100%" aria-hidden="true"><defs><pattern id="geo" width="90" height="90" patternUnits="userSpaceOnUse"><path d="M45 0l11 34 34 11-34 11-11 34-11-34L0 45l34-11z" fill="none" stroke="currentColor" stroke-width="1"/><circle cx="45" cy="45" r="16" fill="none" stroke="currentColor" stroke-width="1"/></pattern></defs><rect width="100%" height="100%" fill="url(#geo)"/></svg>'
 
@@ -25,7 +38,7 @@ def layout(slug, title, body, hero=""):
     links = "".join(f'<a href="{s}.html"{" class=cur" if s == slug else ""}>{l}</a>' for s, l in PAGES if s != "index")
     left = "".join(f'<a href="{s}.html"{" class=cur" if s == slug else ""}>{l}</a>' for s, l in PAGES[1:5])
     right = "".join(f'<a href="{s}.html"{" class=cur" if s == slug else ""}>{l}</a>' for s, l in PAGES[5:])
-    return head(f"{title} — {C.SCHOOL['name']}", "Boarding school and junior college in Panchgani — part of Anjuman-I-Islam, founded 1874.", FONTS, "#0f4c3a") + f'''
+    return head(f"{title} — {C.SCHOOL['name']}", "Boarding school and junior college in Panchgani — part of Anjuman-I-Islam, founded 1874.", FONTS, "#3a2f1d", ("heritage", PALETTES, FONTSETS)) + f'''
 <body>
 <div class="progress"><i></i></div><a class="skip" href="#main">Skip to content</a>
 <div class="util"><div class="container"><span>Admissions open · Boarding school &amp; Jr. College</span><span><a href="tel:{C.SCHOOL['phones'][0]}">{C.SCHOOL['phones'][0]} / {C.SCHOOL['phones'][1]}</a> &nbsp;·&nbsp; <a href="mailto:{C.SCHOOL['email_admissions']}">{C.SCHOOL['email_admissions']}</a></span></div></div>
@@ -51,7 +64,7 @@ def layout(slug, title, body, hero=""):
 
 def page_hero(kicker, title, lead, kind="campus"):
     return f'''<section class="phero"><div class="pat-wrap">{PATTERN}</div><div class="container phero-in">
-  <div><p class="eyebrow" data-r>{esc(kicker)}</p><h1 data-split>{title}</h1><p class="lead" data-r data-i="3">{lead}</p></div>
+  <div><p class="eyebrow" data-r>{kicker}</p><h1 data-split>{title}</h1><p class="lead" data-r data-i="3">{lead}</p></div>
   <div class="arch sm" data-r="arch">{scene(kind, "", ratio="1/1", caption=False)}</div></div></section>'''
 
 
@@ -198,7 +211,7 @@ def academics():
 <section class="sec alt" id="faculty"><div class="container split">
   <div><p class="eyebrow" data-r>Faculty &amp; staff</p><h2 data-split>Mentors, role models and pillars of support</h2>{orn().replace("center","")}
     <p data-r>Teachers with a passion for their subjects lead lively discussions and hands-on activities. Dorm in-charges offer guidance and a listening ear. Administrative and support staff keep the campus safe, clean and welcoming.</p>
-    {checklist(["Subject teachers", "Dorm in-charges", "Academic advisors", "Kitchen &amp; maintenance teams"], "checks")}</div>
+    {checklist(["Subject teachers", "Dorm in-charges", "Academic advisors", "Kitchen & maintenance teams"], "checks")}</div>
   <div data-r="arch" class="arch">{scene("portrait", "Faculty portrait", ratio="4/5")}</div>
 </div></section>
 <section class="cta-band"><div class="pat-wrap">{PATTERN}</div><div class="container"><h2 data-split>Find the right programme for your child</h2><div class="cta" data-r><a class="btn gold" href="admissions.html#enquire">Enquire now</a><a class="btn ghost" href="results.html">See results</a></div></div></section>'''

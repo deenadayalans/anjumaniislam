@@ -205,7 +205,22 @@ def checklist(items, cls="checks"):
     return f'<ul class="{cls}">' + "".join(f'<li data-r="up" data-i="{i % 4}">{esc(x)}</li>' for i, x in enumerate(items)) + "</ul>"
 
 
-def head(title, desc, fonts, theme_color):
+def palette_css(pals, fonts=()):
+    out = [f'html[data-palette="{p["id"]}"]{{{p["css"]}}}' for p in pals if p.get("css")]
+    out += [f'html[data-font="{f["id"]}"]{{{f["css"]}}}' for f in fonts if f.get("css")]
+    return "\n".join(out)
+
+
+def head(title, desc, fonts, theme_color, pal=None):
+    pal_js = ""
+    if pal:
+        slug, lst, fsets = pal
+        data = json.dumps(dict(k=slug, list=[dict(id=p["id"], n=p["name"], c=p["sw"]) for p in lst], f=[dict(id=f["id"], n=f["name"], u=f.get("url", "")) for f in fsets]), separators=(",", ":"))
+        pal_js = ("<script>(function(){var P=" + data + ",s,f,d=document.documentElement;try{s=localStorage.getItem('pal-'+P.k);f=localStorage.getItem('fnt-'+P.k)}catch(e){}"
+                  "if(!P.list.some(function(x){return x.id===s}))s=P.list[0].id;"
+                  "var F=P.f.filter(function(x){return x.id===f})[0]||P.f[0];"
+                  "window.PAL=P;d.dataset.palette=s;d.dataset.font=F.id;"
+                  "if(F.u){var l=document.createElement('link');l.rel='stylesheet';l.href=F.u;document.head.appendChild(l)}})()</script>\n")
     return f'''<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -217,7 +232,7 @@ def head(title, desc, fonts, theme_color):
 <link rel="icon" href="assets/real/school-favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="{fonts}" rel="stylesheet">
-<link rel="stylesheet" href="assets/style.css">
+{pal_js}<link rel="stylesheet" href="assets/style.css">
 <script>document.documentElement.classList.add('js')</script>
 </head>'''
 

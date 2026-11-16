@@ -9,6 +9,20 @@ META = dict(
     fonts="DM Serif Display · DM Sans",
 )
 FONTS = "https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@400;500;700&display=swap"
+GF = "https://fonts.googleapis.com/css2?family="
+FONTSETS = [
+    dict(id="dm", name="DM Serif and DM Sans"),
+    dict(id="playfair", name="Playfair and Inter", url=GF + "Playfair+Display:ital,wght@0,400;1,400&family=Inter:wght@400;500;700&display=swap", css="--serif:'Playfair Display',Georgia,serif;--sans:'Inter',system-ui,sans-serif"),
+    dict(id="cormorant", name="Cormorant and Montserrat", url=GF + "Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Montserrat:wght@400;500;700&display=swap", css="--serif:'Cormorant Garamond',Georgia,serif;--sans:'Montserrat',system-ui,sans-serif"),
+    dict(id="fraunces", name="Fraunces and Karla", url=GF + "Fraunces:ital,opsz,wght@0,9..144,400;1,9..144,400&family=Karla:wght@400;500;700&display=swap", css="--serif:'Fraunces',Georgia,serif;--sans:'Karla',system-ui,sans-serif"),
+]
+PALETTES = [
+    dict(id="forest", name="Forest and Clay", sw=["#1f3a2e", "#b5651d", "#efe7d6"], css=""),
+    dict(id="ivory", name="Ivory and Gold (minimal)", sw=["#faf8f2", "#b8924f", "#2b2822"], css="--forest:#2b2822;--ink:#1a1814;--clay:#a8822f;--clay-l:#e3c98f;--sand:#f1ebdd;--bone:#faf8f2;--mist:#d9d4c7;--muted:#6b665a;--line:#ddd5c2;--bar-bg:#e8e1cf;--k1:#a98550;--k2:#9a7745;--k3:#7d6b4c;--k4:#4d4739;--sun:#f6e7c1;--r1:#b99a64;--r2:#8a7a5c;--r3:#5b564a;--ph2:#8a7550;--ph3:#5b564a;--sc0:#f1e8d3;--sc1:#d9d4c7;--sc2:#a39a82;--sc3:#5b564a;--sc4:#a8822f;--sc5:#f1d9a8"),
+    dict(id="slate", name="Slate and Sky", sw=["#1e2b3c", "#2f7fa8", "#e6edf2"], css="--forest:#1e2b3c;--ink:#0f1620;--clay:#2f7fa8;--clay-l:#9ccbe3;--sand:#e6edf2;--bone:#f4f7f9;--mist:#c5d3de;--muted:#5d6b78;--line:#c9d3dc;--bar-bg:#d9e2e9;--k1:#cfe6f3;--k2:#9fcbe3;--k3:#8099b0;--k4:#4a6077;--sun:#fff3c9;--r1:#9ab9d0;--r2:#6f89a2;--r3:#3d566e;--ph2:#7d97ae;--ph3:#3a5168;--sc0:#e4edf3;--sc1:#c5d3de;--sc2:#7f9bb3;--sc3:#3a5168;--sc4:#2f7fa8;--sc5:#bfe0f0"),
+    dict(id="burgundy", name="Burgundy and Sand", sw=["#4a1c28", "#c06a3d", "#f1e6d6"], css="--forest:#4a1c28;--ink:#1e0f13;--clay:#c06a3d;--clay-l:#efb48a;--sand:#f1e6d6;--bone:#faf4ea;--mist:#dcc8c4;--muted:#6e5b5e;--line:#dccbbd;--bar-bg:#e8d9c8;--k1:#f6c7a8;--k2:#e59a82;--k3:#b97a78;--k4:#7a4352;--sun:#ffe0b8;--r1:#d9958c;--r2:#9a6670;--r3:#6a3a49;--ph2:#b9746f;--ph3:#6a3a49;--sc0:#f3e4d6;--sc1:#dcc8c4;--sc2:#ae6a72;--sc3:#6a3a49;--sc4:#c06a3d;--sc5:#f0c58f"),
+    dict(id="plum", name="Plum and Peach", sw=["#3b2a4a", "#e07a5f", "#f6ece8"], css="--forest:#3b2a4a;--ink:#1a1222;--clay:#d9694d;--clay-l:#f4b29d;--sand:#f6ece8;--bone:#fcf7f4;--mist:#d9cbd6;--muted:#6e6275;--line:#e0d2cf;--bar-bg:#ecdcd7;--k1:#f9dccd;--k2:#f2a891;--k3:#bb8c9f;--k4:#6d4c78;--sun:#ffe9cf;--r1:#e3aaa3;--r2:#a87e96;--r3:#6b4d7a;--ph2:#b98a9c;--ph3:#5d4270;--sc0:#f4e6e0;--sc1:#d9cbd6;--sc2:#a07a9a;--sc3:#5d4270;--sc4:#d9694d;--sc5:#f7c9b5"),
+]
 ARROW = ic("arrow")
 
 RANGES = '''<svg class="ly l1" data-par=".26" viewBox="0 0 1440 500" preserveAspectRatio="none" aria-hidden="true"><path d="M0 290l140-110 120 70 170-150 150 110 160-100 190 150 140-90 170 130H1440v400H0z" fill="#d79a73" opacity=".6"/></svg>
@@ -19,10 +33,10 @@ RANGES = '''<svg class="ly l1" data-par=".26" viewBox="0 0 1440 500" preserveAsp
 
 def layout(slug, title, body, hero=""):
     menu = "".join(f'<a href="{s}.html"><span>{i + 1:02d}</span>{l}</a>' for i, (s, l) in enumerate(PAGES))
-    return head(f"{title} — {C.SCHOOL['name']}", "Boarding school and junior college in Panchgani — part of Anjuman-I-Islam, founded 1874.", FONTS, "#1f3a2e") + f'''
+    return head(f"{title} — {C.SCHOOL['name']}", "Boarding school and junior college in Panchgani — part of Anjuman-I-Islam, founded 1874.", FONTS, "#1f3a2e", ("hillstation", PALETTES, FONTSETS)) + f'''
 <body data-cursor>
 <div class="curtain"></div><div class="progress"><i></i></div><a class="skip" href="#main">Skip to content</a>
-<header class="hdr" data-header data-hide><div class="wrap hdr-in">
+<header class="hdr" data-header><div class="wrap hdr-in">
   <a class="brand" href="index.html"><img class="school-logo" src="assets/real/school-logo-sm.png" alt=""><span><b>Anjuman-I-Islam</b><small>Public School &amp; Jr. College · Panchgani</small></span></a>
   <div class="hdr-r"><a class="apply" href="admissions.html#enquire">Apply</a><button class="menu-btn" data-nav-toggle aria-label="Menu" aria-expanded="false"><span>Menu</span><i></i><i></i></button></div>
 </div></header>
