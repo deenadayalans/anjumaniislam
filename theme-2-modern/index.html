@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Theme 2 · Modern Global — Anjuman-I-Islam Public School & Jr. College, Panchgani</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@500;600&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0b1f3a;--blue:#1d4ed8;--teal:#0d9488;--sky:#e8f0fb;--ink:#0f172a;--muted:#5b6678;--line:#e3e8f0;--bg:#fff;--sans:'Inter',system-ui,sans-serif;--serif:'Playfair Display',Georgia,serif}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);color:var(--ink);background:var(--bg);line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1240px;margin:0 auto;padding:0 28px}
+section{padding:104px 0}
+h1,h2,h3{letter-spacing:-.025em;line-height:1.08}
+.tag{display:inline-block;font-size:.72rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--teal);margin-bottom:14px}
+.sh{font-size:clamp(2rem,4vw,3.2rem);font-weight:800;max-width:760px}
+.sub{color:var(--muted);max-width:600px;margin-top:14px;font-size:1.05rem}
+
+/* header (transparent over hero) */
+header{position:absolute;top:0;left:0;right:0;z-index:20;color:#fff}
+header .wrap{display:flex;align-items:center;justify-content:space-between;height:84px}
+.logo{display:flex;align-items:center;gap:12px;font-weight:800;letter-spacing:-.02em;font-size:1.05rem;line-height:1.1}
+.logo i{width:42px;height:42px;border-radius:12px;background:linear-gradient(135deg,var(--blue),var(--teal));display:grid;place-items:center;font-style:normal;font-weight:800}
+.logo small{display:block;font-weight:500;font-size:.7rem;opacity:.75;letter-spacing:.04em}
+nav ul{list-style:none;display:flex;gap:34px;font-size:.9rem;font-weight:500}
+nav a{opacity:.85;transition:.2s}nav a:hover{opacity:1}
+.btn{display:inline-flex;align-items:center;gap:10px;padding:14px 26px;border-radius:999px;font-weight:600;font-size:.92rem;transition:.25s}
+.btn.w{background:#fff;color:var(--navy)}.btn.w:hover{transform:translateY(-2px);box-shadow:0 10px 30px rgba(0,0,0,.25)}
+.btn.o{border:1px solid rgba(255,255,255,.5);color:#fff}.btn.o:hover{background:rgba(255,255,255,.12)}
+.btn.b{background:var(--blue);color:#fff}.btn.b:hover{background:#1e40af}
+.btn.d{background:var(--navy);color:#fff}
+
+/* hero */
+.hero{position:relative;min-height:100vh;display:flex;align-items:flex-end;color:#fff;background:
+  radial-gradient(1200px 600px at 80% 10%,rgba(13,148,136,.55),transparent 60%),
+  radial-gradient(900px 600px at 0% 100%,rgba(29,78,216,.55),transparent 60%),
+  linear-gradient(160deg,#0b1f3a,#10325c 55%,#0a2a44);overflow:hidden;padding:0}
+.hero .grid-bg{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.05) 1px,transparent 1px);background-size:64px 64px;mask-image:linear-gradient(180deg,#000,transparent 85%)}
+.hero .wrap{position:relative;padding-bottom:120px;padding-top:160px;width:100%}
+.hero h1{font-size:clamp(3rem,8vw,7rem);font-weight:800;max-width:1000px}
+.hero h1 span{background:linear-gradient(90deg,#7dd3fc,#5eead4);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero p{max-width:560px;margin:26px 0 36px;font-size:1.18rem;color:#c8d6ea}
+.hero .cta{display:flex;gap:14px;flex-wrap:wrap}
+.hero .slide-nav{position:absolute;right:28px;bottom:120px;display:flex;flex-direction:column;gap:10px;font-size:.78rem;color:#9fb3d1;text-align:right}
+.hero .slide-nav b{color:#fff;font-size:1.4rem;font-weight:700}
+.scroll{position:absolute;left:28px;bottom:34px;font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:#9fb3d1}
+
+/* stats ribbon */
+.ribbon{background:var(--navy);color:#fff;padding:0}
+.ribbon .wrap{display:grid;grid-template-columns:repeat(4,1fr)}
+.rb{padding:44px 28px;border-left:1px solid rgba(255,255,255,.12)}
+.rb:first-child{border-left:0;padding-left:0}
+.rb b{display:block;font-size:3.4rem;font-weight:800;letter-spacing:-.04em;line-height:1}
+.rb span{color:#9fb3d1;font-size:.9rem}
+
+/* intro */
+.intro .wrap{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
+.quote{background:var(--sky);border-radius:28px;padding:56px;position:relative}
+.quote::before{content:"“";font-family:var(--serif);font-size:10rem;line-height:.6;color:var(--blue);opacity:.18;position:absolute;top:50px;left:34px}
+.quote p{font-family:var(--serif);font-size:1.55rem;line-height:1.45;position:relative}
+.quote .who{margin-top:28px;display:flex;align-items:center;gap:14px}
+.quote .av{width:50px;height:50px;border-radius:50%;background:linear-gradient(135deg,var(--blue),var(--teal))}
+.quote .who b{display:block;font-size:.95rem}.quote .who small{color:var(--muted)}
+
+/* programmes bento */
+.bento{background:#f6f8fb}
+.bg{display:grid;grid-template-columns:repeat(12,1fr);grid-auto-rows:210px;gap:18px;margin-top:56px}
+.bx{border-radius:24px;padding:30px;position:relative;overflow:hidden;display:flex;flex-direction:column;justify-content:flex-end;color:#fff;transition:.3s}
+.bx:hover{transform:translateY(-4px)}
+.bx h3{font-size:1.6rem;font-weight:700;position:relative}
+.bx p{font-size:.92rem;opacity:.85;position:relative;max-width:320px;margin-top:6px}
+.bx .n{position:absolute;top:24px;left:30px;font-size:.75rem;letter-spacing:.14em;text-transform:uppercase;opacity:.8;font-weight:600}
+.bx .arrow{position:absolute;top:22px;right:24px;width:38px;height:38px;border-radius:50%;background:rgba(255,255,255,.18);display:grid;place-items:center}
+.b1{grid-column:span 7;grid-row:span 2;background:linear-gradient(160deg,#1d4ed8,#0b1f3a)}
+.b2{grid-column:span 5;background:linear-gradient(160deg,#0d9488,#064e4b)}
+.b3{grid-column:span 5;background:linear-gradient(160deg,#7c3aed,#312e81)}
+.b4{grid-column:span 4;background:linear-gradient(160deg,#ea580c,#7c2d12)}
+.b5{grid-column:span 4;background:linear-gradient(160deg,#0891b2,#164e63)}
+.b6{grid-column:span 4;background:linear-gradient(160deg,#475569,#0f172a)}
+.bx .big{position:absolute;right:-20px;top:30px;font-size:10rem;font-weight:800;opacity:.08;letter-spacing:-.06em}
+
+/* tabs-like exam cards */
+.pathways .row{display:grid;grid-template-columns:repeat(5,1fr);gap:16px;margin-top:48px}
+.pw{border:1px solid var(--line);border-radius:20px;padding:28px 22px;transition:.25s}
+.pw:hover{border-color:var(--blue);box-shadow:0 16px 40px rgba(29,78,216,.12);transform:translateY(-4px)}
+.pw b{font-size:1.9rem;letter-spacing:-.03em;display:block}
+.pw span{color:var(--muted);font-size:.88rem}
+.pw i{display:block;width:32px;height:4px;background:linear-gradient(90deg,var(--blue),var(--teal));border-radius:4px;margin-bottom:18px}
+
+/* campus */
+.campus{background:var(--navy);color:#fff}
+.campus .sub{color:#9fb3d1}
+.campus .tag{color:#5eead4}
+.cg{display:grid;grid-template-columns:1.1fr 1fr;gap:56px;margin-top:56px;align-items:start}
+.vt{border-radius:28px;min-height:480px;background:linear-gradient(160deg,#134e4a,#1e3a8a);position:relative;overflow:hidden;display:grid;place-items:center}
+.vt svg{position:absolute;inset:0;width:100%;height:100%}
+.play{position:relative;width:88px;height:88px;border-radius:50%;background:#fff;display:grid;place-items:center;box-shadow:0 0 0 14px rgba(255,255,255,.18)}
+.vt small{position:absolute;bottom:22px;left:26px;letter-spacing:.14em;text-transform:uppercase;font-size:.72rem;opacity:.8}
+.fl{list-style:none}
+.fl li{display:flex;justify-content:space-between;gap:20px;padding:22px 0;border-bottom:1px solid rgba(255,255,255,.12);font-size:1.15rem;font-weight:600}
+.fl li small{display:block;font-weight:400;color:#9fb3d1;font-size:.88rem;margin-top:4px}
+.fl li em{font-style:normal;color:#5eead4;font-size:.8rem;white-space:nowrap}
+
+/* spotlight */
+.spot .head{display:flex;justify-content:space-between;align-items:end;gap:20px;flex-wrap:wrap}
+.sg{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:48px}
+.sc{border-radius:24px;border:1px solid var(--line);overflow:hidden;transition:.25s;background:#fff}
+.sc:hover{box-shadow:0 20px 50px rgba(15,23,42,.1);transform:translateY(-4px)}
+.sc .im{height:200px;background:linear-gradient(135deg,var(--c1),var(--c2))}
+.sc div.t{padding:26px}
+.sc small{color:var(--teal);font-weight:700;letter-spacing:.1em;text-transform:uppercase;font-size:.7rem}
+.sc h4{font-size:1.2rem;margin:8px 0;letter-spacing:-.01em}
+.sc p{color:var(--muted);font-size:.92rem}
+
+/* admissions */
+.adm{background:linear-gradient(135deg,var(--blue),#0b3d91);color:#fff;border-radius:36px;margin:0 28px;padding:80px 0}
+.adm .wrap{display:grid;grid-template-columns:1fr 1.1fr;gap:64px;align-items:center}
+.adm .tag{color:#99f6e4}
+.adm ol{list-style:none;counter-reset:a}
+.adm li{display:flex;gap:20px;align-items:center;padding:18px 24px;background:rgba(255,255,255,.1);border-radius:16px;margin-bottom:12px;counter-increment:a;font-weight:600}
+.adm li::before{content:counter(a);width:34px;height:34px;border-radius:50%;background:#fff;color:var(--blue);display:grid;place-items:center;font-weight:800;flex:none}
+.adm li small{font-weight:400;opacity:.75;margin-left:auto}
+.adm p{color:#cfe0ff;margin:18px 0 30px}
+
+footer{padding:90px 0 30px;color:var(--muted);font-size:.92rem}
+footer .g{display:grid;grid-template-columns:2fr 1fr 1fr 1.4fr;gap:40px}
+footer h5{color:var(--ink);font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;margin-bottom:14px}
+footer ul{list-style:none}footer li{margin:8px 0}footer a:hover{color:var(--blue)}
+footer .leg{border-top:1px solid var(--line);margin-top:50px;padding-top:22px;display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;font-size:.8rem}
+
+@media(max-width:980px){
+  nav{display:none}
+  .ribbon .wrap{grid-template-columns:1fr 1fr}.rb{border-left:0;padding-left:0}
+  .intro .wrap,.cg,.adm .wrap,footer .g{grid-template-columns:1fr;gap:40px}
+  .bg{grid-template-columns:1fr 1fr}.bx{grid-column:span 2!important;grid-row:span 1!important}
+  .pathways .row{grid-template-columns:1fr 1fr}.sg{grid-template-columns:1fr}.hero .slide-nav{display:none}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <a class="logo" href="#"><i>A</i><span>Anjuman-I-Islam<small>Public School &amp; Jr. College · Panchgani</small></span></a>
+    <nav><ul><li><a href="#about">About</a></li><li><a href="#programmes">Programmes</a></li><li><a href="#pathways">Pathways</a></li><li><a href="#campus">Campus</a></li><li><a href="#news">News</a></li></ul></nav>
+    <a class="btn w" href="#admissions">Apply now &rarr;</a>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="grid-bg"></div>
+  <div class="wrap">
+    <span class="tag" style="color:#5eead4">Residential School &amp; Junior College</span>
+    <h1>Learn beyond the <span>classroom.</span></h1>
+    <p>A boarding community on 174 acres in the hills of Panchgani — robotics, aviation, agriculture and NEET / JEE coaching, grounded in 100+ years of values.</p>
+    <div class="cta"><a class="btn w" href="#admissions">Start admission &rarr;</a><a class="btn o" href="#campus">Take a virtual tour</a></div>
+    <div class="slide-nav"><span>01 / 04</span><b>Dare to explore</b><span>Robotics &amp; AI · Aviation · Agriculture</span></div>
+  </div>
+  <div class="scroll">Scroll</div>
+</section>
+
+<div class="ribbon">
+  <div class="wrap">
+    <div class="rb"><b>100+</b><span>years of education</span></div>
+    <div class="rb"><b>174</b><span>acre campus</span></div>
+    <div class="rb"><b>5</b><span>competitive exam tracks</span></div>
+    <div class="rb"><b>24/7</b><span>on-campus medical care</span></div>
+  </div>
+</div>
+
+<section class="intro" id="about">
+  <div class="wrap">
+    <div>
+      <span class="tag">Welcome</span>
+      <h2 class="sh">Education that meets compassion.</h2>
+      <p class="sub">Our mission is to provide a transformative education beyond the classroom — nurturing intellectual curiosity, creativity and personal growth, with integrity and compassion at the core.</p>
+      <p class="sub">Part of Anjuman-I-Islam (est. 1874): 97 institutions, over one lakh students.</p>
+      <a class="btn d" style="margin-top:30px" href="#">Our vision &amp; mission &rarr;</a>
+    </div>
+    <div class="quote">
+      <p>Step into a world where education meets compassion, and learning goes beyond the books. A place where lifelong friendship begins and the future is bright.</p>
+      <div class="who"><div class="av"></div><div><b>Executive Chairman</b><small>Anjuman-I-Islam Public School &amp; Jr. College</small></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="bento" id="programmes">
+  <div class="wrap">
+    <span class="tag">Programmes &amp; Experiences</span>
+    <h2 class="sh">Something for every passion.</h2>
+    <div class="bg">
+      <a class="bx b1" href="#"><span class="n">Academics</span><span class="arrow">&nearr;</span><span class="big">01</span><h3>Rigorous academics, personal support</h3><p>Peer tutors, resident advisors, regular goal-setting and data-driven interventions from school through Jr. College.</p></a>
+      <a class="bx b2" href="#"><span class="n">Innovation</span><span class="arrow">&nearr;</span><h3>Robotics &amp; AI</h3><p>Tinkering lab for hands-on building.</p></a>
+      <a class="bx b3" href="#"><span class="n">New in 2024</span><span class="arrow">&nearr;</span><h3>Basic Aviation</h3><p>Look up — and learn to fly.</p></a>
+      <a class="bx b4" href="#"><span class="n">Outdoors</span><span class="arrow">&nearr;</span><h3>Horse riding &amp; archery</h3></a>
+      <a class="bx b5" href="#"><span class="n">Sustainability</span><span class="arrow">&nearr;</span><h3>Agriculture &amp; gardening</h3></a>
+      <a class="bx b6" href="#"><span class="n">Arts</span><span class="arrow">&nearr;</span><h3>Pottery, music &amp; drama</h3></a>
+    </div>
+  </div>
+</section>
+
+<section class="pathways" id="pathways">
+  <div class="wrap">
+    <span class="tag">Future pathways</span>
+    <h2 class="sh">On-campus coaching for the exams that matter.</h2>
+    <p class="sub">Competitive coaching is offered alongside Jr. College (extra fees apply). Extra support for vernacular-medium students.</p>
+    <div class="row">
+      <div class="pw"><i></i><b>NEET</b><span>Medical</span></div>
+      <div class="pw"><i></i><b>JEE</b><span>Engineering</span></div>
+      <div class="pw"><i></i><b>CET</b><span>State entrance</span></div>
+      <div class="pw"><i></i><b>NATA</b><span>Architecture</span></div>
+      <div class="pw"><i></i><b>CA</b><span>Chartered Accountancy</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="campus" id="campus">
+  <div class="wrap">
+    <span class="tag">Campus</span>
+    <h2 class="sh">A campus built for the whole student.</h2>
+    <p class="sub">From a 300-seat dining hall to the largest sports ground in town.</p>
+    <div class="cg">
+      <div class="vt">
+        <svg viewBox="0 0 600 480" preserveAspectRatio="xMidYMax slice"><path d="M0 330c120-80 240-90 360-20s180 10 240-30v200H0z" fill="#0b1f3a" opacity=".55"/><path d="M0 390c140-50 260-60 380-10s150 20 220-10v110H0z" fill="#0b1f3a"/></svg>
+        <div class="play"><svg width="28" height="28" viewBox="0 0 24 24" style="position:static;width:28px;height:28px"><path d="M8 5v14l11-7z" fill="#0b1f3a"/></svg></div>
+        <small>Virtual tour · video placeholder</small>
+      </div>
+      <ul class="fl">
+        <li><div>Akbar Peerboy Sports Stadium<small>Football, kabaddi, volleyball, basketball, athletics</small></div><em>Sports</em></li>
+        <li><div>Robotics &amp; AI Lab<small>Digital classrooms, science and computer labs</small></div><em>Learn</em></li>
+        <li><div>Renovated dormitories<small>Home-like, supervised by dorm in-charges</small></div><em>Live</em></li>
+        <li><div>Dining hall for 300<small>Dietician-designed menu, five meals a day</small></div><em>Eat</em></li>
+        <li><div>Gym, skating rink, shooting range<small>Multipurpose hall for the monsoon</small></div><em>Train</em></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="spot" id="news">
+  <div class="wrap">
+    <div class="head"><div><span class="tag">In the spotlight</span><h2 class="sh">Achievements &amp; campus life</h2></div><a class="btn b" href="#">All news &rarr;</a></div>
+    <div class="sg">
+      <div class="sc"><div class="im" style="--c1:#f59e0b;--c2:#b45309"></div><div class="t"><small>Sports · 2019</small><h4>Gold at World Thai Boxing Championship</h4><p>Our student won gold at the championship held in Goa.</p></div></div>
+      <div class="sc"><div class="im" style="--c1:#0d9488;--c2:#134e4a"></div><div class="t"><small>Sports · 2020</small><h4>3 Gold, 4 Silver, 3 Bronze in Stick Fight</h4><p>A medal haul at the World Stick Fight Championship, Goa.</p></div></div>
+      <div class="sc"><div class="im" style="--c1:#6366f1;--c2:#312e81"></div><div class="t"><small>Science · 2019</small><h4>INSPIRE Award, Taluka Level</h4><p>Innovation in Science Pursuit for Inspired Research.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:0">
+<div class="adm" id="admissions">
+  <div class="wrap">
+    <div>
+      <span class="tag">Admissions</span>
+      <h2 class="sh" style="color:#fff">Begin your journey at Panchgani.</h2>
+      <p>Five simple steps. Fees are paid in two terms — the first on confirmation, the second after the Diwali break.</p>
+      <a class="btn w" href="#">Download admission form</a>
+    </div>
+    <ol>
+      <li>Parents’ interview</li>
+      <li>Child’s interview</li>
+      <li>Written exam</li>
+      <li>Medical history</li>
+      <li>Blood investigation <small>Std 8 onwards</small></li>
+    </ol>
+  </div>
+</div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="g">
+      <div><div class="logo" style="color:var(--ink)"><i style="color:#fff">A</i><span>Anjuman-I-Islam<small style="color:var(--muted)">Public School &amp; Jr. College · Panchgani</small></span></div><p style="margin-top:18px;max-width:320px">Residential school and junior college, Panchgani, Maharashtra.</p></div>
+      <div><h5>School</h5><ul><li><a href="#">About</a></li><li><a href="#">Academics</a></li><li><a href="#">Campus</a></li><li><a href="#">Calendar</a></li></ul></div>
+      <div><h5>Join us</h5><ul><li><a href="#">Admissions</a></li><li><a href="#">Fees policy</a></li><li><a href="#">Careers</a></li><li><a href="#">Parent login</a></li></ul></div>
+      <div><h5>Contact</h5><ul><li>8275204302 / 8275205404</li><li>info@anjumanislampublicschoolpanchgani.in</li></ul></div>
+    </div>
+    <div class="leg"><span>© 2026 Anjuman-I-Islam Public School &amp; Jr. College, Panchgani</span><span>Design mockup · Theme 2 — Modern Global</span></div>
+  </div>
+</footer>
+</body>
+</html>

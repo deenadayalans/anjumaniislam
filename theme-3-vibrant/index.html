@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Theme 3 · Vibrant Explorer — Anjuman-I-Islam Public School & Jr. College, Panchgani</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Fraunces:opsz,wght@9..144,600;9..144,800&display=swap" rel="stylesheet">
+<style>
+:root{--green:#0e7a5f;--dark:#073b30;--yellow:#ffc933;--coral:#ff6b4a;--sky:#4cc9f0;--lilac:#b79cff;--cream:#fff8ea;--ink:#13261f;--muted:#587068;--sans:'Poppins',sans-serif;--disp:'Fraunces',serif}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);background:var(--cream);color:var(--ink);line-height:1.6}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1200px;margin:0 auto;padding:0 24px}
+section{padding:90px 0}
+h1,h2,h3{font-family:var(--disp);font-weight:800;line-height:1.05;letter-spacing:-.01em}
+.pill{display:inline-block;padding:7px 16px;border-radius:999px;font-weight:600;font-size:.78rem;background:var(--yellow);color:var(--dark);margin-bottom:16px}
+.sh{font-size:clamp(2.2rem,4.4vw,3.6rem);color:var(--dark)}
+.btn{display:inline-block;padding:15px 30px;border-radius:16px;font-weight:700;font-size:.95rem;border:3px solid var(--dark);box-shadow:4px 4px 0 var(--dark);transition:.15s}
+.btn:hover{transform:translate(2px,2px);box-shadow:2px 2px 0 var(--dark)}
+.btn.y{background:var(--yellow);color:var(--dark)}.btn.c{background:var(--coral);color:#fff}.btn.g{background:var(--green);color:#fff}.btn.w{background:#fff;color:var(--dark)}
+
+/* header */
+header{background:var(--cream);position:sticky;top:0;z-index:50;border-bottom:3px solid var(--dark)}
+header .wrap{display:flex;align-items:center;justify-content:space-between;height:78px;gap:20px}
+.logo{display:flex;align-items:center;gap:12px;font-family:var(--disp);font-weight:800;font-size:1.25rem;color:var(--dark);line-height:1}
+.logo i{width:46px;height:46px;border-radius:14px;background:var(--yellow);border:3px solid var(--dark);display:grid;place-items:center;font-style:normal;transform:rotate(-6deg)}
+.logo small{display:block;font-family:var(--sans);font-weight:500;font-size:.66rem;color:var(--muted);margin-top:3px}
+nav ul{list-style:none;display:flex;gap:6px;font-weight:600;font-size:.9rem}
+nav a{padding:9px 16px;border-radius:999px;transition:.15s}
+nav a:hover{background:var(--yellow)}
+
+/* hero */
+.hero{background:var(--green);color:#fff;position:relative;overflow:hidden;padding:80px 0 120px}
+.hero .wrap{display:grid;grid-template-columns:1.15fr 1fr;gap:40px;align-items:center;position:relative;z-index:2}
+.hero h1{font-size:clamp(3rem,7vw,6rem)}
+.hero h1 mark{background:none;color:var(--yellow);display:inline-block;transform:rotate(-2deg)}
+.hero p{margin:24px 0 32px;font-size:1.12rem;max-width:500px;color:#d4f1e7}
+.hero .row{display:flex;gap:16px;flex-wrap:wrap}
+.blob{position:absolute;border-radius:50%;filter:blur(0);opacity:.9}
+.blob.a{width:340px;height:340px;background:var(--dark);right:-80px;top:-100px}
+.blob.b{width:160px;height:160px;background:var(--coral);left:46%;bottom:-60px}
+.collage{position:relative;height:460px}
+.tile{position:absolute;border:3px solid var(--dark);border-radius:26px;box-shadow:6px 6px 0 var(--dark);display:flex;align-items:flex-end;padding:16px;font-weight:700;color:var(--dark);font-size:.9rem}
+.t1{width:56%;height:62%;left:0;top:0;background:var(--yellow);transform:rotate(-4deg)}
+.t2{width:50%;height:46%;right:0;top:6%;background:var(--sky);transform:rotate(3deg)}
+.t3{width:52%;height:46%;right:4%;bottom:0;background:var(--coral);color:#fff;transform:rotate(-2deg)}
+.t4{width:42%;height:34%;left:6%;bottom:2%;background:var(--lilac);transform:rotate(5deg)}
+.tile svg{position:absolute;top:14px;right:14px;width:42px;height:42px}
+.wave{position:absolute;bottom:-1px;left:0;width:100%;height:80px}
+
+/* marquee */
+.marq{background:var(--dark);color:var(--yellow);overflow:hidden;white-space:nowrap;padding:16px 0;font-family:var(--disp);font-weight:800;font-size:1.5rem;border-top:3px solid var(--dark);border-bottom:3px solid var(--dark)}
+.marq div{display:inline-block;animation:m 28s linear infinite}
+.marq span{margin:0 26px}.marq span::after{content:"✦";margin-left:52px;color:var(--coral)}
+@keyframes m{to{transform:translateX(-50%)}}
+@media(prefers-reduced-motion:reduce){.marq div{animation:none}}
+
+/* numbers */
+.nums .wrap{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.n{border:3px solid var(--dark);border-radius:26px;padding:30px 22px;box-shadow:5px 5px 0 var(--dark);text-align:center}
+.n b{display:block;font-family:var(--disp);font-size:3.6rem;line-height:1}
+.n span{font-weight:600;font-size:.88rem}
+.n:nth-child(1){background:var(--yellow)}.n:nth-child(2){background:#fff}.n:nth-child(3){background:var(--sky)}.n:nth-child(4){background:var(--lilac)}
+
+/* activities */
+.act .head{text-align:center;max-width:680px;margin:0 auto 54px}
+.act .head p{color:var(--muted);margin-top:14px}
+.ag{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.ac{border:3px solid var(--dark);border-radius:26px;padding:26px;background:var(--bg);box-shadow:5px 5px 0 var(--dark);transition:.2s;min-height:200px;display:flex;flex-direction:column;justify-content:space-between}
+.ac:hover{transform:translate(-3px,-3px) rotate(-1deg);box-shadow:9px 9px 0 var(--dark)}
+.ac .ic{width:54px;height:54px;border-radius:16px;background:rgba(255,255,255,.55);border:3px solid var(--dark);display:grid;place-items:center;font-family:var(--disp);font-weight:800;font-size:1.4rem}
+.ac h3{font-size:1.45rem;margin-top:30px}
+.ac small{font-weight:500;font-size:.82rem;opacity:.8}
+.c1{--bg:var(--yellow)}.c2{--bg:var(--sky)}.c3{--bg:var(--coral);color:#fff}.c4{--bg:var(--lilac)}.c5{--bg:#9bf0c8}.c6{--bg:#ffd3a8}.c7{--bg:#fff}.c8{--bg:var(--yellow)}
+
+/* day in life */
+.day{background:var(--dark);color:#fff}
+.day .sh{color:#fff}.day .pill{background:var(--sky)}
+.dl{margin-top:50px;display:grid;grid-template-columns:repeat(5,1fr);gap:0;position:relative}
+.dl::before{content:"";position:absolute;left:5%;right:5%;top:30px;height:4px;background:repeating-linear-gradient(90deg,var(--yellow) 0 12px,transparent 12px 22px)}
+.ds{text-align:center;padding:0 10px;position:relative}
+.ds i{width:60px;height:60px;border-radius:50%;background:var(--yellow);color:var(--dark);border:3px solid #fff;display:grid;place-items:center;margin:0 auto 18px;font-style:normal;font-weight:800;font-size:.8rem}
+.ds b{display:block;font-family:var(--disp);font-size:1.3rem}
+.ds span{font-size:.86rem;color:#a8d4c6}
+
+/* exams */
+.ex{display:grid;grid-template-columns:1fr 1.2fr;gap:50px;align-items:center}
+.ex p{color:var(--muted);margin:16px 0 26px}
+.chips{display:flex;flex-wrap:wrap;gap:12px}
+.chip{padding:16px 28px;border:3px solid var(--dark);border-radius:18px;font-family:var(--disp);font-weight:800;font-size:1.7rem;box-shadow:4px 4px 0 var(--dark)}
+.chip:nth-child(1){background:var(--yellow)}.chip:nth-child(2){background:var(--sky)}.chip:nth-child(3){background:var(--coral);color:#fff}.chip:nth-child(4){background:var(--lilac)}.chip:nth-child(5){background:#9bf0c8}
+
+/* calendar */
+.cal{background:#fff;border-top:3px solid var(--dark);border-bottom:3px solid var(--dark)}
+.cal .wrap{display:grid;grid-template-columns:1fr 2fr;gap:50px;align-items:start}
+.cg{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+.ev{display:flex;gap:16px;align-items:center;border:3px solid var(--dark);border-radius:20px;padding:14px 18px;background:var(--cream)}
+.ev .d{width:62px;flex:none;text-align:center;background:var(--coral);color:#fff;border-radius:14px;padding:6px 0;font-size:.7rem;font-weight:700;text-transform:uppercase}
+.ev .d b{display:block;font-family:var(--disp);font-size:1.7rem;line-height:1}
+.ev:nth-child(2) .d{background:var(--green)}.ev:nth-child(3) .d{background:var(--sky);color:var(--dark)}.ev:nth-child(4) .d{background:var(--lilac);color:var(--dark)}
+.ev b.t{font-size:.95rem}
+
+/* admissions */
+.adm{background:var(--yellow);text-align:center;border-bottom:3px solid var(--dark)}
+.adm .steps{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin:40px 0}
+.st{background:#fff;border:3px solid var(--dark);border-radius:20px;padding:16px 22px;font-weight:700;box-shadow:4px 4px 0 var(--dark);font-size:.92rem}
+.st small{display:block;font-weight:500;color:var(--muted)}
+.adm p{max-width:600px;margin:14px auto 0;color:#4d3d00}
+
+footer{background:var(--dark);color:#a8d4c6;padding:70px 0 26px;font-size:.92rem}
+footer .g{display:grid;grid-template-columns:2fr 1fr 1fr 1.4fr;gap:40px}
+footer h5{font-family:var(--disp);font-size:1.3rem;color:var(--yellow);margin-bottom:12px}
+footer ul{list-style:none}footer li{margin:7px 0}footer a:hover{color:#fff}
+footer .leg{border-top:1px solid #1b5a4a;margin-top:44px;padding-top:20px;display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;font-size:.8rem}
+
+@media(max-width:980px){
+  nav{display:none}.hero .wrap,.ex,.cal .wrap,footer .g{grid-template-columns:1fr}
+  .collage{height:360px}.nums .wrap,.ag{grid-template-columns:1fr 1fr}.dl{grid-template-columns:1fr;gap:26px}.dl::before{display:none}.cg{grid-template-columns:1fr}
+}
+@media(max-width:560px){.nums .wrap,.ag{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <a class="logo" href="#"><i>A</i><span>Anjuman-I-Islam<small>Public School &amp; Jr. College · Panchgani</small></span></a>
+    <nav><ul><li><a href="#activities">Activities</a></li><li><a href="#day">Boarding Life</a></li><li><a href="#exams">Future</a></li><li><a href="#calendar">Calendar</a></li></ul></nav>
+    <a class="btn y" href="#admissions" style="padding:11px 22px">Apply</a>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="blob a"></div><div class="blob b"></div>
+  <div class="wrap">
+    <div>
+      <span class="pill">Boarding school · Panchgani hills</span>
+      <h1>Your next big <mark>adventure</mark> starts here.</h1>
+      <p>Robotics, horse riding, aviation, archery and more — on a 174-acre hill campus where lifelong friendships begin and the future is bright.</p>
+      <div class="row"><a class="btn y" href="#admissions">Apply for admission</a><a class="btn w" href="#activities">See what we do</a></div>
+    </div>
+    <div class="collage">
+      <div class="tile t1"><svg viewBox="0 0 24 24" fill="none" stroke="#073b30" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M5 5l2 2M17 17l2 2M19 5l-2 2M7 17l-2 2"/></svg>Robotics &amp; AI</div>
+      <div class="tile t2"><svg viewBox="0 0 24 24" fill="none" stroke="#073b30" stroke-width="2"><path d="M3 12l18-8-6 16-3-7z"/></svg>Basic Aviation</div>
+      <div class="tile t3"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1"/></svg>Archery</div>
+      <div class="tile t4"><svg viewBox="0 0 24 24" fill="none" stroke="#073b30" stroke-width="2"><path d="M4 20c1-6 4-10 10-12l2-4 3 3-3 3c0 5-4 9-12 10z"/></svg>Horse riding</div>
+    </div>
+  </div>
+  <svg class="wave" viewBox="0 0 1440 80" preserveAspectRatio="none"><path d="M0 40c240 60 480 60 720 10s480-40 720 0v30H0z" fill="#073b30"/></svg>
+</section>
+
+<div class="marq"><div>
+  <span>Robotics</span><span>Aviation</span><span>Agriculture</span><span>Horse Riding</span><span>Archery</span><span>Pottery</span><span>Sky Gazing</span><span>Debate</span><span>Skating</span><span>Shooting</span>
+  <span>Robotics</span><span>Aviation</span><span>Agriculture</span><span>Horse Riding</span><span>Archery</span><span>Pottery</span><span>Sky Gazing</span><span>Debate</span><span>Skating</span><span>Shooting</span>
+</div></div>
+
+<section class="nums">
+  <div class="wrap">
+    <div class="n"><b>100+</b><span>years of learning</span></div>
+    <div class="n"><b>174</b><span>acres to explore</span></div>
+    <div class="n"><b>300</b><span>seats in the dining hall</span></div>
+    <div class="n"><b>24/7</b><span>nurse on campus</span></div>
+  </div>
+</section>
+
+<section class="act" id="activities" style="padding-top:20px">
+  <div class="wrap">
+    <div class="head"><span class="pill">Beyond the classroom</span><h2 class="sh">There’s something for everyone.</h2><p>Sports, music, arts, clubs and community service — students are athletes, artists, musicians and leaders in the making.</p></div>
+    <div class="ag">
+      <a class="ac c1" href="#"><div class="ic">R</div><div><h3>Robotics &amp; AI</h3><small>Tinkering lab · new 2024</small></div></a>
+      <a class="ac c2" href="#"><div class="ic">A</div><div><h3>Basic Aviation</h3><small>New in 2024</small></div></a>
+      <a class="ac c3" href="#"><div class="ic">H</div><div><h3>Horse Riding</h3><small>On campus</small></div></a>
+      <a class="ac c4" href="#"><div class="ic">T</div><div><h3>Archery</h3><small>Range and coaching</small></div></a>
+      <a class="ac c5" href="#"><div class="ic">G</div><div><h3>Agriculture &amp; Gardening</h3><small>New in 2024</small></div></a>
+      <a class="ac c6" href="#"><div class="ic">P</div><div><h3>Pottery &amp; Ceramics</h3><small>Studio</small></div></a>
+      <a class="ac c7" href="#"><div class="ic">S</div><div><h3>Sports</h3><small>Cricket · football · hockey · kabaddi</small></div></a>
+      <a class="ac c8" href="#"><div class="ic">D</div><div><h3>Debate · Quiz · Drama</h3><small>Inter-house contests</small></div></a>
+    </div>
+  </div>
+</section>
+
+<section class="day" id="day">
+  <div class="wrap">
+    <span class="pill">Boarding life</span>
+    <h2 class="sh">A day at Panchgani.</h2>
+    <div class="dl">
+      <div class="ds"><i>AM</i><b>Rise &amp; pray</b><span>Prayer hall, Quran recitation, breakfast</span></div>
+      <div class="ds"><i>9</i><b>Class</b><span>Digital classrooms and labs</span></div>
+      <div class="ds"><i>1</i><b>Lunch</b><span>Dietician-planned menu</span></div>
+      <div class="ds"><i>4</i><b>Play</b><span>Sports, clubs and activities</span></div>
+      <div class="ds"><i>PM</i><b>Study &amp; rest</b><span>Peer tutors, dorm in-charge</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="exams">
+  <div class="wrap ex">
+    <div>
+      <span class="pill">Future ready</span>
+      <h2 class="sh">Dream big. We’ll coach you there.</h2>
+      <p>On-campus coaching alongside Jr. College, with extra support for students from the vernacular medium. Competitive courses carry extra fees.</p>
+      <a class="btn g" href="#">Know more</a>
+    </div>
+    <div class="chips"><div class="chip">NEET</div><div class="chip">JEE</div><div class="chip">CET</div><div class="chip">NATA</div><div class="chip">CA</div></div>
+  </div>
+</section>
+
+<section class="cal" id="calendar">
+  <div class="wrap">
+    <div><span class="pill">What’s on</span><h2 class="sh">School calendar</h2><a class="btn y" href="#" style="margin-top:26px">Full calendar</a></div>
+    <div class="cg">
+      <div class="ev"><div class="d"><b>28</b>Oct</div><b class="t">Annual Sports Day</b></div>
+      <div class="ev"><div class="d"><b>14</b>Jan</div><b class="t">Kite Flying Festival</b></div>
+      <div class="ev"><div class="d"><b>31</b>Dec</div><b class="t">Anjuman Talent Show</b></div>
+      <div class="ev"><div class="d"><b>01</b>Mar</div><b class="t">Annual Day &amp; Prizes</b></div>
+    </div>
+  </div>
+</section>
+
+<section class="adm" id="admissions">
+  <div class="wrap">
+    <span class="pill" style="background:#fff">Admissions</span>
+    <h2 class="sh">Ready to join the adventure?</h2>
+    <div class="steps">
+      <div class="st">1 · Parents’ interview</div><div class="st">2 · Child’s interview</div><div class="st">3 · Written exam</div><div class="st">4 · Medical history</div><div class="st">5 · Blood test<small>Std 8 onwards</small></div>
+    </div>
+    <a class="btn c" href="#">Download form</a> &nbsp; <a class="btn w" href="#">Call 8275204302</a>
+    <p>Two fee instalments: on confirmation, and after the Diwali break.</p>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="g">
+      <div><h5>Anjuman-I-Islam Public School &amp; Jr. College</h5><p>Panchgani, Maharashtra · A residential school with 100+ years of heritage.</p></div>
+      <div><h5>Explore</h5><ul><li><a href="#">About</a></li><li><a href="#">Facilities</a></li><li><a href="#">Achievements</a></li></ul></div>
+      <div><h5>Join</h5><ul><li><a href="#">Admissions</a></li><li><a href="#">Careers</a></li><li><a href="#">Parent login</a></li></ul></div>
+      <div><h5>Contact</h5><ul><li>8275204302 / 8275205404</li><li>info@anjumanislampublicschoolpanchgani.in</li></ul></div>
+    </div>
+    <div class="leg"><span>© 2026 Anjuman-I-Islam Public School &amp; Jr. College, Panchgani</span><span>Design mockup · Theme 3 — Vibrant Explorer</span></div>
+  </div>
+</footer>
+</body>
+</html>
