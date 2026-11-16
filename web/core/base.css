@@ -9,6 +9,10 @@ button,input,select,textarea{font:inherit;color:inherit}
 [hidden]{display:none!important}
 .ic{width:1.4em;height:1.4em;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;flex:none}
 .skip{position:absolute;left:-999px;top:8px;z-index:2000;background:#fff;color:#000;padding:10px 16px}
+.demo-back{position:fixed;left:14px;bottom:14px;z-index:1300;padding:8px 14px;border-radius:99px;background:rgba(15,15,15,.78);color:#fff;font:600 12px/1 system-ui,sans-serif;letter-spacing:.04em;text-decoration:none;backdrop-filter:blur(6px);box-shadow:0 4px 16px rgba(0,0,0,.25);transition:background .2s}
+.demo-back:hover{background:#000}
+.school-logo{width:48px;height:48px;object-fit:contain;flex:none;display:block}
+.school-logo.big{width:96px;height:96px;margin:0 auto 14px}
 .skip:focus{left:8px}
 
 /* page curtain + progress */
@@ -202,7 +206,7 @@ main p,main li,main h3,main h4,.ftr p,.ftr a{overflow-wrap:anywhere}
 /* aerial hero: pure white text, location tag + radar */
 .aerial h1,.aerial h1 em,.aerial .lead,.aerial .kick,.aerial .eyebrow,.aerial .pill{color:#fff!important;text-shadow:0 2px 14px rgba(0,0,0,.55)}
 .aerial .pill{background:rgba(255,255,255,.14)!important;border-color:rgba(255,255,255,.7)!important;box-shadow:none!important}
-.aerial .leaflet-container{background:#1b2a22;font:inherit;outline:0}
+.aerial .leaflet-container{background:#3d4636;font:inherit;outline:0}
 .aerial .leaflet-control-attribution{background:rgba(0,0,0,.45);color:#fff;font-size:10px;padding:1px 8px}.aerial .leaflet-control-attribution a{color:#fff}
 .aerial .leaflet-control-zoom a{background:rgba(0,0,0,.55);color:#fff;border:0}.aerial .leaflet-control-zoom{border:1px solid rgba(255,255,255,.4)}
 .lp{pointer-events:none;background:none;border:0}.lp-wrap{position:absolute;left:0;top:0;display:block}

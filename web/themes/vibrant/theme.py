@@ -23,7 +23,7 @@ def layout(slug, title, body, hero=""):
 <body data-cursor>
 <div class="curtain"></div><div class="progress"><i></i></div><a class="skip" href="#main">Skip to content</a>
 <header class="hdr" data-header><div class="wrap hdr-in">
-  <a class="brand" href="index.html"><span class="logo-ph">LOGO</span><span><b>Anjuman-I-Islam</b><small>Public School &amp; Jr. College · Panchgani</small></span></a>
+  <a class="brand" href="index.html"><img class="school-logo" src="assets/real/school-logo-sm.png" alt=""><span><b>Anjuman-I-Islam</b><small>Public School &amp; Jr. College · Panchgani</small></span></a>
   <nav class="nav">{nav}</nav>
   <a class="btn y sm" href="admissions.html#enquire">Apply!</a>
   <button class="burger" data-nav-toggle aria-label="Menu">{ic("menu")}</button>
@@ -32,7 +32,7 @@ def layout(slug, title, body, hero=""):
 <footer class="ftr"><div class="wrap">
   <div class="ftr-big"><h2 data-split>Ready to join the adventure?</h2><a class="btn y" href="admissions.html#enquire">Enquire now {ARROW}</a></div>
   <div class="ftr-grid">
-    <div><a class="brand" href="index.html"><span class="logo-ph">LOGO</span><span><b>Anjuman-I-Islam</b><small>Public School &amp; Jr. College</small></span></a><p>Panchgani, Maharashtra · part of Anjuman-I-Islam, since 1874.</p></div>
+    <div><a class="brand" href="index.html"><img class="school-logo" src="assets/real/school-logo-sm.png" alt=""><span><b>Anjuman-I-Islam</b><small>Public School &amp; Jr. College</small></span></a><p>Panchgani, Maharashtra · part of Anjuman-I-Islam, since 1874.</p></div>
     <div><h5>Explore</h5>{"".join(f'<a href="{s}.html">{l}</a>' for s, l in PAGES)}</div>
     <div><h5>Say hello</h5><p>{C.SCHOOL['phones'][0]} / {C.SCHOOL['phones'][1]}</p><p>{C.SCHOOL['email_admissions']}</p></div>
     <div><h5>Network</h5><img class="plogo" src="assets/real/logo.png" alt="Anjuman-I-Islam"><a href="{C.SCHOOL['parent_url']}" target="_blank" rel="noopener">anjumaniislam.org</a></div>

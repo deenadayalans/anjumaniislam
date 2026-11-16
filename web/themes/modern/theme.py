@@ -22,7 +22,7 @@ def layout(slug, title, body, hero=""):
 <body>
 <div class="progress"><i></i></div><a class="skip" href="#main">Skip to content</a>
 <header class="hdr" data-header data-hide><div class="wrap hdr-in">
-  <a class="brand" href="index.html"><span class="logo-ph">LOGO</span><span><b>Anjuman-I-Islam</b><small>Public School &amp; Jr. College · Panchgani</small></span></a>
+  <a class="brand" href="index.html"><img class="school-logo" src="assets/real/school-logo-sm.png" alt=""><span><b>Anjuman-I-Islam</b><small>Public School &amp; Jr. College · Panchgani</small></span></a>
   <nav class="nav">{nav}</nav>
   <a class="btn grad sm" href="admissions.html#enquire" data-mag>Apply now {ARROW}</a>
   <button class="burger" data-nav-toggle aria-label="Menu">{ic("menu")}</button>
@@ -31,7 +31,7 @@ def layout(slug, title, body, hero=""):
 <footer class="ftr dark"><div class="wrap">
   <div class="ftr-cta"><h2 data-split>Come and see the hills for yourself.</h2><a class="btn light" href="admissions.html#enquire" data-mag>Start admission {ARROW}</a></div>
   <div class="ftr-grid">
-    <div><a class="brand" href="index.html"><span class="logo-ph">LOGO</span><span><b>Anjuman-I-Islam</b><small>Public School &amp; Jr. College</small></span></a><p>Panchgani, Maharashtra. A residential school and junior college, part of Anjuman-I-Islam since 1874.</p></div>
+    <div><a class="brand" href="index.html"><img class="school-logo" src="assets/real/school-logo-sm.png" alt=""><span><b>Anjuman-I-Islam</b><small>Public School &amp; Jr. College</small></span></a><p>Panchgani, Maharashtra. A residential school and junior college, part of Anjuman-I-Islam since 1874.</p></div>
     <div><h5>Explore</h5>{"".join(f'<a href="{s}.html">{l}</a>' for s, l in PAGES)}</div>
     <div><h5>Contact</h5><p>{C.SCHOOL['phones'][0]} / {C.SCHOOL['phones'][1]}</p><p>{C.SCHOOL['email_admissions']}</p></div>
     <div><h5>Network</h5><img class="plogo" src="assets/real/logo.png" alt="Anjuman-I-Islam"><a href="{C.SCHOOL['parent_url']}" target="_blank" rel="noopener">anjumaniislam.org</a></div>

@@ -38,6 +38,7 @@ p{margin:0 0 1em}
 .nav a:not(.btn)::after{content:"";position:absolute;left:0;right:100%;bottom:0;height:1px;background:var(--gold);transition:right .35s}
 .nav a:hover::after,.nav a.cur::after{right:0}
 .brand{display:flex;flex-direction:column;align-items:center;text-align:center;line-height:1.1}
+.brand .school-logo{width:60px;height:60px;margin-bottom:4px}
 .brand b{font-family:var(--serif);font-size:1.6rem;color:var(--emerald);font-weight:700}.brand small{font-size:.58rem;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);margin-top:3px}
 .crest{width:54px;height:54px;border:2px dashed var(--gold);display:grid;place-items:center;font-size:.5rem;font-weight:900;letter-spacing:.14em;color:var(--emerald);border-radius:50% 50% 4px 4px;margin-bottom:6px;line-height:1.15;text-align:center;background:rgba(201,162,75,.1)}
 .crest.big{width:72px;height:72px;margin:0 auto 14px;color:var(--gold-l);font-size:.6rem}
@@ -182,8 +183,8 @@ blockquote.big{font-size:clamp(1.8rem,3.6vw,2.8rem)}
 .legal{border-top:1px solid rgba(255,255,255,.1);margin-top:50px;padding-top:22px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;font-size:.78rem}
 
 @media(max-width:1020px){
-  .nav{display:none}.burger{display:block;justify-self:end}.hdr-in{grid-template-columns:1fr auto}.brand{align-items:flex-start;text-align:left;flex-direction:row;gap:12px;flex-wrap:wrap}.brand .crest{margin:0}.brand b,.brand small{display:block}
-  .brand{display:grid;grid-template-columns:auto 1fr;column-gap:12px}.brand .crest{grid-row:span 2}
+  .nav{display:none}.burger{display:block;justify-self:end}.hdr-in{grid-template-columns:1fr auto}.brand{align-items:flex-start;text-align:left;flex-direction:row;gap:12px;flex-wrap:wrap}.brand .school-logo{margin:0;width:48px;height:48px}.brand b,.brand small{display:block}
+  .brand{display:grid;grid-template-columns:auto 1fr;column-gap:12px}.brand .school-logo{grid-row:span 2}
   .mnav{display:none;position:fixed;inset:0;z-index:99;background:var(--deep);padding:130px 32px 40px;flex-direction:column;gap:6px;overflow:auto}.nav-open .mnav{display:flex}.mnav a:not(.btn){font-family:var(--serif);font-size:2rem;color:#fff;padding:6px 0;border-bottom:1px solid rgba(255,255,255,.12)}.mnav .btn{margin-top:20px;justify-content:center}
   .hdr{z-index:120}.hero-in,.phero-in,.split,.duo,.quad,.quad.five,.trio,.ssc-hsc,.ftr-grid{grid-template-columns:1fr;gap:40px}.hero-a{margin:0 auto}.seal{left:-10px}.phero .arch{display:none}
   .stats,.tracks,.day,.acts,.steps,.fgrid,.life-grid,.news,.months{grid-template-columns:1fr 1fr}.mosaic{grid-template-columns:1fr 1fr}

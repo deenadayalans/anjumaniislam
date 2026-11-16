@@ -14,6 +14,8 @@ sys.path.insert(0, str(ROOT))
 DIST = ROOT / "dist"
 THEMES = ["heritage", "modern", "vibrant", "hillstation"]
 DOMAIN = "www.anjumaniislam.com"
+# Demo-only link back to the theme chooser; set to "" at launch.
+BACK_LINK = '<a class="demo-back" href="../index.html">&larr; All themes</a>'
 
 
 def build():
@@ -33,6 +35,7 @@ def build():
         (out / "assets" / "style.css").write_text(css)
         pages = mod.build()
         for name, html in pages.items():
+            html = html.replace("</body>", BACK_LINK + "</body>", 1)
             (out / f"{name}.html").write_text(html, encoding="utf-8")
         metas.append(mod.META)
         print(f"  {slug:12s} {len(pages)} pages")
@@ -58,7 +61,7 @@ def chooser(metas):
   <div class="pages">{links}</div></div></article>''')
     return f'''<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Website options — Anjuman-I-Islam Public School &amp; Jr. College, Panchgani</title>
-<link rel="icon" href="real/favicon.png">
+<link rel="icon" href="real/school-favicon.png">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
 *{{box-sizing:border-box;margin:0}}body{{font-family:Inter,system-ui,sans-serif;background:#0d1512;color:#e8f0ec;line-height:1.6}}

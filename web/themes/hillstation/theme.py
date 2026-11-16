@@ -23,7 +23,7 @@ def layout(slug, title, body, hero=""):
 <body data-cursor>
 <div class="curtain"></div><div class="progress"><i></i></div><a class="skip" href="#main">Skip to content</a>
 <header class="hdr" data-header data-hide><div class="wrap hdr-in">
-  <a class="brand" href="index.html"><span class="logo-ph">LOGO</span><span><b>Anjuman-I-Islam</b><small>Public School &amp; Jr. College · Panchgani</small></span></a>
+  <a class="brand" href="index.html"><img class="school-logo" src="assets/real/school-logo-sm.png" alt=""><span><b>Anjuman-I-Islam</b><small>Public School &amp; Jr. College · Panchgani</small></span></a>
   <div class="hdr-r"><a class="apply" href="admissions.html#enquire">Apply</a><button class="menu-btn" data-nav-toggle aria-label="Menu" aria-expanded="false"><span>Menu</span><i></i><i></i></button></div>
 </div></header>
 <div class="nav"><div class="wrap nav-in"><nav>{menu}</nav><div class="nav-side"><p class="kick">Contact</p><p>{C.SCHOOL['phones'][0]} / {C.SCHOOL['phones'][1]}<br>{C.SCHOOL['email_admissions']}</p><p class="kick">Part of</p><img class="plogo" src="assets/real/logo.png" alt="Anjuman-I-Islam"></div></div></div>
@@ -31,7 +31,7 @@ def layout(slug, title, body, hero=""):
 <footer class="ftr"><div class="wrap">
   <p class="kick">Admissions</p><a class="huge" href="admissions.html#enquire" data-hover>Come and see<br>the hills <em>for yourself</em> {ARROW}</a>
   <div class="ftr-grid">
-    <div><a class="brand" href="index.html"><span class="logo-ph">LOGO</span><span><b>Anjuman-I-Islam</b><small>Public School &amp; Jr. College</small></span></a><p>Panchgani, Maharashtra · a unit of Anjuman-I-Islam, serving education since 1874.</p></div>
+    <div><a class="brand" href="index.html"><img class="school-logo" src="assets/real/school-logo-sm.png" alt=""><span><b>Anjuman-I-Islam</b><small>Public School &amp; Jr. College</small></span></a><p>Panchgani, Maharashtra · a unit of Anjuman-I-Islam, serving education since 1874.</p></div>
     <div><h5>Explore</h5>{"".join(f'<a href="{s}.html">{l}</a>' for s, l in PAGES)}</div>
     <div><h5>Contact</h5><p>{C.SCHOOL['phones'][0]} / {C.SCHOOL['phones'][1]}</p><p>{C.SCHOOL['email_admissions']}</p></div>
     <div><h5>Network</h5><a href="{C.SCHOOL['parent_url']}" target="_blank" rel="noopener">anjumaniislam.org</a><a href="mailto:{C.SCHOOL['parent_email']}">{C.SCHOOL['parent_email']}</a></div>

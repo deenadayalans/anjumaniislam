@@ -31,14 +31,14 @@ def layout(slug, title, body, hero=""):
 <div class="util"><div class="container"><span>Admissions open · Boarding school &amp; Jr. College</span><span><a href="tel:{C.SCHOOL['phones'][0]}">{C.SCHOOL['phones'][0]} / {C.SCHOOL['phones'][1]}</a> &nbsp;·&nbsp; <a href="mailto:{C.SCHOOL['email_admissions']}">{C.SCHOOL['email_admissions']}</a></span></div></div>
 <header class="hdr" data-header><div class="container hdr-in">
   <nav class="nav nav-l">{left}</nav>
-  <a class="brand" href="index.html"><span class="crest">LOGO<br>HERE</span><b>Anjuman-I-Islam</b><small>Public School &amp; Jr. College · Panchgani</small></a>
+  <a class="brand" href="index.html"><img class="school-logo" src="assets/real/school-logo-sm.png" alt=""><b>Anjuman-I-Islam</b><small>Public School &amp; Jr. College · Panchgani</small></a>
   <nav class="nav nav-r">{right}<a class="btn gold sm" href="admissions.html#enquire">Apply</a></nav>
   <button class="burger" data-nav-toggle aria-label="Menu">{ic("menu")}</button>
 </div></header>
 <div class="mnav"><a href="index.html">Home</a>{links}<a class="btn gold" href="admissions.html#enquire">Apply now</a></div>
 {hero}<main id="main">{body}</main>
 <footer class="ftr"><div class="pat-wrap">{PATTERN}</div><div class="container">
-  <div class="ftr-top"><span class="crest big">LOGO<br>HERE</span><h3>Anjuman-I-Islam Public School &amp; Jr. College</h3><p>Panchgani, Maharashtra · Part of Anjuman-I-Islam, serving education since 1874</p></div>
+  <div class="ftr-top"><img class="school-logo big" src="assets/real/school-logo-sm.png" alt="Anjuman-I-Islam Public School &amp; Jr. College logo"><h3>Anjuman-I-Islam Public School &amp; Jr. College</h3><p>Panchgani, Maharashtra · Part of Anjuman-I-Islam, serving education since 1874</p></div>
   <div class="ftr-grid">
     <div><h5>Explore</h5>{links}</div>
     <div><h5>Contact</h5><p>{C.SCHOOL['phones'][0]} / {C.SCHOOL['phones'][1]}</p><p>{C.SCHOOL['email_admissions']}</p><p>Panchgani, Maharashtra<br><small>(full address to be added)</small></p></div>

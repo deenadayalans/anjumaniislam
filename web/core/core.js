@@ -135,7 +135,10 @@
   /* ---- nav toggle ---- */
   const nt = $('[data-nav-toggle]');
   if (nt) nt.addEventListener('click', () => { const o = document.body.classList.toggle('nav-open'); nt.setAttribute('aria-expanded', o); });
-  $$('.nav a').forEach(a => a.addEventListener('click', () => document.body.classList.remove('nav-open')));
+  $$('.nav a').forEach(a => a.addEventListener('click', () => setTimeout(() => {
+    // Keep the menu open while the page wipe covers it; closing it first exposes the old page.
+    if (!root.classList.contains('leaving')) document.body.classList.remove('nav-open');
+  })));
 
   /* ---- sliders ---- */
   $$('[data-slider]').forEach(r => {
@@ -220,7 +223,13 @@
     const ll = L.latLng(+el.dataset.lat, +el.dataset.lng);
     const map = L.map(el, { zoomControl: false, dragging: false, scrollWheelZoom: false, doubleClickZoom: false, boxZoom: false, keyboard: false, touchZoom: false, tap: false, minZoom: 11, maxZoom: 19, zoomSnap: 0, zoomAnimation: false, fadeAnimation: false, markerZoomAnimation: false });
     map.attributionControl.setPrefix(false);
-    L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', { maxZoom: 19, maxNativeZoom: 18, keepBuffer: 6, attribution: 'Imagery © Esri, Maxar, Earthstar Geographics' }).addTo(map);
+    const TILES = 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}';
+    /* the map is never empty mid-zoom: stitched coarse "posters" sit under the detailed tiles and scale with the map */
+    map.createPane('under').style.zIndex = 150;
+    const POSTERS = [[13, 12.4, 11], [15, 14.4, 14.4]];
+    const fallback = ([n, , lo]) => L.tileLayer(TILES, { minNativeZoom: n, maxNativeZoom: n, minZoom: lo, maxZoom: 19, keepBuffer: 2 }).addTo(map);
+    L.tileLayer(TILES, { minNativeZoom: 17, maxNativeZoom: 17, minZoom: 16.4, maxZoom: 19, keepBuffer: 2 }).addTo(map);
+    L.tileLayer(TILES, { maxZoom: 19, maxNativeZoom: 18, keepBuffer: 6, attribution: 'Imagery © Esri, Maxar, Earthstar Geographics' }).addTo(map);
     const pin = `<span class="lp-wrap"><i class="lp-radar"><b></b><b></b><b></b></i><i class="lp-dot"></i><span class="lp-tag"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s7-6 7-11a7 7 0 10-14 0c0 5 7 11 7 11zM12 12a2 2 0 100-4 2 2 0 000 4z"/></svg>${el.dataset.label}</span></span>`;
     L.marker(ll, { icon: L.divIcon({ className: 'lp', html: pin, iconSize: [0, 0] }), interactive: false, keyboard: false }).addTo(map);
     el._map = map;
@@ -253,6 +262,36 @@
     addEventListener('scroll', kick, { passive: true });
     addEventListener('resize', () => { W = el.clientWidth; H = el.clientHeight; map.invalidateSize(); lastKey = ''; kick(); if (!live) render(cur); });
     render(cur);
+    /* stitch each poster from a grid of tiles covering what the scroll will reveal, then show it as an image under the map */
+    const buildPoster = ([n, ez]) => new Promise(done => {
+      const c = map.project(ll, n), k = Math.pow(2, n - ez), hw = W * k / 2 + 256, hh = H * k / 2 + 256, max = Math.pow(2, n);
+      const x0 = Math.max(0, Math.floor((c.x - hw) / 256)), x1 = Math.min(max - 1, Math.floor((c.x + hw) / 256));
+      const y0 = Math.max(0, Math.floor((c.y - hh) / 256)), y1 = Math.min(max - 1, Math.floor((c.y + hh) / 256));
+      const cv = document.createElement('canvas'); cv.width = (x1 - x0 + 1) * 256; cv.height = (y1 - y0 + 1) * 256;
+      const g = cv.getContext('2d'), jobs = [];
+      for (let x = x0; x <= x1; x++) for (let y = y0; y <= y1; y++) jobs.push([x, y]);
+      let ok = 0, left = jobs.length;
+      const finish = () => {
+        if (ok < jobs.length * .9) return done(false);
+        try {
+          cv.toBlob(b => {
+            if (!b) return done(false);
+            const sw = map.unproject([x0 * 256, (y1 + 1) * 256], n), ne = map.unproject([(x1 + 1) * 256, y0 * 256], n);
+            L.imageOverlay(URL.createObjectURL(b), L.latLngBounds(sw, ne), { pane: 'under', interactive: false }).addTo(map);
+            done(true);
+          });
+        } catch (e) { done(false); }
+      };
+      const load = ([x, y]) => { const im = new Image(); im.crossOrigin = 'anonymous'; im.onload = () => { g.drawImage(im, (x - x0) * 256, (y - y0) * 256); ok++; step(); }; im.onerror = step; im.src = TILES.replace('{z}', n).replace('{y}', y).replace('{x}', x); };
+      let next = 0;
+      const step = () => { if (--left === 0) return finish(); if (next < jobs.length) load(jobs[next++]); };
+      for (let i = 0; i < 6 && next < jobs.length; i++) load(jobs[next++]);
+    });
+    const warm = async () => {
+      if (navigator.connection && navigator.connection.saveData) { POSTERS.forEach(fallback); return; }
+      for (const p of POSTERS) if (!(await buildPoster(p))) fallback(p);
+    };
+    if (document.readyState === 'complete') setTimeout(warm, 600); else addEventListener('load', () => setTimeout(warm, 600));
     toggle.addEventListener('click', () => {
       live = a.classList.toggle('is-live');
       toggle.textContent = live ? 'Back to the scroll story' : 'Explore the map';

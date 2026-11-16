@@ -214,7 +214,7 @@ def head(title, desc, fonts, theme_color):
 <title>{esc(title)}</title>
 <meta name="description" content="{esc(desc)}">
 <meta name="theme-color" content="{theme_color}">
-<link rel="icon" href="assets/real/favicon.png">
+<link rel="icon" href="assets/real/school-favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="{fonts}" rel="stylesheet">
 <link rel="stylesheet" href="assets/style.css">
