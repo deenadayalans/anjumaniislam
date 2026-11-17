@@ -21,41 +21,6 @@
     setTimeout(() => { location.href = a.href; }, 520);
   });
 
-  /* ---- colour palettes + font pairings (set by the inline script in <head>; remembered per theme) ---- */
-  const PAL = window.PAL;
-  if (PAL && (PAL.list.length > 1 || PAL.f.length > 1)) {
-    const box = document.createElement('div'); box.className = 'pal';
-    const btn = document.createElement('button'); btn.type = 'button'; btn.className = 'pal-btn'; btn.setAttribute('aria-expanded', 'false');
-    const pop = document.createElement('div'); pop.className = 'pal-pop'; pop.hidden = true;
-    const dots = c => '<span class="pal-sw">' + c.map(x => `<i style="background:${x}"></i>`).join('') + '</span>';
-    const curP = () => PAL.list.find(p => p.id === root.dataset.palette) || PAL.list[0];
-    const curF = () => PAL.f.find(f => f.id === root.dataset.font) || PAL.f[0];
-    const paint = () => { btn.innerHTML = dots(curP().c) + '<b>Style</b>'; $$('button', pop).forEach(b => b.classList.toggle('on', b.dataset.k === 'p' ? b.dataset.id === curP().id : b.dataset.id === curF().id)); };
-    const group = (title, items, kind) => {
-      const h = document.createElement('h6'); h.textContent = title; pop.appendChild(h);
-      items.forEach(it => {
-        const b = document.createElement('button'); b.type = 'button'; b.dataset.id = it.id; b.dataset.k = kind;
-        b.innerHTML = (kind === 'p' ? dots(it.c) : '<span class="pal-aa">Aa</span>') + '<em>' + it.n + '</em>';
-        b.addEventListener('click', () => {
-          if (kind === 'p') { root.dataset.palette = it.id; try { localStorage.setItem('pal-' + PAL.k, it.id); } catch (e) { } }
-          else {
-            if (it.u && !document.querySelector('link[href="' + it.u + '"]')) { const l = document.createElement('link'); l.rel = 'stylesheet'; l.href = it.u; document.head.appendChild(l); }
-            root.dataset.font = it.id; try { localStorage.setItem('fnt-' + PAL.k, it.id); } catch (e) { }
-          }
-          paint();
-        });
-        pop.appendChild(b);
-      });
-    };
-    if (PAL.list.length > 1) group('Colours', PAL.list, 'p');
-    if (PAL.f.length > 1) group('Fonts', PAL.f, 'f');
-    const shut = () => { pop.hidden = true; btn.setAttribute('aria-expanded', 'false'); };
-    btn.addEventListener('click', e => { e.stopPropagation(); pop.hidden = !pop.hidden; btn.setAttribute('aria-expanded', String(!pop.hidden)); });
-    document.addEventListener('click', e => { if (!box.contains(e.target)) shut(); });
-    document.addEventListener('keydown', e => { if (e.key === 'Escape') shut(); });
-    box.append(pop, btn); document.body.appendChild(box); paint();
-  }
-
   /* ---- header, progress ---- */
   const header = $('[data-header]');
   const prog = $('.progress i');

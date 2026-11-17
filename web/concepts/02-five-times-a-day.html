@@ -1,0 +1,592 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Five Times a Day · Concept 02</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;1,9..144,300;1,9..144,400&family=DM+Sans:wght@400;500;600;700&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+/*
+  CONCEPT 02 — "FIVE TIMES A DAY"
+  Insight: a boarding-school parent's real competitor is not another school.
+  It is their own 2 a.m. question: "What is my child doing right now?"
+  So the clock is the spine of the page. It shows Panchgani time the moment you
+  arrive, stays in place while the day scrolls past it, and ends at lights out.
+  The day is structured by the five salah; the sky changes colour with each one.
+*/
+:root{
+  --bg:#0b1220; --fg:#fff; --muted:rgba(255,255,255,.78); --accent:#ffc08f; --line:rgba(255,255,255,.24);
+  --serif:"Fraunces", Georgia, serif; --sans:"DM Sans", system-ui, sans-serif; --arabic:"Amiri", serif;
+  /* ONE type scale for the whole page: nothing is sized outside these */
+  --t-display:clamp(42px,5.2vw,84px);   /* the opening line only */
+  --t-h2:clamp(32px,3.7vw,56px);        /* every section headline */
+  --t-h3:clamp(20px,1.7vw,25px);        /* sub-heads, questions, the live line */
+  --t-ar:clamp(44px,4.6vw,68px);        /* the Arabic prayer names */
+  --t-lead:clamp(16px,1.2vw,18px);      /* paragraphs */
+  --t-body:15.5px;                      /* lists, form fields */
+  --t-small:13px;                       /* captions, notes */
+  --t-kicker:11.5px;                    /* uppercase labels */
+  --gutter:clamp(16px,4vw,56px);
+}
+/* the sky through one day — each phase repaints the page */
+body[data-phase="now"]    {--bg:#0b1220; --fg:#fff;    --muted:rgba(255,255,255,.8);  --accent:#ffc08f; --line:rgba(255,255,255,.26)}
+body[data-phase="rhythm"] {--bg:#2a3566; --fg:#fbf1e6; --muted:rgba(251,241,230,.72); --accent:#f3a77a; --line:rgba(251,241,230,.2)}
+body[data-phase="fajr"]   {--bg:#3c4a7d; --fg:#fff4ea; --muted:rgba(255,244,234,.74); --accent:#f7b98f; --line:rgba(255,244,234,.22)}
+body[data-phase="dhuhr"]  {--bg:#eef2ea; --fg:#14231c; --muted:rgba(20,35,28,.7);    --accent:#2f7a5a; --line:rgba(20,35,28,.16)}
+body[data-phase="asr"]    {--bg:#f4dfb4; --fg:#2a1d0e; --muted:rgba(42,29,14,.72);   --accent:#b5562d; --line:rgba(42,29,14,.18)}
+body[data-phase="maghrib"]{--bg:#7a3a4a; --fg:#fff0e6; --muted:rgba(255,240,230,.74); --accent:#ffb38a; --line:rgba(255,240,230,.22)}
+body[data-phase="isha"],
+body[data-phase="night"]  {--bg:#0a0f22; --fg:#e9e6f5; --muted:rgba(233,230,245,.66); --accent:#c8b6ff; --line:rgba(233,230,245,.16)}
+body[data-phase="ledger"] {--bg:#f7f2e9; --fg:#1d1a16; --muted:rgba(29,26,22,.68);   --accent:#8a5a2b; --line:rgba(29,26,22,.14)}
+
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--fg);font-family:var(--sans);font-size:var(--t-body);transition:background-color 1.1s ease,color 1.1s ease;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+h1,h2,h3{font-family:var(--serif);font-weight:300;letter-spacing:-.02em}
+h1 em,h2 em{font-style:italic;color:var(--accent);transition:color 1.1s}
+.wrap{width:min(1240px,100% - 2*var(--gutter));margin-inline:auto}
+.eyebrow{font-size:var(--t-kicker);letter-spacing:.22em;text-transform:uppercase;font-weight:600;color:var(--accent);transition:color 1.1s;display:flex;align-items:center;gap:12px}
+.eyebrow::before{content:"";width:32px;height:1px;background:currentColor}
+.lede{font-size:var(--t-lead);line-height:1.7;color:var(--muted);max-width:540px;transition:color 1.1s}
+
+/* ───────── HEADER: crest + name, menu, one action ───────── */
+.top{position:fixed;inset:0 0 auto;z-index:40;display:flex;align-items:center;gap:28px;padding:14px var(--gutter);color:var(--fg);background:color-mix(in srgb,var(--bg) 84%,transparent);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);transition:background-color 1.1s,color 1.1s}
+body[data-phase="now"] .top{background:linear-gradient(rgba(5,10,24,.6),rgba(5,10,24,0));backdrop-filter:none;-webkit-backdrop-filter:none}
+.crest{display:flex;align-items:center;gap:14px;text-decoration:none;color:inherit;flex-shrink:0}
+/* the school's crest as real image files (CSS masks don't load when the page is opened from a folder):
+   ivory on the dark hours, navy on the light ones (Dhuhr, Asr and the ledger) */
+.crest .mark{position:relative;width:50px;aspect-ratio:350/360;flex-shrink:0}
+.crest .mark img{position:absolute;inset:0;width:100%;height:100%;transition:opacity 1.1s}
+.crest .mark .dark{opacity:0}
+body[data-phase="dhuhr"] .crest .mark .dark,body[data-phase="asr"] .crest .mark .dark,body[data-phase="ledger"] .crest .mark .dark{opacity:1}
+body[data-phase="dhuhr"] .crest .mark .light,body[data-phase="asr"] .crest .mark .light,body[data-phase="ledger"] .crest .mark .light{opacity:0}
+.crest .name{border-left:1px solid var(--line);padding-left:14px;transition:border-color 1.1s}
+.crest b{display:block;font-family:var(--serif);font-weight:400;font-size:21px;line-height:1.05;letter-spacing:0}
+.crest small{display:block;font-size:9.5px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--accent);margin-top:5px;transition:color 1.1s}
+.menu{display:flex;align-items:center;gap:2px;margin-left:auto}
+.menu>div{position:relative}
+.menu .item{font:600 12px var(--sans);letter-spacing:.1em;text-transform:uppercase;color:inherit;background:none;border:0;padding:12px 13px;cursor:pointer;text-decoration:none;display:flex;align-items:center;gap:7px}
+.menu .item:hover{color:var(--accent)}
+.menu .item svg{width:9px;height:9px;transition:transform .3s}
+.menu>div:hover .item svg,.menu>div:focus-within .item svg{transform:rotate(180deg)}
+.drop{position:absolute;top:100%;left:0;min-width:270px;background:#fff;color:#1d1a16;border-radius:4px;padding:8px;box-shadow:0 30px 70px rgba(0,0,0,.25);opacity:0;visibility:hidden;transform:translateY(8px);transition:opacity .25s,transform .25s,visibility .25s}
+.drop::before{content:"";position:absolute;inset:-14px 0 auto 0;height:14px}
+.menu>div:hover .drop,.menu>div:focus-within .drop{opacity:1;visibility:visible;transform:none}
+.drop a{display:block;padding:10px 14px;border-radius:3px;text-decoration:none;font-size:14px;font-weight:600;color:inherit}
+.drop a small{display:block;font-weight:400;font-size:12.5px;color:#6b6a63;margin-top:2px}
+.drop a:hover{background:#f4efe6}
+.pill{color:inherit;text-decoration:none;font:600 12px var(--sans);letter-spacing:.1em;text-transform:uppercase;padding:13px 20px;border-radius:999px;border:1px solid var(--line);white-space:nowrap;transition:border-color 1.1s,background .3s}
+.pill:hover{background:color-mix(in srgb,var(--fg) 10%,transparent)}
+.burger{display:none;margin-left:auto;background:none;border:0;color:inherit;width:44px;height:44px;cursor:pointer}
+.burger svg{width:26px;height:26px}
+.mnav{position:fixed;inset:0;z-index:70;background:#0b1220;color:#fff;padding:90px var(--gutter) 40px;overflow:auto;transform:translateY(-100%);transition:transform .45s cubic-bezier(.7,0,.2,1)}
+.mnav.open{transform:none}
+.mnav .x{position:absolute;top:18px;right:var(--gutter);background:none;border:0;color:#fff;font-size:34px;line-height:1;cursor:pointer}
+.mnav details{border-bottom:1px solid rgba(255,255,255,.12)}
+.mnav summary{list-style:none;font-family:var(--serif);font-weight:300;font-size:var(--t-h2);padding:14px 0;cursor:pointer;display:flex;justify-content:space-between;align-items:center}
+.mnav summary::-webkit-details-marker{display:none}
+.mnav summary::after{content:"+";font-family:var(--sans);font-weight:300;font-size:28px}
+.mnav details[open] summary::after{content:"–"}
+.mnav details a{display:block;padding:9px 0;color:rgba(255,255,255,.72);text-decoration:none;font-size:16px}
+.mnav details div{padding-bottom:16px}
+@media (max-width:1180px){.menu,.top .pill{display:none}.burger{display:block}}
+@media (max-width:520px){.top{gap:10px}.crest .mark{width:40px}.crest b{font-size:18px}.crest small{font-size:8.5px;letter-spacing:.14em;white-space:normal;line-height:1.3}.crest .name{padding-left:11px;min-width:0}.crest{gap:11px;min-width:0;flex:1 1 0}.burger{flex:none}}
+
+/* ───────── BACKGROUND LAYERS (fixed behind the day) ───────── */
+/* 1 · live sky: drone footage tinted to Panchgani's real hour, fades out as the day begins */
+.skyv{position:fixed;inset:0;z-index:0;pointer-events:none;background:#0b1220;transition:opacity .2s linear}
+.skyv video{position:absolute;left:0;top:-6%;width:100%;height:112%;object-fit:cover;will-change:transform}
+.skyv .tint{position:absolute;inset:0;transition:background-color 1.5s}
+.skyv .shade{position:absolute;inset:0;background:linear-gradient(90deg,rgba(5,10,24,.62) 0%,rgba(5,10,24,.28) 48%,rgba(5,10,24,.5) 100%),linear-gradient(180deg,rgba(0,0,0,.25),rgba(0,0,0,0) 30%,rgba(0,0,0,.45))}
+.skyv[data-sky="dawn"] .tint{background:rgba(70,80,160,.35);mix-blend-mode:multiply}
+.skyv[data-sky="day"] .tint{background:rgba(255,255,255,0)}
+.skyv[data-sky="asr"] .tint{background:rgba(240,160,70,.38);mix-blend-mode:soft-light}
+.skyv[data-sky="maghrib"] .tint{background:rgba(190,70,90,.45);mix-blend-mode:multiply}
+.skyv[data-sky="night"] .tint{background:rgba(12,16,52,.78);mix-blend-mode:multiply}
+.fx-tag{position:absolute;right:var(--gutter);bottom:20px;font:600 10px/1 var(--sans);letter-spacing:.16em;text-transform:uppercase;color:#fff;background:rgba(0,0,0,.42);backdrop-filter:blur(8px);padding:9px 13px;border-radius:999px;display:none;align-items:center;gap:8px}
+.fx-tag i{width:7px;height:7px;border-radius:50%;background:#ffb020}
+.skyv.is-sample .fx-tag{display:flex}
+/* 2 · night: the campus under stars, for Isha and lights out */
+.nightbg{position:fixed;inset:0;z-index:0;pointer-events:none;opacity:0;transition:opacity 1.2s ease}
+.nightbg::before{content:"";position:absolute;inset:0;background:url(img/c2-isha-campus.jpg) center/cover;opacity:.32}
+.nightbg::after{content:"";position:absolute;inset:0;background:radial-gradient(80% 70% at 70% 50%,rgba(10,15,34,.35),rgba(10,15,34,.94))}
+.nightbg canvas{position:absolute;inset:0;width:100%;height:100%;z-index:1}
+body[data-phase="isha"] .nightbg,body[data-phase="night"] .nightbg{opacity:1}
+
+/* ───────── THE DAY: the clock stays, the day scrolls past it ───────── */
+.day{position:relative;z-index:1;display:grid;grid-template-columns:minmax(0,.92fr) minmax(0,1.08fr);gap:clamp(24px,6vw,100px);padding:0 var(--gutter)}
+.day .sticky{position:sticky;top:0;height:100vh;display:flex;align-items:center;justify-content:center;padding-top:76px}
+.clock{width:100%;max-width:min(470px,62vh);display:flex;flex-direction:column;align-items:center}
+.dialbox{position:relative;aspect-ratio:1;width:100%}
+.dial{width:100%;height:100%;overflow:visible}
+.dial text{fill:var(--fg);transition:fill 1.1s}
+.dial .ring{stroke:var(--line);transition:stroke 1.1s}
+.dial .hand{transform-origin:250px 250px;transition:transform .9s cubic-bezier(.3,.7,.2,1)}
+.dial .center-time{font-family:var(--serif);font-size:58px;font-weight:300}
+.dial .center-sub{font-family:var(--sans);font-size:11px;font-weight:600;letter-spacing:.24em;text-transform:uppercase;fill:var(--muted)!important}
+/* while the page says "it runs on salah", the five prayers on the dial breathe */
+.dial .halo{transform-box:fill-box;transform-origin:center;opacity:0}
+.dial.glow .halo{animation:halo 2.2s ease-out infinite}
+.dial.glow .halo:nth-of-type(2){animation-delay:.3s}
+@keyframes halo{0%{opacity:.7;transform:scale(1)}100%{opacity:0;transform:scale(3)}}
+/* under the clock: live line on arrival, a small "now" link once you are walking the day */
+.under{position:relative;width:100%;margin-top:-6px;min-height:104px;text-align:center}
+.u-live,.u-day{position:absolute;inset:0 0 auto;transition:opacity .5s,transform .5s}
+.u-day{opacity:0;transform:translateY(8px);pointer-events:none}
+/* the live line belongs to the opening screen only; while walking the day, the clock shows that hour's timetable note */
+.clock.quiet .u-live{opacity:0;transform:translateY(-8px);pointer-events:none}
+.clock.walking .u-day{opacity:1;transform:none;pointer-events:auto}
+.live{display:inline-flex;align-items:center;gap:10px;font-size:var(--t-kicker);font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--muted)}
+.live i{width:8px;height:8px;border-radius:50%;background:#ff5c5c;box-shadow:0 0 0 0 rgba(255,92,92,.6);animation:pulse 1.8s infinite;flex-shrink:0}
+@keyframes pulse{to{box-shadow:0 0 0 12px rgba(255,92,92,0)}}
+.u-live .t{font-family:var(--serif);font-size:var(--t-h3);line-height:1.4;margin-top:6px}
+.u-live .t b{font-weight:400;font-style:italic;color:var(--accent);transition:color 1.1s}
+.u-day .t{font-family:var(--serif);font-style:italic;font-size:var(--t-h3);line-height:1.4;margin-top:0;color:var(--muted)}
+.u-day a{color:inherit;text-decoration:none;border-bottom:1px solid var(--line)}
+
+.panels{min-width:0}
+.panel{min-height:110vh;display:flex;flex-direction:column;justify-content:center;padding:14vh 0}
+.panel.first{min-height:100vh;padding-top:120px}
+.panel.first h1{font-size:var(--t-display);line-height:1;margin:22px 0 26px;text-shadow:0 2px 30px rgba(0,0,0,.25)}
+.panel h2{font-size:var(--t-h2);line-height:1.05;margin:22px 0 24px}
+.go{display:inline-flex;align-items:center;gap:14px;margin-top:36px;font-weight:600;font-size:var(--t-body);color:inherit;text-decoration:none}
+.go span{width:50px;height:50px;border-radius:50%;border:1px solid var(--line);display:grid;place-items:center;transition:transform .3s,border-color 1.1s}
+.go:hover span{transform:translateY(4px)}
+.time{display:flex;align-items:baseline;gap:18px;flex-wrap:wrap;margin-top:18px}
+.time .ar{font-family:var(--arabic);font-weight:700;font-size:var(--t-ar);line-height:1.1;color:var(--accent);transition:color 1.1s}
+.time .en{font-family:var(--serif);font-style:italic;font-size:var(--t-h3);color:var(--muted)}
+.panel h2 + .lede,.time + h2{margin-top:0}
+.schedule{list-style:none;margin:32px 0 0;border-top:1px solid var(--line);max-width:560px}
+.schedule li{display:grid;grid-template-columns:96px 1fr;padding:14px 0;border-bottom:1px solid var(--line);font-size:var(--t-body);transition:border-color 1.1s}
+.schedule li time{font-variant-numeric:tabular-nums;color:var(--muted);font-weight:500}
+.fear{margin-top:36px;max-width:560px;display:grid;grid-template-columns:auto 1fr;gap:16px;padding:22px 24px;border-radius:16px;background:color-mix(in srgb,var(--fg) 7%,transparent);transition:background 1.1s}
+.fear svg{width:28px;height:28px;color:var(--accent)}
+.fear q{display:block;font-family:var(--serif);font-style:italic;font-size:var(--t-h3);line-height:1.3;quotes:"“" "”"}
+.fear p{font-size:var(--t-body);line-height:1.65;margin-top:8px;color:var(--muted)}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:26px;max-width:560px}
+.chips span{font-size:var(--t-small);font-weight:500;padding:8px 14px;border-radius:999px;border:1px solid var(--line)}
+.photo{margin-top:34px;max-width:560px;aspect-ratio:16/9;border-radius:16px;overflow:hidden;position:relative}
+.photo img{width:100%;height:100%;display:block;object-fit:cover}
+.photo.tall{aspect-ratio:4/5;max-width:420px}
+.photo figcaption{position:absolute;left:14px;bottom:12px;font-size:10px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:#fff;text-shadow:0 1px 8px rgba(0,0,0,.5)}
+
+/* lights out: the last panel beside the clock */
+.goodnight{min-height:120vh}
+.goodnight h2 .l{display:block;opacity:0;transform:translateY(14px);transition:opacity 1.1s,transform 1.1s}
+.goodnight.in h2 .l{opacity:1;transform:none}
+.goodnight h2 .l:nth-child(2){transition-delay:.6s}
+.goodnight h2 .l:nth-child(3){transition-delay:1.2s}
+.goodnight h2 .l:nth-child(4){transition-delay:2s;font-style:italic;color:var(--accent)}
+.dua{margin-top:44px;padding-top:30px;border-top:1px solid var(--line);max-width:560px;opacity:0;transition:opacity 1.2s 2.8s}
+.goodnight.in .dua{opacity:1}
+.dua .ar{font-family:var(--arabic);font-size:calc(var(--t-h3) * 1.45);line-height:1.6;direction:rtl;text-align:left}
+.dua .tr{font-family:var(--serif);font-style:italic;font-size:var(--t-h3);margin-top:10px}
+.dua p{font-size:var(--t-small);line-height:1.6;color:var(--muted);margin-top:8px}
+
+@media (max-width:900px){
+  .day{grid-template-columns:1fr;gap:0}
+  .day .sticky{top:72px;height:auto;padding:10px 0;z-index:5;justify-content:flex-start;background:color-mix(in srgb,var(--bg) 90%,transparent);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);transition:background-color 1.1s;margin:0 calc(-1*var(--gutter));padding-inline:var(--gutter)}
+  body[data-phase="now"] .day .sticky{background:transparent;backdrop-filter:none;-webkit-backdrop-filter:none}
+  .clock{flex-direction:row;max-width:none;gap:16px;align-items:center}
+  .dialbox{width:112px;flex-shrink:0}
+  .dial .ring-labels{display:none}
+  .under{margin-top:0;min-height:96px;text-align:left}
+  .u-live,.u-day{inset:50% 0 auto;transform:translateY(-50%)}
+  .u-day{transform:translateY(calc(-50% + 8px))}
+  .clock.quiet .u-live{transform:translateY(calc(-50% - 8px))}
+  .clock.walking .u-day{transform:translateY(-50%)}
+  .u-live .t,.u-day .t{font-size:15px;margin-top:6px}
+  .panel{min-height:auto;padding:10vh 0}
+  .panel.first{min-height:70vh;padding-top:6vh}
+  .goodnight{min-height:100vh}
+}
+
+/* ───────── THE 2 A.M. LEDGER — fears answered honestly ───────── */
+.ledger{position:relative;z-index:1;padding:16vh 0}
+.ledger-grid{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:clamp(24px,6vw,96px)}
+.ledger h2{font-size:var(--t-h2);line-height:1.05;margin-top:22px}
+.ledger .side .lede{margin-top:22px;max-width:380px}
+details.q{border-top:1px solid var(--line)}
+details.q:last-child{border-bottom:1px solid var(--line)}
+details.q summary{list-style:none;cursor:pointer;display:grid;grid-template-columns:48px 1fr 28px;align-items:center;padding:22px 0;font-family:var(--serif);font-size:var(--t-h3);line-height:1.3}
+details.q summary::-webkit-details-marker{display:none}
+details.q summary .n{font-family:var(--sans);font-size:var(--t-kicker);font-weight:600;letter-spacing:.14em;color:var(--muted)}
+details.q summary .pm{width:28px;height:28px;border-radius:50%;border:1px solid var(--line);display:grid;place-items:center;font-family:var(--sans);font-size:16px;transition:transform .3s}
+details.q[open] summary .pm{transform:rotate(45deg)}
+details.q .a{padding:0 28px 26px 48px;color:var(--muted);line-height:1.75;font-size:var(--t-lead);max-width:680px}
+
+/* ───────── VISIT: one day, not one brochure ───────── */
+.visit{position:relative;z-index:1;padding:14vh 0 8vh;background:#14231c;color:#f6efe4}
+.visit .eyebrow{color:#f0c27a}
+.visit-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(32px,6vw,96px);align-items:start}
+.visit h2{font-size:var(--t-h2);line-height:1.05;margin-top:22px}
+.visit h2 em{color:#f0c27a}
+.visit .lede{color:rgba(246,239,228,.72);margin-top:24px;max-width:480px}
+.visit .phones{margin-top:28px;font-family:var(--serif);font-size:var(--t-h3);line-height:1.5}
+.slots{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px;margin-top:6px}
+.slot{border:1px solid rgba(246,239,228,.2);border-radius:12px;padding:12px 6px;text-align:center;cursor:pointer;transition:all .25s;background:none;color:inherit;font:inherit}
+.slot b{display:block;font-family:var(--arabic);font-size:24px;line-height:1.3;color:#f0c27a;font-weight:700}
+.slot small{font-size:11px;letter-spacing:.12em;text-transform:uppercase;opacity:.7}
+.slot[aria-pressed="true"]{background:#f0c27a;color:#14231c;border-color:#f0c27a}
+.slot[aria-pressed="true"] b{color:#14231c}
+.vform label{display:block;font-size:var(--t-kicker);font-weight:600;letter-spacing:.18em;text-transform:uppercase;opacity:.65;margin:22px 0 8px}
+.vform input,.vform select{width:100%;font:inherit;font-size:16px;padding:14px 16px;border-radius:10px;border:1px solid rgba(246,239,228,.2);background:rgba(246,239,228,.05);color:inherit;outline:none}
+.vform select option{color:#14231c}
+.vform input:focus,.vform select:focus{border-color:#f0c27a}
+.vform button[type=submit]{margin-top:28px;width:100%;padding:18px;border:0;border-radius:999px;background:#f0c27a;color:#14231c;font:600 15px var(--sans);letter-spacing:.04em;cursor:pointer}
+.vform .note{font-size:var(--t-small);opacity:.6;margin-top:14px;line-height:1.6}
+footer{margin-top:12vh;padding-top:24px;border-top:1px solid rgba(246,239,228,.12);display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;font-size:var(--t-small);opacity:.6}
+@media (max-width:900px){.ledger-grid,.visit-grid{grid-template-columns:1fr}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+</head>
+<body data-phase="now">
+
+<!-- Background layers -->
+<div class="skyv" id="skyv" data-sky="day" aria-hidden="true">
+  <video autoplay muted loop playsinline preload="auto" poster="video/sample-above-clouds-poster.jpg"><source src="video/drone-campus.mp4" type="video/mp4"><source src="video/sample-above-clouds.mp4" type="video/mp4"></video>
+  <div class="tint"></div><div class="shade"></div>
+  <div class="fx-tag"><i></i>Sample footage · drone shoot slot: video/drone-campus.mp4</div>
+</div>
+<div class="nightbg" aria-hidden="true"><canvas id="stars"></canvas></div>
+
+<header class="top" id="bar">
+  <a class="crest" href="#top" aria-label="Anjuman-I-Islam Public School, Panchgani: home">
+    <span class="mark"><img class="light" src="img/crest-ivory.webp" alt="Anjuman-I-Islam crest"><img class="dark" src="img/crest-navy.webp" alt=""></span>
+    <span class="name"><b>Anjuman-I-Islam</b><small>Public School &amp; Jr. College · Panchgani</small></span>
+  </a>
+  <nav class="menu" aria-label="Main">
+    <div><button class="item">About <svg viewBox="0 0 10 10"><path d="M1 3l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></button>
+      <div class="drop">
+        <a href="#ledger">Anjuman-I-Islam since 1874<small>97 institutions, one mission</small></a>
+        <a href="#ledger">Vision &amp; mission</a>
+        <a href="#ledger">President’s preface<small>Dr. Zahir Kazi, Padma Shri</small></a>
+        <a href="#ledger">Chairman’s message</a>
+        <a href="#ledger">Principal’s message</a>
+      </div></div>
+    <div><button class="item">Academics <svg viewBox="0 0 10 10"><path d="M1 3l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></button>
+      <div class="drop">
+        <a href="#dhuhr">Curriculum<small>Primary to Class X</small></a>
+        <a href="#dhuhr">Junior College<small>Classes XI–XII</small></a>
+        <a href="#dhuhr">Entrance coaching<small>NEET · JEE · MHT-CET · NATA · CA</small></a>
+        <a href="#dhuhr">Labs &amp; library</a>
+      </div></div>
+    <div><button class="item">Boarding <svg viewBox="0 0 10 10"><path d="M1 3l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></button>
+      <div class="drop">
+        <a href="#isha">Boys’ &amp; girls’ hostels</a>
+        <a href="#maghrib">Food &amp; dining<small>Five meals, dietician-planned</small></a>
+        <a href="#isha">Health &amp; pastoral care<small>24/7 nurse on campus</small></a>
+        <a href="#rhythm">A day at Anjuman</a>
+      </div></div>
+    <div><button class="item">Campus life <svg viewBox="0 0 10 10"><path d="M1 3l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></button>
+      <div class="drop">
+        <a href="#fajr">Deen &amp; tarbiyah<small>Salah, Qur’an, akhlaq</small></a>
+        <a href="#asr">Sports &amp; riding</a>
+        <a href="#asr">Arts, clubs &amp; aviation</a>
+      </div></div>
+    <div><button class="item">Admissions <svg viewBox="0 0 10 10"><path d="M1 3l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></button>
+      <div class="drop">
+        <a href="#visit">How to apply<small>Interview + written test</small></a>
+        <a href="#visit">Fees</a>
+        <a href="#visit">Spend a day with us</a>
+        <a href="#ledger">Parents’ questions</a>
+      </div></div>
+    <div><a class="item" href="#visit">Contact</a></div>
+  </nav>
+  <a class="pill" href="#visit">Spend a day with us</a>
+  <button class="burger" aria-label="Open menu" id="burger"><svg viewBox="0 0 26 26" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 8h20M3 18h20"/></svg></button>
+</header>
+
+<nav class="mnav" id="mnav" aria-label="Mobile">
+  <button class="x" id="mclose" aria-label="Close menu">×</button>
+  <details><summary>About</summary><div><a href="#ledger">Anjuman-I-Islam since 1874</a><a href="#ledger">Vision &amp; mission</a><a href="#ledger">President’s preface</a><a href="#ledger">Chairman’s message</a><a href="#ledger">Principal’s message</a></div></details>
+  <details><summary>Academics</summary><div><a href="#dhuhr">Curriculum</a><a href="#dhuhr">Junior College</a><a href="#dhuhr">Entrance coaching</a></div></details>
+  <details><summary>Boarding</summary><div><a href="#isha">Hostels</a><a href="#maghrib">Food &amp; dining</a><a href="#isha">Health &amp; pastoral care</a><a href="#rhythm">A day at Anjuman</a></div></details>
+  <details><summary>Campus life</summary><div><a href="#fajr">Deen &amp; tarbiyah</a><a href="#asr">Sports &amp; riding</a></div></details>
+  <details><summary>Admissions</summary><div><a href="#visit">How to apply</a><a href="#visit">Spend a day with us</a><a href="#ledger">Parents’ questions</a></div></details>
+</nav>
+
+<!-- THE DAY — one clock, held in place from arrival to lights out -->
+<section class="day" id="day">
+  <div class="sticky">
+    <div class="clock" id="clock">
+      <div class="dialbox"><svg class="dial" id="dial" viewBox="0 0 500 500" aria-hidden="true"></svg></div>
+      <div class="under">
+        <div class="u-live" aria-live="polite">
+          <div class="live"><i></i> Panchgani, right now</div>
+          <p class="t" id="nowText">…</p>
+        </div>
+        <div class="u-day">
+          <p class="t" id="dayText"></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="panels">
+
+    <!-- 0 · Arrival: the clock answers the question before it's asked -->
+    <article class="panel first" data-phase="now" id="top">
+      <div class="eyebrow">For every parent who will lie awake wondering</div>
+      <h1>You’ll miss them.<br><em>So we’ll tell you<br>exactly where they are.</em></h1>
+      <p class="lede">The clock on this page is set to Panchgani. Whatever hour you open this page, it tells you what a child here is doing at that moment.</p>
+      <a class="go" href="#rhythm"><span>↓</span> Walk through their day</a>
+    </article>
+
+    <!-- 1 · The rhythm: the same clock, read by salah -->
+    <article class="panel" data-phase="rhythm" id="rhythm" data-say="Five prayers. Five chapters of one day.">
+      <div class="eyebrow">The oldest clock in the world</div>
+      <h2>Their day doesn’t run on bells.<br><em>It runs on salah.</em></h2>
+      <p class="lede">Five prayers divide every day at Anjuman into five chapters. Look at the clock: the five marks on its ring are Fajr, Dhuhr, Asr, Maghrib and Isha. Keep scrolling and the hand will walk you through each one.</p>
+      <a class="go" href="#fajr"><span>↓</span> Begin at Fajr</a>
+    </article>
+
+    <article class="panel" data-phase="fajr" data-hour="5.25" data-label="Fajr" id="fajr" data-say="05:15 · before sunrise">
+      <div class="eyebrow">05:15 · Before sunrise</div>
+      <div class="time"><span class="ar" lang="ar">الفجر</span><span class="en">Fajr</span></div>
+      <h2>The first voice they hear<br>is not an alarm. <em>It’s the adhan.</em></h2>
+      <p class="lede">Mist sits in the valley below. Boys and girls rise in the hostels, make wudu and stand shoulder to shoulder in jama‘ah. Then the Qur’an, recited and understood. By the time the city wakes up, your child has already won the day.</p>
+      <ul class="schedule"><li><time>05:15</time>Wake · wudu · Fajr in jama‘ah</li><li><time>05:45</time>Qur’an recitation</li><li><time>06:30</time>Morning PT on the grounds</li><li><time>07:30</time>Breakfast, together</li></ul>
+      <div class="fear"><svg viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M14 4 C8 4 4 8 4 13 c0 3 1.5 5.5 4 7 L7 25 l5-3 h2 c6 0 10-4 10-9 S20 4 14 4Z"/></svg><div><q>Will my child feel lonely?</q><p>Not at 5:15 a.m., standing in a row of friends who’ll become brothers and sisters for life. Loneliness lives on screens. Here, the day begins in congregation.</p></div></div>
+      <figure class="photo"><img src="img/c2-fajr-mist.jpg" alt="Morning mist over the forested valley at Panchgani"><figcaption>Fajr · the valley still asleep</figcaption></figure>
+    </article>
+
+    <article class="panel" data-phase="dhuhr" data-hour="13.25" data-label="Dhuhr" id="dhuhr" data-say="08:00 – 13:15 · full light">
+      <div class="eyebrow">08:00 – 13:15 · Full light</div>
+      <div class="time"><span class="ar" lang="ar">الظهر</span><span class="en">Dhuhr</span></div>
+      <h2>Mornings belong<br>to the <em>mind.</em></h2>
+      <p class="lede">English-medium classes from Primary to Std XII. Robotics kits on the bench, a microscope by the window, a library that smells like a library. For Junior College students, NEET, JEE, MHT-CET and NATA coaching is built into the timetable: no city coaching class, no wasted commute.</p>
+      <ul class="schedule"><li><time>08:00</time>Assembly · then classes</li><li><time>10:30</time>AI &amp; Robotics lab</li><li><time>11:30</time>Science labs · computer lab</li><li><time>13:15</time>Dhuhr · lunch</li></ul>
+      <figure class="photo tall"><img src="img/c2-dhuhr-students.jpg" alt="Young students in school uniform outdoors"><figcaption>Dhuhr · between classes</figcaption></figure>
+      <div class="chips"><span>NEET</span><span>JEE</span><span>MHT-CET</span><span>NATA</span><span>CA</span><span>Digital classrooms</span></div>
+      <div class="fear"><svg viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 22 L11 14 L16 18 L24 7"/><path d="M18 7 H24 V13"/></svg><div><q>Will a hill-station school keep up with city schools?</q><p>Fewer distractions is not less ambition. It’s more hours of real focus, in air that doesn’t tire the mind.</p></div></div>
+    </article>
+
+    <article class="panel" data-phase="asr" data-hour="16.75" data-label="Asr" id="asr" data-say="16:00 – 18:00 · golden hour">
+      <div class="eyebrow">16:00 – 18:00 · Golden hour</div>
+      <div class="time"><span class="ar" lang="ar">العصر</span><span class="en">Asr</span></div>
+      <h2>Afternoons belong<br>to the <em>body and the soul.</em></h2>
+      <p class="lede">After Asr, 174 acres open up. Hooves on red earth. The thwack of an arrow finding its mark. Clay spinning on a wheel. A stage being set for Friday’s play. This is the hour children discover who they are.</p>
+      <div class="chips"><span>Horse riding</span><span>Archery</span><span>Shooting range</span><span>Pottery</span><span>Basic aviation</span><span>Agriculture</span><span>Skating rink</span><span>Cricket · football · hockey</span><span>Debate</span><span>Theatre</span></div>
+      <div class="fear"><svg viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="14" cy="14" r="10"/><circle cx="14" cy="14" r="5"/><circle cx="14" cy="14" r="1" fill="currentColor"/></svg><div><q>Will they become all books and no life?</q><p>The opposite. Ask any old boy what he remembers of Panchgani. He’ll tell you about the horses before he tells you about the exams.</p></div></div>
+      <figure class="photo"><img src="img/c2-asr-archery.jpg" alt="A student drawing a bow on the archery range"><figcaption>Asr · the archery range</figcaption></figure>
+    </article>
+
+    <article class="panel" data-phase="maghrib" data-hour="18.5" data-label="Maghrib" id="maghrib" data-say="18:15 · the sun sets over the valley">
+      <div class="eyebrow">18:15 · The sun sets over the valley</div>
+      <div class="time"><span class="ar" lang="ar">المغرب</span><span class="en">Maghrib</span></div>
+      <h2>The sky turns rose.<br>The table is set. <em>No one eats alone.</em></h2>
+      <p class="lede">Maghrib in the prayer hall, then dinner: nutritious, home-style, eaten together. Evening study follows with peer tutors and resident advisors on hand, so homework never becomes a lonely struggle. Everything is taken care of, so your child can take care of what matters.</p>
+      <ul class="schedule"><li><time>18:15</time>Maghrib in the prayer hall</li><li><time>18:45</time>Dinner in the dining hall</li><li><time>19:30</time>Supervised evening prep</li></ul>
+      <figure class="photo"><img src="img/c2-maghrib-sunset.jpg" alt="The sun setting over the Sahyadri ridges"><figcaption>Maghrib · the sun drops behind the ridge</figcaption></figure>
+      <div class="fear"><svg viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6 12 H22 C22 18 18 22 14 22 S6 18 6 12Z"/><path d="M4 12 H24 M10 6 c0 2 2 2 2 4 M16 6 c0 2 2 2 2 4"/></svg><div><q>Will they eat properly?</q><p>Five meals a day, on a menu designed by a dietician, in a renovated 300-seat dining hall, with the kitchen supervised throughout. Hygiene and cleanliness come first.</p></div></div>
+    </article>
+
+    <article class="panel" data-phase="isha" data-hour="20.75" data-label="Isha" id="isha" data-say="20:30 · stars over the Table Land">
+      <div class="eyebrow">20:30 · Stars over the Table Land</div>
+      <div class="time"><span class="ar" lang="ar">العشاء</span><span class="en">Isha</span></div>
+      <h2>The last prayer.<br>The quietest hour. <em>The safest place.</em></h2>
+      <p class="lede">Isha, a few minutes of reflection, a short talk from a teacher, and then the hostels go quiet. Hostels for boys and girls, with a dorm in-charge who gives guidance and a listening ear. A trained nurse on campus 24/7, a sick bay, and regular doctor visits. On clear nights the telescopes come out: there is no city glow to hide the stars here.</p>
+      <ul class="schedule"><li><time>20:30</time>Isha in jama‘ah</li><li><time>21:00</time>Reflection · reading · sky gazing on clear nights</li><li><time>22:00</time>Lights out</li><li><time>24 / 7</time>On-site nurse · pastoral care</li></ul>
+    </article>
+
+    <!-- Lights out: still beside the clock, which stops at ten -->
+    <article class="panel goodnight" data-phase="night" data-hour="22" data-label="Lights out" id="goodnight" data-say="22:00 · the hostels go quiet">
+      <h2><span class="l">Lights out at ten.</span><span class="l">A dorm in-charge on hand.</span><span class="l">A nurse awake all night.</span><span class="l">Now you can sleep too.</span></h2>
+      <div class="dua">
+        <div class="ar" lang="ar">اللَّهُمَّ بِاسْمِكَ أَمُوتُ وَأَحْيَا</div>
+        <div class="tr">Allāhumma bismika amūtu wa aḥyā</div>
+        <p>“O Allah, in Your name I die and I live.” A bedtime dua from the Sunnah.</p>
+      </div>
+    </article>
+
+  </div>
+</section>
+
+<section class="ledger" id="ledger" data-phase="ledger">
+  <div class="wrap ledger-grid">
+    <div class="side">
+      <div class="eyebrow">The 2 a.m. ledger</div>
+      <h2>The questions every parent asks <em>when the house is quiet.</em></h2>
+      <p class="lede">We wrote them down: the ones you’d never ask at an admissions desk. Here are honest answers.</p>
+    </div>
+    <div>
+      <details class="q" open><summary><span class="n">01</span>Am I a bad parent for sending them away?<span class="pm">+</span></summary><div class="a">You’re not sending them away. You’re sending them <em>up</em>, to a place built to do what no city apartment can: clean air, real friends, a day ordered by salah, and adults whose whole job is to raise them well. Most parents tell us the guilt lasts a month. The gratitude lasts a lifetime.</div></details>
+      <details class="q"><summary><span class="n">02</span>Will they forget their deen in a modern school?<span class="pm">+</span></summary><div class="a">Here the deen isn’t a period on the timetable. It is the timetable. The adhan is called five times a day in the prayer hall, Qur’an recitation and Islamic education are emphasised, Hifz is available on request, and akhlaq is modelled by teachers every hour of the day.</div></details>
+      <details class="q"><summary><span class="n">03</span>What if they fall sick?<span class="pm">+</span></summary><div class="a">A trained nurse is on campus around the clock, a doctor visits for regular check-ups, and the sick bay can keep a child in-house for rest and care.</div></details>
+      <details class="q"><summary><span class="n">04</span>Is it safe for my daughter?<span class="pm">+</span></summary><div class="a">The dormitories have been fully renovated, a dorm in-charge looks after every child, the administrative staff keep the campus safe and secure, and a trained nurse is on campus 24/7. Ask us anything on your visit, and ask to see it yourself.</div></details>
+      <details class="q"><summary><span class="n">05</span>Will they still crack NEET or JEE?<span class="pm">+</span></summary><div class="a">Entrance coaching for NEET, JEE, MHT-CET and NATA is integrated into Junior College. No commute, no second shift in a coaching centre: the hours saved go back into study and sleep.</div></details>
+      <details class="q"><summary><span class="n">06</span>Will they come back to me different?<span class="pm">+</span></summary><div class="a">Yes. More confident, more independent, more grateful. They’ll make their own bed in the holidays. You may need a moment.</div></details>
+    </div>
+  </div>
+</section>
+
+<section class="visit" id="visit">
+  <div class="wrap visit-grid">
+    <div>
+      <div class="eyebrow">Admissions 2027–28 · Primary to XII</div>
+      <h2>Don’t take our word.<br><em>Take one day.</em></h2>
+      <p class="lede">Choose a prayer, and arrive in time for it. Pray with our students, eat at their table, walk their day. Most families who choose Anjuman Panchgani make the decision somewhere between Asr and Maghrib, on this campus.</p>
+      <p class="phones">+91 82752 04302<br>+91 82752 05404</p>
+    </div>
+    <form class="vform" onsubmit="event.preventDefault();this.querySelector('button[type=submit]').textContent='JazakAllah khair. We’ll call to confirm your day.';">
+      <label>Arrive in time for</label>
+      <!-- the visit is booked by salah, not by time slot: the parent enters the school's rhythm before arriving -->
+      <div class="slots" role="group" aria-label="Arrival prayer">
+        <button type="button" class="slot" aria-pressed="false"><b>فجر</b><small>Fajr</small></button>
+        <button type="button" class="slot" aria-pressed="true"><b>ظهر</b><small>Dhuhr</small></button>
+        <button type="button" class="slot" aria-pressed="false"><b>عصر</b><small>Asr</small></button>
+        <button type="button" class="slot" aria-pressed="false"><b>مغرب</b><small>Maghrib</small></button>
+        <button type="button" class="slot" aria-pressed="false"><b>عشاء</b><small>Isha</small></button>
+      </div>
+      <label for="pn">Parent’s name</label><input id="pn" required>
+      <label for="ph">WhatsApp number</label><input id="ph" required inputmode="tel" placeholder="+91">
+      <label for="cl">Child joining</label><select id="cl"><option>Primary</option><option>V – VII</option><option>VIII – X</option><option>XI – XII Junior College</option></select>
+      <button type="submit">Book my day in Panchgani</button>
+      <p class="note">Visit timings are confirmed by the admissions office.</p>
+    </form>
+  </div>
+  <div class="wrap"><footer><span>Anjuman-I-Islam Public School &amp; Jr. College · Nandanwan, Panchgani 412805</span><span>Concept 02 · “Five Times a Day”</span></footer></div>
+</section>
+
+<script>
+(() => {
+  const clamp = (v, a = 0, b = 1) => Math.min(b, Math.max(a, v));
+  // Indicative timetable, to be replaced with the school's real one
+  const plan = [
+    [0,5.25,"fast asleep in the hostel, with a dorm in-charge on duty"],
+    [5.25,5.75,"standing in the front row for <b>Fajr</b>"],
+    [5.75,6.5,"reciting Qur’an in the morning <b>halaqah</b>"],
+    [6.5,7.5,"running morning PT through the mist"],
+    [7.5,8,"having breakfast with friends"],
+    [8,10.5,"in class, probably raising a hand"],
+    [10.5,13.25,"building something in the <b>Robotics lab</b>"],
+    [13.25,14,"praying <b>Dhuhr</b>, then lunch"],
+    [14,16,"in afternoon classes and coaching"],
+    [16,18.25,"on horseback, or drawing a bow, in the <b>Asr</b> light"],
+    [18.25,18.75,"praying <b>Maghrib</b> as the valley turns rose"],
+    [18.75,19.5,"at dinner, where no one eats alone"],
+    [19.5,20.5,"at evening prep, with a teacher close by"],
+    [20.5,21,"praying <b>Isha</b>"],
+    [21,22,"reading quietly before lights out"],
+    [22,24,"fast asleep in the hostel, with a dorm in-charge on duty"]];
+  const salah = [["Fajr",5.25],["Dhuhr",13.25],["Asr",16.75],["Maghrib",18.5],["Isha",20.75]];
+  const ist = () => { const d = new Date(); return new Date(d.getTime() + (d.getTimezoneOffset() + 330) * 60000); };
+  const fmt = h => { const H = Math.floor(h), M = Math.round((h - H) * 60); return String(H).padStart(2,'0') + ':' + String(M).padStart(2,'0'); };
+
+  /* ── the dial: 24 hours, five salah, one child ── */
+  const svg = document.getElementById('dial');
+  const cx = 250, cy = 250, R = 200;
+  const pt = (h, r) => { const a = (h / 24) * 2 * Math.PI - Math.PI / 2; return [cx + r * Math.cos(a), cy + r * Math.sin(a)]; };
+  let s = '';
+  s += `<circle class="ring" cx="${cx}" cy="${cy}" r="${R}" fill="none" stroke-width="1"/>`;
+  s += `<circle class="ring" cx="${cx}" cy="${cy}" r="${R-40}" fill="none" stroke-width="1" stroke-dasharray="2 6"/>`;
+  s += '<g class="ring-labels">';
+  for (let h = 0; h < 24; h++) {
+    const [x1,y1] = pt(h, R-6), [x2,y2] = pt(h, R + (h % 6 ? 2 : 8));
+    s += `<line class="ring" x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke-width="${h % 6 ? 1 : 1.6}"/>`;
+    if (h % 6 === 0) { const [tx,ty] = pt(h, R+26); s += `<text x="${tx}" y="${ty+4}" text-anchor="middle" font-size="11" style="font-family:var(--sans)" opacity=".6">${String(h).padStart(2,'0')}</text>`; }
+  }
+  s += '</g>';
+  const [ax,ay] = pt(6.5, R-20), [bx,by] = pt(18.5, R-20);
+  s += `<path d="M${ax} ${ay} A${R-20} ${R-20} 0 0 1 ${bx} ${by}" fill="none" stroke="var(--accent)" stroke-width="10" stroke-linecap="round" opacity=".28"/>`;
+  salah.forEach(([n,h]) => {
+    const [x,y] = pt(h, R-20), [lx,ly] = pt(h, R-62);
+    s += `<g><circle class="halo" cx="${x}" cy="${y}" r="9" fill="none" stroke="var(--accent)" stroke-width="2"/><circle cx="${x}" cy="${y}" r="9" fill="var(--bg)" stroke="var(--accent)" stroke-width="2"/><circle cx="${x}" cy="${y}" r="3.5" fill="var(--accent)"/><text class="ring-labels" x="${lx}" y="${ly+4}" text-anchor="middle" font-size="14" style="font-family:var(--serif)" font-style="italic">${n}</text></g>`;
+  });
+  s += `<g class="hand"><line x1="${cx}" y1="${cy}" x2="${cx}" y2="${cy-R+20}" stroke="var(--fg)" stroke-width="1.4"/><circle cx="${cx}" cy="${cy-R+20}" r="13" fill="var(--accent)"/><circle cx="${cx}" cy="${cy-R+20}" r="22" fill="none" stroke="var(--accent)" opacity=".35"/></g>`;
+  s += `<circle cx="${cx}" cy="${cy}" r="4" fill="var(--fg)"/>`;
+  s += `<text class="center-time" x="${cx}" y="${cy+18}" text-anchor="middle">--:--</text><text class="center-sub" x="${cx}" y="${cy+50}" text-anchor="middle">Panchgani time</text>`;
+  svg.innerHTML = s;
+  const hand = svg.querySelector('.hand'), cTime = svg.querySelector('.center-time'), cSub = svg.querySelector('.center-sub');
+  // the hand always travels the short way round, so scrolling back never spins it a full turn
+  let angle = null;
+  function setDial(h, label) {
+    const target = h / 24 * 360;
+    if (angle === null) angle = target;
+    else { let d = ((target - angle) % 360 + 540) % 360 - 180; angle += d; }
+    hand.style.transform = `rotate(${angle}deg)`;
+    cTime.textContent = fmt(h); cSub.textContent = label;
+  }
+
+  /* ── live: Panchgani time and what a child is doing ── */
+  const clock = document.getElementById('clock'), nowText = document.getElementById('nowText'), nowShort = document.getElementById('nowShort') || {};
+  const dayText = document.getElementById('dayText'), skyv = document.getElementById('skyv');
+  let liveH = 0, walking = false;
+  function tick() {
+    const t = ist(); liveH = t.getHours() + t.getMinutes() / 60;
+    const what = plan.find(p => liveH >= p[0] && liveH < p[1])[2];
+    const time = t.toLocaleTimeString('en-IN', { hour: 'numeric', minute: '2-digit', hour12: true });
+    nowText.innerHTML = `It’s <b>${time}</b>. A child here is ${what}.`;
+    nowShort.textContent = `Now in Panchgani · ${time}`;
+    skyv.dataset.sky = liveH < 5 || liveH >= 19.5 ? 'night' : liveH < 7.5 ? 'dawn' : liveH < 16 ? 'day' : liveH < 18.25 ? 'asr' : 'maghrib';
+    if (!walking) setDial(liveH, 'Panchgani · now');
+  }
+  tick(); setInterval(tick, 15000);
+
+  /* ── scroll: which panel holds the middle of the screen sets the sky and the clock ── */
+  const panels = [...document.querySelectorAll('.panel')];
+  const ledger = document.getElementById('ledger'), visit = document.getElementById('visit'), first = panels[0];
+  const vid = skyv.querySelector('video');
+  let last = null;
+  function onScroll() {
+    const vh = innerHeight || document.documentElement.clientHeight || 800, mid = vh * .5;
+    let cur = null;
+    for (const p of panels) { const r = p.getBoundingClientRect(); if (r.top < mid && r.bottom > mid) { cur = p; break; } }
+    let phase = cur ? cur.dataset.phase : (first.getBoundingClientRect().top > 0 ? 'now' : 'ledger');
+    if (ledger.getBoundingClientRect().top < mid || visit.getBoundingClientRect().top < mid) phase = 'ledger';
+    document.body.dataset.phase = phase;
+    // live footage stays while you read the opening line, then dissolves into the day's colours
+    const fb = first.getBoundingClientRect().bottom;
+    const op = clamp((fb + vh * .25) / (vh * .85));
+    skyv.style.opacity = op.toFixed(3); skyv.style.visibility = op > 0 ? 'visible' : 'hidden';
+    if (op > 0) vid.style.transform = `translate3d(0,${(-scrollY * .06).toFixed(1)}px,0)`;
+    if (cur !== last) {
+      last = cur;
+      walking = !!(cur && cur.dataset.hour);
+      clock.classList.toggle('walking', walking);
+      clock.classList.toggle('quiet', cur !== first);
+      svg.classList.toggle('glow', phase === 'rhythm');
+      if (walking) { setDial(+cur.dataset.hour, cur.dataset.label); dayText.textContent = cur.dataset.say || ''; }
+      else setDial(liveH, 'Panchgani · now');
+    }
+  }
+  addEventListener('scroll', onScroll, { passive: true }); addEventListener('resize', onScroll); onScroll();
+
+  /* ── lights out: lines arrive one by one; stars only drawn while visible ── */
+  const gn = document.getElementById('goodnight');
+  new IntersectionObserver(es => es.forEach(e => e.isIntersecting && gn.classList.add('in')), { threshold: .35 }).observe(gn);
+  const cv = document.getElementById('stars'), ctx = cv.getContext('2d'); let stars = [];
+  function size() {
+    const w = innerWidth || 1200, h = innerHeight || 800;
+    cv.width = w * devicePixelRatio; cv.height = h * devicePixelRatio;
+    stars = Array.from({ length: 240 }, () => ({ x: Math.random() * cv.width, y: Math.random() * cv.height, r: Math.random() * 1.4 * devicePixelRatio, p: Math.random() * 6 }));
+  }
+  size(); addEventListener('resize', size);
+  (function draw(t) {
+    const ph = document.body.dataset.phase;
+    if (ph === 'isha' || ph === 'night') {
+      ctx.clearRect(0, 0, cv.width, cv.height);
+      stars.forEach(st => { ctx.globalAlpha = .35 + .65 * Math.abs(Math.sin(t / 1400 + st.p)); ctx.fillStyle = '#e9e6f5'; ctx.beginPath(); ctx.arc(st.x, st.y, st.r, 0, 7); ctx.fill(); });
+    }
+    requestAnimationFrame(draw);
+  })(0);
+
+  /* ── drone slot: show the "sample footage" tag until the real shoot replaces it ── */
+  const mark = () => skyv.classList.toggle('is-sample', /sample-/.test(vid.currentSrc));
+  vid.addEventListener('loadeddata', mark); vid.addEventListener('playing', mark); mark();
+
+  /* ── menu + visit slots ── */
+  const mnav = document.getElementById('mnav');
+  document.getElementById('burger').onclick = () => mnav.classList.add('open');
+  document.getElementById('mclose').onclick = () => mnav.classList.remove('open');
+  mnav.querySelectorAll('a').forEach(a => a.onclick = () => mnav.classList.remove('open'));
+  document.querySelectorAll('.slot').forEach(b => b.addEventListener('click', () => {
+    document.querySelectorAll('.slot').forEach(x => x.setAttribute('aria-pressed', 'false')); b.setAttribute('aria-pressed', 'true');
+  }));
+})();
+</script>
+</body>
+</html>

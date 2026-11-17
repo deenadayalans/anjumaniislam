@@ -1,0 +1,722 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Since 1874 · Concept 03</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,200;0,300;0,400;0,500;1,300&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Amiri&display=swap" rel="stylesheet">
+<style>
+/*
+  CONCEPT 03 — "SINCE 1874"
+  Minimalist, after repton.org.uk: a full-screen photo carousel, white and pale-grey
+  halves, one thin line down the page. The idea underneath is "the pattern": every
+  milestone sits in an eight-point star (the khatam of Islamic geometry), where no
+  single line makes the whole, just as no single pillar makes a whole child.
+*/
+:root{
+  --white:#fff; --grey:#f3f2ef; --text:#575757; --soft:#8a8a86; --ink:#0b1a33; --navy:#071631; --gold:#988360; --rule:#d9d6cf;
+  --sans:"Jost", system-ui, sans-serif; --serif:"Cormorant Garamond", Georgia, serif; --arabic:"Amiri", serif;
+  /* ONE type scale for the page */
+  --t-display:clamp(38px,4.6vw,72px);
+  --t-h2:clamp(30px,3.2vw,48px);
+  --t-h3:clamp(22px,1.9vw,28px);
+  --t-lead:clamp(16px,1.15vw,17.5px);
+  --t-body:15.5px;
+  --t-small:13px;
+  --t-kicker:12px;
+  --pad:clamp(20px,6vw,110px);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--white);color:var(--text);font:300 var(--t-body)/1.75 var(--sans);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+img{display:block;max-width:100%}
+a{color:inherit}
+button{font:inherit;color:inherit}
+
+/* headings: thin spaced capitals, with one italic serif word in gold */
+h1,h2{font-family:var(--sans);font-weight:300;text-transform:uppercase;letter-spacing:.04em;line-height:1.1;color:var(--ink)}
+h1 i,h2 i{font-family:var(--serif);font-style:italic;font-weight:400;text-transform:none;letter-spacing:0;color:var(--gold);padding:0 .08em}
+h1{font-size:var(--t-display)}
+h2{font-size:var(--t-h2)}
+.kicker{font-size:var(--t-kicker);font-weight:400;letter-spacing:.24em;text-transform:uppercase;color:var(--gold);display:flex;align-items:center;gap:14px}
+.kicker svg{width:26px;height:26px;flex-shrink:0}
+.center .kicker{justify-content:center}
+.lead{font-size:var(--t-lead);line-height:1.85}
+.lead + .lead{margin-top:18px}
+.btn{display:inline-block;font:500 12px var(--sans);letter-spacing:.2em;text-transform:uppercase;text-decoration:none;padding:16px 28px;background:var(--gold);color:#fff;border:0;cursor:pointer;transition:background .3s}
+.btn:hover{background:var(--navy)}
+.btn.line{background:none;border:1px solid var(--gold);color:var(--gold)}
+.btn.line:hover{background:var(--gold);color:#fff}
+.link{font:400 12px var(--sans);letter-spacing:.2em;text-transform:uppercase;color:var(--gold);text-decoration:none;border-bottom:1px solid currentColor;padding-bottom:3px}
+
+/* ───────── CHROME ───────── */
+.brand{position:absolute;top:30px;left:50%;transform:translateX(-50%);z-index:20;display:flex;flex-direction:column;align-items:center;text-decoration:none;color:#fff;text-align:center}
+/* the crest from concept 1, as real image files: white over photos, navy on white, ivory on navy */
+.crest{display:block;height:auto}
+.brand .crest{width:84px}
+.brand b{font-family:var(--serif);font-weight:500;font-size:24px;letter-spacing:.16em;text-transform:uppercase;margin-top:14px;line-height:1}
+.brand small{font-size:10px;font-weight:400;letter-spacing:.3em;text-transform:uppercase;margin-top:9px;opacity:.92}
+.brand small.place{margin-top:7px;font-family:var(--serif);font-style:italic;font-weight:500;font-size:19px;letter-spacing:.1em;text-transform:none;color:#f6ead0;opacity:1}
+.menutab{position:fixed;top:0;right:clamp(16px,3vw,44px);z-index:60;width:58px;height:66px;background:var(--navy);color:#fff;border:0;cursor:pointer;display:grid;place-items:center}
+.menutab svg{width:22px;height:22px}
+.sidetab{position:fixed;left:0;top:50%;z-index:50;transform:translateY(-50%);writing-mode:vertical-rl;rotate:180deg;background:var(--navy);color:#fff;text-decoration:none;font:400 10.5px var(--sans);letter-spacing:.24em;text-transform:uppercase;padding:20px 11px}
+.mini{position:fixed;top:0;left:0;right:0;z-index:55;height:66px;display:flex;align-items:center;gap:14px;padding:0 var(--pad);background:rgba(255,255,255,.95);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--rule);transform:translateY(-100%);transition:transform .4s;text-decoration:none;color:var(--navy)}
+.mini.on{transform:none}
+.mini .crest{width:34px}
+.mini b{font-family:var(--serif);font-weight:500;font-size:17px;letter-spacing:.14em;text-transform:uppercase}
+.overlay{position:fixed;inset:0;z-index:70;background:var(--navy);color:#fff;overflow:auto;overflow-x:hidden;opacity:0;visibility:hidden;transition:opacity .4s,visibility .4s;padding:120px var(--pad) 60px}
+.overlay.open{opacity:1;visibility:visible}
+.overlay .x{position:absolute;top:0;right:clamp(16px,3vw,44px);width:58px;height:66px;background:var(--gold);border:0;color:#fff;font-size:30px;font-weight:300;cursor:pointer}
+.overlay .crest{width:56px;margin:0 auto 48px}
+.ocols{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:40px;max-width:1240px;margin:0 auto}
+.ocols h3{font:400 var(--t-kicker) var(--sans);letter-spacing:.24em;text-transform:uppercase;color:var(--gold);margin-bottom:18px;padding-bottom:14px;border-bottom:1px solid rgba(255,255,255,.14)}
+.ocols a{display:block;text-decoration:none;font-size:16px;line-height:1.5;padding:6px 0;color:rgba(255,255,255,.82)}
+.ocols a:hover{color:#fff}
+@media (max-width:900px){.ocols{grid-template-columns:1fr 1fr;gap:28px}.sidetab{display:none}}
+@media (max-width:560px){.ocols{grid-template-columns:1fr}}
+
+/* ───────── 1 · HERO CAROUSEL: full-screen photos, each with its own message ───────── */
+.hero{position:relative;height:100svh;min-height:560px;overflow:hidden;background:var(--navy);color:#fff;touch-action:pan-y;user-select:none;-webkit-user-select:none}
+.h-track{display:flex;height:100%;will-change:transform}
+.h-track.anim{transition:transform .9s cubic-bezier(.65,0,.25,1)}
+.h-slide{position:relative;flex:0 0 100%;height:100%;overflow:hidden}
+.h-slide img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transform:scale(1.06);transition:transform 7s ease-out;pointer-events:none}
+.h-slide.on img{transform:scale(1)}
+.h-slide::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(7,22,49,.55) 0%,rgba(7,22,49,0) 30%,rgba(7,22,49,0) 50%,rgba(7,22,49,.66) 100%)}
+.h-copy{position:absolute;left:var(--pad);right:var(--pad);bottom:clamp(90px,15vh,140px);z-index:2;max-width:760px}
+.h-copy > *{opacity:0;transition:opacity .35s ease}
+.h-slide.on .h-copy > *{opacity:1;transition:opacity .9s ease .55s}
+.h-slide.on .h-copy > *:nth-child(2){transition-delay:.7s}
+.h-slide.on .h-copy > *:nth-child(3){transition-delay:.85s}
+.h-track.drag .h-copy > *{transition:none}
+.h-copy .kicker{color:#e6d6b3}
+.h-copy h1{color:#fff;margin:18px 0 16px}
+.h-copy h1 i{color:#e6d6b3}
+.h-copy p{font-size:var(--t-lead);line-height:1.7;max-width:540px;color:rgba(255,255,255,.88)}
+/* quote slides: a person speaking, so the serif, in italic, at the same headline size */
+.h-slide.quote h1{font-family:var(--serif);font-weight:400;font-style:italic;text-transform:none;letter-spacing:0;line-height:1.12;max-width:900px}
+.h-slide.quote h1 i{font-family:inherit;padding:0}
+.h-copy .who{font-size:var(--t-kicker);letter-spacing:.22em;text-transform:uppercase;color:#e6d6b3}
+.h-copy .who span{letter-spacing:.08em;text-transform:none;opacity:.65}
+.h-nav{position:absolute;left:0;right:0;bottom:40px;z-index:3;display:flex;align-items:center;justify-content:center;gap:22px}
+.h-dots{display:flex;gap:12px}
+.h-dots button{width:9px;height:9px;border-radius:50%;border:1px solid #fff;background:transparent;cursor:pointer;padding:0;transition:background .3s,transform .3s}
+.h-dots button.on{background:#fff;transform:scale(1.25)}
+
+/* ───────── 2 · INTRO ───────── */
+.intro{padding:clamp(90px,15vh,150px) var(--pad);text-align:center}
+.intro .icon{width:54px;height:54px;margin:0 auto 26px;border:1px solid var(--rule);border-radius:50%;display:grid;place-items:center}
+.intro .icon svg{width:28px;height:28px}
+.intro h2{margin:20px auto 30px;max-width:900px}
+.intro .lead{max-width:720px;margin:0 auto 38px}
+
+/* ───────── HALVES: white | grey, one line down the middle ───────── */
+.halves{position:relative;background:linear-gradient(90deg,var(--white) 50%,var(--grey) 50%)}
+.halves::before{content:"";position:absolute;left:50%;top:0;bottom:0;width:1px;background:var(--rule);transform:translateX(-.5px)}
+.row{position:relative;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);align-items:center}
+.cell{padding:clamp(70px,11vh,120px) var(--pad)}
+.row .l{padding-right:clamp(40px,5vw,90px)}
+.row .r{padding-left:clamp(40px,5vw,90px)}
+.media{align-self:stretch;min-height:clamp(340px,64vh,620px);position:relative;overflow:hidden}
+.media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.tag{position:absolute;left:16px;bottom:16px;z-index:2;font:400 10px var(--sans);letter-spacing:.2em;text-transform:uppercase;color:#fff;background:rgba(7,22,49,.6);padding:8px 12px}
+.medal{position:absolute;left:50%;top:50%;width:44px;height:44px;transform:translate(-50%,-50%);background:#fff;border:1px solid var(--rule);border-radius:50%;display:grid;place-items:center;z-index:2}
+.medal svg{width:24px;height:24px}
+
+/* 3 · welcome message */
+.welcome h2{margin:20px 0 28px}
+.welcome blockquote{font-family:var(--sans);font-weight:300;font-size:calc(var(--t-lead) * 1.12);line-height:1.85;color:var(--ink)}
+.welcome cite{display:block;margin:28px 0 30px;font:400 var(--t-kicker) var(--sans);letter-spacing:.22em;text-transform:uppercase;font-style:normal;color:var(--gold)}
+.welcome cite span{display:block;color:var(--soft);letter-spacing:.08em;margin-top:6px;text-transform:none;font-size:var(--t-small)}
+
+/* 4 · five pillars: click one, the film on the other side changes */
+.pillars h2{margin:20px 0 22px}
+.plist{list-style:none;margin-top:34px;border-top:1px solid var(--rule)}
+.plist li{border-bottom:1px solid var(--rule)}
+.plist button{width:100%;display:grid;grid-template-columns:44px 1fr 18px;align-items:center;gap:8px;background:none;border:0;cursor:pointer;text-align:left;padding:17px 0;font:400 13.5px var(--sans);letter-spacing:.18em;text-transform:uppercase;color:var(--ink);transition:color .3s}
+.plist button .n{font-family:var(--serif);font-style:italic;font-size:20px;letter-spacing:0;color:var(--soft);text-transform:none}
+.plist button .pm{font-size:18px;font-weight:300;color:var(--gold);transition:transform .3s}
+.plist button:hover,.plist li.on button{color:var(--gold)}
+.plist li.on .n{color:var(--gold)}
+.plist li.on .pm{transform:rotate(45deg)}
+.plist .ar{font-family:var(--arabic);text-transform:none;letter-spacing:0;font-size:17px;color:var(--gold);margin-left:8px}
+.plist .more{display:grid;grid-template-rows:0fr;transition:grid-template-rows .45s ease}
+.plist li.on .more{grid-template-rows:1fr}
+.plist .more > div{overflow:hidden}
+.plist .more p{padding:0 0 20px 52px;font-size:var(--t-body);line-height:1.75}
+.film{position:relative;align-self:stretch;min-height:clamp(340px,64vh,620px);overflow:hidden;background:var(--navy)}
+.film img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transform:scale(1.04);transition:opacity .7s,transform 1.4s}
+.film img.on{opacity:1;transform:none}
+.film .play{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);z-index:2;width:76px;height:76px;border-radius:50%;border:1px solid rgba(255,255,255,.8);background:rgba(7,22,49,.35);backdrop-filter:blur(4px);display:grid;place-items:center;color:#fff}
+.film .play svg{width:22px;height:22px;margin-left:4px}
+.film .cap{position:absolute;left:0;right:0;bottom:0;z-index:2;padding:40px 22px 18px;background:linear-gradient(transparent,rgba(7,22,49,.7));color:#fff;font:400 11px var(--sans);letter-spacing:.2em;text-transform:uppercase;display:flex;justify-content:space-between;gap:12px}
+.film .cap span:last-child{opacity:.7}
+
+/* 5 · news highlights */
+.news{background:var(--grey);padding:clamp(90px,15vh,150px) var(--pad)}
+.news-head{display:flex;justify-content:space-between;align-items:flex-end;gap:30px;flex-wrap:wrap;max-width:1300px;margin:0 auto 46px}
+.news-head h2{margin-top:18px}
+.socials{display:flex;gap:10px;flex-wrap:wrap}
+.socials a{display:inline-flex;align-items:center;gap:10px}
+.socials svg{width:16px;height:16px}
+.cards{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px;max-width:1300px;margin:0 auto}
+.card{background:#fff;text-decoration:none;display:flex;flex-direction:column;transition:transform .35s}
+.card:hover{transform:translateY(-4px)}
+.card figure{aspect-ratio:1;overflow:hidden}
+.card img{width:100%;height:100%;object-fit:cover;transition:transform .8s}
+.card:hover img{transform:scale(1.04)}
+.card .b{padding:22px 22px 26px}
+.card .src{font:400 11px var(--sans);letter-spacing:.2em;text-transform:uppercase;color:var(--gold)}
+.card h3{font:400 15px/1.45 var(--sans);letter-spacing:.08em;text-transform:uppercase;color:var(--ink);margin:10px 0 8px}
+.card p{font-size:14px;line-height:1.65}
+
+/* 6 · iqra */
+.iqra{background:var(--navy);color:#f3ecdc;text-align:center;padding:clamp(90px,15vh,150px) var(--pad)}
+.iqra .ar{font-family:var(--arabic);font-size:calc(var(--t-h3) * 1.5);line-height:1.6;color:#d8c49a}
+.iqra .tr{font:400 var(--t-small) var(--sans);letter-spacing:.14em;text-transform:uppercase;color:rgba(243,236,220,.6);margin-top:8px}
+.iqra h2{color:#fff;margin:34px auto 0;max-width:1120px}
+.iqra h2 i{color:#d8c49a}
+
+/* 7 · history: a ruler. 1868 to 2032 at true scale, so the gaps between milestones are honest.
+   Ticks after today are faint: the years not yet written. Drag it like a tape, or tap a star. */
+.hist-head{text-align:center;padding:clamp(90px,15vh,150px) var(--pad) clamp(46px,7vh,70px)}
+.hist-head h2{margin-top:20px}
+.hist-head .lead{max-width:620px;margin:22px auto 0}
+.stage{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.2fr);grid-template-rows:clamp(460px,66vh,640px);column-gap:clamp(70px,6vw,110px);max-width:1440px;margin:0 auto;padding:0 var(--pad)}
+.pic{position:relative;min-width:0}
+.readout{min-width:0;display:flex;flex-direction:column;justify-content:center}
+.readout .yk{font:400 var(--t-kicker) var(--sans);letter-spacing:.24em;text-transform:uppercase;color:var(--soft)}
+.readout .yk i{font-family:var(--serif);font-size:18px;letter-spacing:0;text-transform:none;color:var(--gold)}
+.readout .yr{font:200 clamp(72px,8vw,128px)/1 var(--sans);letter-spacing:.01em;color:var(--gold);font-variant-numeric:tabular-nums;margin:6px 0 18px}
+.readout .m{transition:opacity .25s}
+.readout h3{font:400 var(--t-kicker) var(--sans);letter-spacing:.24em;text-transform:uppercase;color:var(--ink);margin-bottom:14px}
+.readout p{font-size:var(--t-lead);line-height:1.85;max-width:520px}
+.readout .since{margin-top:24px;font:400 var(--t-small) var(--sans);letter-spacing:.16em;text-transform:uppercase;color:var(--soft)}
+.readout .btn{margin-top:24px;align-self:flex-start}
+.photo{position:absolute;inset:0;overflow:hidden;background:var(--grey);touch-action:pan-y;cursor:grab}
+.photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .7s;-webkit-user-drag:none;user-select:none}
+.photo img.on{opacity:1}
+/* the ruler: vertical on wide screens, sitting between the words and the picture */
+/* a slim pane of glass, the full height of the photo, half on the page and half over the picture.
+   Only a light blur, so the page edge behind it stays crisp instead of smearing into a fade. */
+.ruler{--cursor:#7a1f2b;position:absolute;top:0;bottom:0;left:-52px;width:104px;z-index:3;cursor:grab;touch-action:none;user-select:none;-webkit-user-select:none;outline:none;background:rgba(255,255,255,.6);backdrop-filter:blur(3px) saturate(140%);-webkit-backdrop-filter:blur(3px) saturate(140%);border:1px solid rgba(11,26,51,.12)}
+.ruler .clip{position:absolute;inset:0;overflow:hidden}
+.ruler.grabbing{cursor:grabbing}
+.ruler:focus-visible{outline:2px solid var(--gold);outline-offset:-2px}
+.tape{position:absolute;left:0;right:0;top:0;will-change:transform}
+.tick{position:absolute;left:0;height:1px;width:9px;background:rgba(11,26,51,.5)}
+.tick.t5{width:15px}
+.tick.t10{width:22px;background:var(--ink)}
+.tick.fut{opacity:.3}
+.ms{position:absolute;left:27px;transform:translateY(-50%);display:flex;align-items:center;gap:5px;background:none;border:0;padding:4px 0;cursor:pointer;color:var(--gold);font:400 19px var(--sans);letter-spacing:.02em;white-space:nowrap}
+.ms svg{width:18px;height:18px;background:#fff;border-radius:50%;transition:transform .3s;flex-shrink:0}
+.ms.on svg{transform:scale(1.3)}
+.ms.on span{color:var(--ink);font-weight:500}
+.needle{position:absolute;left:-1px;right:0;top:50%;height:2px;margin-top:-1px;background:var(--cursor);pointer-events:none;z-index:2}
+.needle::before{content:"";position:absolute;left:-7px;top:50%;transform:translateY(-50%);border:7px solid transparent;border-left-color:var(--cursor)}
+.hint{text-align:center;margin-top:22px;font:400 11px var(--sans);letter-spacing:.24em;text-transform:uppercase;color:var(--soft);transition:opacity .6s}
+.hint.gone{opacity:0}
+
+/* 8 · admissions + footer */
+.adm{background:var(--grey);text-align:center;padding:clamp(90px,15vh,150px) var(--pad)}
+.adm h2{margin:20px 0 26px}
+.adm .lead{max-width:640px;margin:0 auto}
+.aform{display:grid;grid-template-columns:1.2fr 1fr 1fr auto;gap:10px;max-width:940px;margin:44px auto 0}
+.aform input,.aform select{font:300 15px var(--sans);color:var(--ink);padding:15px 16px;border:1px solid var(--rule);background:#fff;outline:none;border-radius:0;min-width:0}
+.aform input:focus,.aform select:focus{border-color:var(--gold)}
+.adm .phone{margin-top:22px;font-size:var(--t-small);letter-spacing:.08em;color:var(--soft)}
+footer{background:var(--navy);color:rgba(243,236,220,.7);text-align:center;padding:80px var(--pad) 40px;font-size:var(--t-small)}
+footer .crest{width:60px;margin:0 auto 18px}
+footer b{display:block;font-family:var(--serif);font-weight:500;font-size:20px;letter-spacing:.14em;text-transform:uppercase;color:#f3ecdc}
+footer p{margin-top:14px;line-height:1.8}
+footer .fine{margin-top:50px;padding-top:22px;border-top:1px solid rgba(255,255,255,.1);display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;font-size:12px;opacity:.7}
+
+/* 4b · academics, boarding, school life: one article per menu item */
+.topics{padding:clamp(90px,14vh,140px) var(--pad);background:var(--white)}
+.topics.alt{background:var(--grey)}
+.t-head{max-width:760px;margin:0 auto clamp(40px,6vh,64px)}
+.t-head h2{margin:20px 0 22px}
+.t-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(28px,3.5vw,56px);max-width:1300px;margin:0 auto}
+.t-item{position:relative;border-top:1px solid var(--gold);padding-top:26px;scroll-margin-top:90px}
+.t-item .n{font:italic 400 22px var(--serif);color:var(--gold)}
+.t-item h3{font:400 15px/1.45 var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--ink);margin:6px 0 14px}
+.t-item p{font-size:var(--t-body);line-height:1.8}
+.chips{list-style:none;display:flex;flex-wrap:wrap;gap:8px;margin-top:20px}
+.chips li{font:400 11px var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--ink);border:1px solid var(--rule);background:#fff;padding:7px 12px}
+.topics.alt .chips li{background:var(--white)}
+.t-wins{max-width:1300px;margin:clamp(48px,7vh,72px) auto 0;padding-top:30px;border-top:1px solid var(--rule)}
+.t-wins h3{font:400 var(--t-kicker) var(--sans);letter-spacing:.24em;text-transform:uppercase;color:var(--gold);margin-bottom:16px}
+.t-wins ul{list-style:none;columns:2;column-gap:clamp(28px,3.5vw,56px)}
+.t-wins li{break-inside:avoid;padding:9px 0 9px 22px;position:relative;border-bottom:1px solid var(--rule);font-size:var(--t-body);line-height:1.6}
+.t-wins li::before{content:"";position:absolute;left:2px;top:19px;width:7px;height:7px;background:var(--gold);transform:rotate(45deg)}
+
+/* admissions steps + notes */
+.steps{list-style:none;display:flex;flex-wrap:wrap;justify-content:center;gap:12px;max-width:940px;margin:40px auto 0}
+.steps li{flex:1 1 150px;background:#fff;border:1px solid var(--rule);padding:18px 14px;font:400 12.5px/1.5 var(--sans);letter-spacing:.12em;text-transform:uppercase;color:var(--ink)}
+.steps b{display:block;font:italic 400 24px var(--serif);color:var(--gold);letter-spacing:0;margin-bottom:4px}
+.steps span{display:block;text-transform:none;letter-spacing:.04em;color:var(--soft)}
+.adm-notes{display:grid;grid-template-columns:1fr 1fr;gap:clamp(24px,4vw,56px);max-width:940px;margin:40px auto 0;text-align:left}
+.adm-notes h3{font:400 var(--t-kicker) var(--sans);letter-spacing:.24em;text-transform:uppercase;color:var(--gold);margin-bottom:12px}
+.adm-notes ul{list-style:none}
+.adm-notes li{padding:8px 0;border-bottom:1px solid var(--rule);font-size:var(--t-small);line-height:1.65}
+.adm{scroll-margin-top:0}
+#apply{scroll-margin-top:90px}
+
+/* gentle slide-ins */
+.in-l,.in-r,.in-u{opacity:0;transition:opacity 1s ease,transform 1.1s cubic-bezier(.2,.7,.2,1)}
+.in-l{transform:translateX(-40px)}.in-r{transform:translateX(40px)}.in-u{transform:translateY(30px)}
+.seen{opacity:1;transform:none}
+.intro,.halves,.news,.iqra,.hist-head,.adm,.topics,#history{overflow-x:clip}
+#history{padding-bottom:clamp(80px,13vh,130px)}
+
+@media (max-width:1100px){.cards{grid-template-columns:repeat(2,minmax(0,1fr))}.t-grid{grid-template-columns:1fr 1fr}}
+@media (max-width:900px){
+  .brand{top:20px}.brand .crest{width:60px}.brand b{font-size:19px}.brand small{font-size:8.5px;letter-spacing:.2em}
+  .h-copy{bottom:110px}
+  .halves{background:var(--white)}
+  .halves::before,.medal{display:none}
+  .row{grid-template-columns:1fr}
+  .row .l,.row .r{padding:56px var(--pad)}
+  .row .media{order:-1;min-height:0;aspect-ratio:4/3}
+  .film{order:-1;min-height:0;aspect-ratio:4/3}
+  .pillars{background:var(--grey)}
+  /* history on a phone: photo, a horizontal ruler, then the words */
+  .stage{grid-template-columns:1fr;grid-template-rows:none;gap:26px}
+  .pic{order:1;aspect-ratio:4/3;margin:0 calc(-1*var(--pad))}
+  .ruler{top:auto;bottom:-36px;left:0;right:0;width:auto;height:72px;border-width:1px 0}
+  .readout{order:2;margin-top:40px}
+  .readout .yr{margin:4px 0 12px}
+  .tape{top:0;bottom:0;right:auto}
+  .tick{left:auto;top:auto;bottom:0;width:1px;height:10px}
+  .tick.t5{width:1px;height:18px}.tick.t10{width:1px;height:28px}
+  .ms{left:auto;top:8px;transform:translateX(-50%);flex-direction:column;gap:1px;font-size:16px}
+  .ms span{display:none}.ms.on span{display:block}
+  .needle{left:50%;right:auto;top:-1px;bottom:0;width:2px;height:auto;margin:0 0 0 -1px}
+  .needle::before{left:50%;top:-7px;transform:translateX(-50%);border-left-color:transparent;border-top-color:var(--cursor)}
+}
+@media (max-width:760px){.t-grid{grid-template-columns:1fr}.t-wins ul{columns:1}.adm-notes{grid-template-columns:1fr}}
+@media (max-width:600px){.cards{grid-template-columns:1fr}.aform{grid-template-columns:1fr}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}.in-l,.in-r,.in-u{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+
+<!-- reusable eight-point star: two squares, one turned 45°. Each milestone and pillar is one of its points. -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="star" viewBox="-12 -12 24 24"><g fill="none" stroke="#988360" stroke-width=".9"><rect x="-7" y="-7" width="14" height="14"/><rect x="-7" y="-7" width="14" height="14" transform="rotate(45)"/><circle r="2.2"/></g></symbol>
+  <symbol id="chev" viewBox="0 0 14 14"><path d="M3 9l4-4 4 4" fill="none" stroke="currentColor" stroke-width="1.4"/></symbol>
+</svg>
+
+<a class="brand" href="#top" aria-label="Anjuman-I-Islam Public School, Panchgani: home">
+  <img class="crest" src="img/crest-white.webp" alt="Anjuman-I-Islam crest">
+  <b>Anjuman-I-Islam</b>
+  <small>Public School &amp; Jr. College</small>
+  <small class="place">Panchgani</small>
+</a>
+<a class="mini" id="mini" href="#top"><img class="crest" src="img/crest-navy.webp" alt=""><b>Anjuman-I-Islam</b></a>
+<button class="menutab" id="menuBtn" aria-label="Open menu"><svg viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M2 6h18M2 11h18M2 16h18"/></svg></button>
+<a class="sidetab" href="#admissions">Admissions 2027–28</a>
+
+<nav class="overlay" id="overlay" aria-label="Main">
+  <button class="x" id="menuX" aria-label="Close menu">×</button>
+  <img class="crest" src="img/crest-ivory.webp" alt="">
+  <div class="ocols">
+    <div><h3>About</h3><a href="#intro">Welcome</a><a href="#welcome">Chairman’s message</a><a href="#history">History since 1874</a><a href="#pillars">Our five pillars</a></div>
+    <div><h3>Academics</h3><a href="#curriculum">Curriculum · Primary to X</a><a href="#juniorcollege">Junior College · XI–XII</a><a href="#coaching">NEET · JEE · CET · NATA</a></div>
+    <div><h3>Boarding</h3><a href="#hostels">Boys’ &amp; girls’ hostels</a><a href="#food">Food &amp; dining</a><a href="#health">Health &amp; pastoral care</a></div>
+    <div><h3>School life</h3><a href="#deen">Deen taleem</a><a href="#sport">Sport &amp; outdoors</a><a href="#news">News &amp; highlights</a></div>
+    <div><h3>Admissions</h3><a href="#apply">How to apply</a><a href="#visit">Book your visit</a><a href="tel:+918275204302">+91 82752 04302</a></div>
+  </div>
+</nav>
+
+<!-- 1 · HERO CAROUSEL — swipe, drag, arrows or dots; every photo carries its own message -->
+<section class="hero" id="top" aria-roledescription="carousel" aria-label="Welcome">
+  <div class="h-track" id="hTrack">
+    <article class="h-slide" aria-label="1 of 5">
+      <img src="img/c1-entrance.jpg" alt="The arched main building of the school, with steps leading up through the garden">
+      <div class="h-copy"><div class="kicker">Nandanwan · since 1920</div><h1>Knowledge <i>is an</i> amanah</h1><p>Something precious, placed in our hands to be passed on with care. Every child who walks up these steps is a trust from a family, and we teach like it.</p></div>
+    </article>
+    <article class="h-slide" aria-label="2 of 5">
+      <img src="img/c3-point-3.jpg" alt="A teacher bending over a desk to help a group of students with a project" style="object-position:center 30%">
+      <div class="h-copy"><div class="kicker">AI &amp; Robotics lab</div><h1>Curious hands, <i>clear</i> minds</h1><p>Robotics kits, AI, science and computer labs, and Basic Aviation since 2024. Children here don’t just use technology. They take it apart, ask why, and build it again.</p></div>
+    </article>
+    <article class="h-slide quote" aria-label="3 of 5">
+      <img src="img/c1-ghat-fog.jpg" alt="Mist over the hills and the lake below Panchgani">
+      <div class="h-copy"><div class="kicker">In a teacher’s words</div><h1><i>“</i>I don’t teach subjects. I teach children who will one day teach their own.<i>”</i></h1><p class="who">A teacher, Anjuman Panchgani · <span>illustrative, real quote to come</span></p></div>
+    </article>
+    <article class="h-slide quote" aria-label="4 of 5">
+      <img src="img/c1-campus-clouds.jpg" alt="The campus rooftops among the trees, in cloud">
+      <div class="h-copy"><div class="kicker">In an old student’s words</div><h1><i>“</i>I came with one trunk. I left with brothers for life, and a reason to study.<i>”</i></h1><p class="who">Old student · <span>illustrative, real quote to come</span></p></div>
+    </article>
+    <article class="h-slide" aria-label="5 of 5">
+      <img src="img/c1-dusk-wide.jpg" alt="Dusk over the hills beyond the campus">
+      <div class="h-copy"><div class="kicker">Primary to XII · 2027–28</div><h1>Admissions <i>are</i> open</h1><p>For boys and girls, as boarders. Places are limited, and we meet every family in person before we offer one.</p></div>
+    </article>
+  </div>
+  <div class="h-nav">
+    <div class="h-dots" id="hDots"></div>
+  </div>
+</section>
+
+<!-- 2 · INTRO -->
+<section class="intro center" id="intro">
+  <div class="icon in-u"><svg><use href="#star"/></svg></div>
+  <div class="kicker in-u">Primary to XII · Boys &amp; girls · Boarding</div>
+  <h2 class="in-u">Welcome <i>to</i> Anjuman-I-Islam Public School</h2>
+  <p class="lead in-u">A family gives us the most precious thing it has. We repay that trust with an education that treats every hour as valuable: classroom lessons and the Qur’an side by side, a robotics and AI lab that rewards curiosity, and teachers who are mentors and role models.</p>
+  <a class="btn in-u" href="#admissions">Enquire now</a>
+</section>
+
+<!-- 3 · WELCOME MESSAGE -->
+<div class="halves" id="welcome">
+  <div class="row welcome">
+    <figure class="media in-l"><img src="img/c1-window-dusk.jpg" alt="Evening light over the hills beyond Panchgani" style="object-position:center bottom"><span class="tag">Portrait to come</span></figure>
+    <span class="medal"><svg><use href="#star"/></svg></span>
+    <div class="cell r in-r">
+      <div class="kicker">A warm welcome</div>
+      <h2><i>from our</i> Executive Chairman</h2>
+      <blockquote>“Step into a world where education meets compassion, and learning goes beyond the books. Anjuman-I-Islam Public School and Jr. College is a vibrant community where core values and nurturing go hand in hand, creating a supportive environment for every student to thrive. Welcome to your new adventure: a place where lifelong friendship begins and the future is bright.”</blockquote>
+      <cite>[Name to confirm]<span>Executive Chairman, Anjuman-I-Islam Public School &amp; Jr. College</span></cite>
+      <a class="link" href="#history">Read our story</a>
+    </div>
+  </div>
+</div>
+
+<!-- 4 · FIVE PILLARS — each pillar changes the film beside it -->
+<div class="halves" id="pillars">
+  <div class="row pillars">
+    <div class="cell l in-l">
+      <div class="kicker">The sense of balance</div>
+      <h2>Our <i>five</i> pillars</h2>
+      <p class="lead">A child here never has to choose between their deen and their ambition, or between the laboratory and the riding school. Five pillars hold the day in balance, and every child stands on all five.</p>
+      <ul class="plist" id="plist">
+        <li class="on" data-img="img/c1-fajr-rays.jpg" data-cap="Deen taleem"><button><span class="n">i</span><span>Deen taleem<span class="ar" lang="ar">دين</span></span><span class="pm">+</span></button><div class="more"><div><p>Islamic studies at the heart of the day: five daily prayers in jama‘ah, Qur’an recitation, Hifz on request, and basic Islamic education for every Muslim student.</p></div></div></li>
+        <li data-img="img/c3-point-3.jpg" data-cap="Academics"><button><span class="n">ii</span><span>Academics</span><span class="pm">+</span></button><div class="more"><div><p>English-medium, Primary to XII. Digital classrooms, science and robotics labs, and NEET, JEE, CET and NATA coaching alongside the Junior College.</p></div></div></li>
+        <li data-img="img/c1-dusk-wide.jpg" data-cap="Pastoral care"><button><span class="n">iii</span><span>Pastoral care &amp; boarding</span><span class="pm">+</span></button><div class="more"><div><p>Renovated hostels for boys and girls with a dorm-in-charge, five meals a day on a dietician’s menu, and a trained nurse on campus around the clock.</p></div></div></li>
+        <li data-img="img/c1-archery.jpg" data-cap="Sport &amp; outdoors"><button><span class="n">iv</span><span>Sport &amp; the outdoors</span><span class="pm">+</span></button><div class="more"><div><p>Horse riding, archery, a shooting range, skating, cricket, football and hockey on the largest ground in town. The body is an amanah, and we train it like one.</p></div></div></li>
+        <li data-img="img/c1-flute.jpg" data-cap="Arts &amp; skills"><button><span class="n">v</span><span>Arts, skills &amp; service</span><span class="pm">+</span></button><div class="more"><div><p>Music, drama, pottery, agriculture and basic aviation, debate and community service: the hands and the heart, not only the head.</p></div></div></li>
+      </ul>
+    </div>
+    <span class="medal"><svg><use href="#star"/></svg></span>
+    <figure class="film in-r" id="film">
+      <img class="on" src="img/c1-fajr-rays.jpg" alt="">
+      <span class="play" aria-hidden="true"><svg viewBox="0 0 22 22" fill="currentColor"><path d="M5 3l14 8-14 8z"/></svg></span>
+      <div class="cap"><span id="filmCap">Deen taleem</span><span>Film slot · to be shot</span></div>
+    </figure>
+  </div>
+</div>
+
+<!-- 4b · ACADEMICS · BOARDING · SCHOOL LIFE — one anchor per menu item, content from the prospectus -->
+<section class="topics" id="academics">
+  <div class="t-head center">
+    <div class="kicker in-u"><svg><use href="#star"/></svg>Academics</div>
+    <h2 class="in-u">Teaching <i>that</i> follows the child</h2>
+    <p class="lead in-u">Teachers use varied methods to reach different ways of learning, academic advisors meet each student regularly to set goals and track progress, and the school reads its own data to find where help is needed. In the dormitories, peer tutors and resident advisors run evening study sessions.</p>
+  </div>
+  <div class="t-grid">
+    <article class="t-item in-u" id="curriculum"><span class="n">i</span><h3>Curriculum · Primary to X</h3><p>English-medium classes from Primary to Std X. Every classroom has its own projector and AV set-up, and teachers draw on a ready library of e-materials. Students from a vernacular-medium background who find studies hard receive extra coaching.</p><ul class="chips"><li>Robotics &amp; AI tinkering lab</li><li>Science lab</li><li>Computer lab</li><li>Digital classrooms</li><li>Library</li></ul></article>
+    <article class="t-item in-u" id="juniorcollege"><span class="n">ii</span><h3>Junior College · XI–XII</h3><p>The Junior College shares the campus, so boarders carry on without changing school. The year follows the board calendar: preliminary exams for Std X and XII in December and January, practicals in February, final exams in March.</p><ul class="chips"><li>Std XI–XII</li><li>HSC &amp; SSC practicals</li><li>Prelims</li></ul></article>
+    <article class="t-item in-u" id="coaching"><span class="n">iii</span><h3>NEET · JEE · CET · NATA</h3><p>Preparation for NEET, JEE, CET, NATA and CA runs alongside the school timetable, in a quiet hill-station setting where wellbeing comes first. Competitive courses carry an additional fee.</p><ul class="chips"><li>NEET</li><li>JEE</li><li>CET</li><li>NATA</li><li>CA</li></ul></article>
+  </div>
+</section>
+
+<section class="topics alt" id="boarding">
+  <div class="t-head center">
+    <div class="kicker in-u"><svg><use href="#star"/></svg>Boarding</div>
+    <h2 class="in-u">A home <i>between</i> home and school</h2>
+    <p class="lead in-u">Every dormitory has been fully renovated to keep a balance between home and school, so a child feels safe, happy and welcome from the first evening.</p>
+  </div>
+  <div class="t-grid">
+    <article class="t-item in-u" id="hostels"><span class="n">i</span><h3>Boys’ &amp; girls’ hostels</h3><p>Clean, hygienic and spacious dormitories with common areas to relax and socialise after a long day. A dorm-in-charge gives guidance, advice and a listening ear, and the administrative staff keep the campus safe and secure.</p><ul class="chips"><li>Dorm-in-charge</li><li>Study sessions</li><li>Common rooms</li></ul></article>
+    <article class="t-item in-u" id="food"><span class="n">ii</span><h3>Food &amp; dining</h3><p>A renovated dining hall seats 300 and serves all five meals of the day. The kitchen is supervised throughout, and the menu is set by a dietician so boarders eat well-balanced, wholesome meals on time.</p><ul class="chips"><li>300 seats</li><li>Five meals a day</li><li>Dietician’s menu</li></ul></article>
+    <article class="t-item in-u" id="health"><span class="n">iii</span><h3>Health &amp; pastoral care</h3><p>A trained nurse is on campus 24 hours a day and a doctor visits for regular check-ups. The sick bay can keep a child in for rest and care without leaving the campus.</p><ul class="chips"><li>Nurse 24/7</li><li>Doctor’s visits</li><li>Sick bay</li></ul></article>
+  </div>
+</section>
+
+<section class="topics" id="schoollife">
+  <div class="t-head center">
+    <div class="kicker in-u"><svg><use href="#star"/></svg>School life</div>
+    <h2 class="in-u">Faith, <i>fields</i> and friendships</h2>
+    <p class="lead in-u">Over 174 acres of campus, activities are treated as part of a rounded education, not a break from it: students here are athletes, artists, musicians and leaders in the making.</p>
+  </div>
+  <div class="t-grid">
+    <article class="t-item in-u" id="deen"><span class="n">i</span><h3>Deen taleem</h3><p>The call to prayer is given five times a day in the prayer hall, and Muslim students are expected to offer salah. Basic Islamic education and recitation of the Qur’an are emphasised, and a Hifz course is available on request.</p><ul class="chips"><li>Five daily prayers</li><li>Qur’an recitation</li><li>Hifz on request</li></ul></article>
+    <article class="t-item in-u" id="sport"><span class="n">ii</span><h3>Sport &amp; outdoors</h3><p>The Akbar Peerbhoy Sports Stadium, the largest ground in town, has separate grounds for football, kabaddi, volleyball and basketball. Boys and girls are coached in cricket, football, hockey, volleyball and athletics, with PT, gymnastics, yoga and archery. A gymnasium and multipurpose hall keep training going through the monsoon.</p><ul class="chips"><li>Horse riding</li><li>Archery</li><li>Shooting range</li><li>Skating rink</li><li>Open gym</li></ul></article>
+    <article class="t-item in-u" id="activities"><span class="n">iii</span><h3>Arts &amp; activities</h3><p>Drama, quiz, debate, pottery and ceramics, knitting and sewing, and sky gazing, with clubs in robotics, AI, basic aviation, agriculture and gardening. Inter-house contests run through the year, from dramatics and football to cross-country and debate.</p><ul class="chips"><li>Pottery</li><li>Robotics &amp; AI</li><li>Basic aviation</li><li>Agriculture</li><li>Sky gazing</li></ul></article>
+  </div>
+  <div class="t-wins in-u">
+    <h3>Recent achievements</h3>
+    <ul>
+      <li>Centenary: 100 years of education completed in 2020</li>
+      <li>Golden School Award 2018–19, Indian Talent Search</li>
+      <li>INSPIRE Award, Taluka level, 2019</li>
+      <li>First prize, district-level cycling competition</li>
+      <li>Gold medal, World Thai Boxing Championship, Goa, 2019</li>
+      <li>3 gold, 4 silver and 3 bronze, World Stick Fight Championship, Goa, 2020</li>
+      <li>Hindi Rashtrabhasha Puraskar: Shamsheera Nadaf (Std X) scored 95% in Hindi in SSC</li>
+    </ul>
+  </div>
+</section>
+
+<!-- 5 · NEWS HIGHLIGHTS — straight from the school's own social pages -->
+<section class="news" id="news">
+  <div class="news-head">
+    <div><div class="kicker in-u"><svg><use href="#star"/></svg>From Panchgani</div><h2 class="in-u">News <i>and</i> highlights</h2></div>
+    <div class="socials in-u">
+      <a class="btn line" href="https://www.instagram.com/anjuman_panchgani/" target="_blank" rel="noopener"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3"><rect x="1.5" y="1.5" width="13" height="13" rx="4"/><circle cx="8" cy="8" r="3"/><circle cx="12" cy="4" r=".6" fill="currentColor"/></svg>Instagram</a>
+      <a class="btn line" href="#" title="Facebook page link to confirm"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M9.2 15V8.6h2.1l.3-2.5H9.2V4.5c0-.7.2-1.2 1.2-1.2h1.3V1.1A17 17 0 0 0 9.8 1C8 1 6.7 2.1 6.7 4.2v1.9H4.6v2.5h2.1V15z"/></svg>Facebook</a>
+    </div>
+  </div>
+  <div class="cards">
+    <a class="card in-u" href="https://www.instagram.com/anjuman_panchgani/" target="_blank" rel="noopener"><figure><img src="img/c3-news-1.jpg" alt="Admissions open poster for Anjuman-I-Islam Public School, Panchgani"></figure><div class="b"><div class="src">Instagram</div><h3>Admissions open</h3><p>Limited seats for the new academic year, Primary to XII.</p></div></a>
+    <a class="card in-u" href="https://www.instagram.com/anjuman_panchgani/" target="_blank" rel="noopener"><figure><img src="img/c3-news-2.jpg" alt="A student playing the flute on stage at Founder’s Day"></figure><div class="b"><div class="src">Instagram</div><h3>Founder’s Day 2025</h3><p>Music and speeches, presided over by Padma Shri Dr. Zahir Kazi.</p></div></a>
+    <a class="card in-u" href="https://www.instagram.com/anjuman_panchgani/" target="_blank" rel="noopener"><figure><img src="img/c3-news-3.jpg" alt="A student aiming an arrow on the school ground"></figure><div class="b"><div class="src">Instagram</div><h3>On the archery range</h3><p>Afternoons on the ground, drawing a bow for the first time.</p></div></a>
+    <a class="card in-u" href="https://www.instagram.com/anjuman_panchgani/" target="_blank" rel="noopener"><figure><img src="img/c3-news-4.jpg" alt="A parent arriving on campus with a student’s luggage"></figure><div class="b"><div class="src">Instagram</div><h3>Welcome back</h3><p>Trunks, hugs and new dorms: the first day of a new term.</p></div></a>
+  </div>
+</section>
+
+<!-- 6 · IQRA -->
+<section class="iqra">
+  <div class="ar in-u" lang="ar">اقْرَأْ بِاسْمِ رَبِّكَ الَّذِي خَلَقَ</div>
+  <div class="tr in-u">“Read, in the name of your Lord who created.” · Al-‘Alaq 96:1</div>
+  <h2 class="in-u">The first word revealed was <i>read.</i><br>We have been answering it <i>since</i> 1874.</h2>
+</section>
+
+<!-- 7 · HISTORY — a ruler of 153 years: drag it like a tape, the needle reads the year -->
+<section id="history">
+  <div class="hist-head center">
+    <div class="kicker in-u"><svg><use href="#star"/></svg>— Since 1874</div>
+    <h2 class="in-u">School history <i>and the</i> future</h2>
+    <p class="lead in-u">One school in Bombay became ninety-seven institutions. Here are the years, at their true distance from each other. Swipe to move from one milestone to the next.</p>
+  </div>
+  <div class="stage" id="stage">
+    <div class="readout" aria-live="polite">
+      <div class="yk" id="rk">Year <i>of</i></div>
+      <div class="yr" id="ry">1874</div>
+      <div class="m" id="rm"><h3 id="rt"></h3><p id="rp"></p><div id="rc"></div></div>
+      <div class="since" id="rs"></div>
+    </div>
+    <div class="pic">
+      <div class="photo" id="rPhoto"></div>
+      <div class="ruler" id="ruler" tabindex="0" aria-label="Timeline ruler. Use the arrow keys to move between milestones.">
+        <div class="clip"><div class="tape" id="tape"></div></div>
+        <div class="needle"></div>
+      </div>
+    </div>
+  </div>
+  <div class="hint" id="rHint">Swipe, drag or tap a star</div>
+</section>
+
+<!-- 8 · ADMISSIONS -->
+<section class="adm center" id="admissions">
+  <div class="kicker in-u"><svg><use href="#star"/></svg>Primary to XII · 2027–28</div>
+  <h2 class="in-u">Admissions <i>at</i> Anjuman</h2>
+  <p class="lead in-u" id="apply">We meet every family before we offer a place, so we can teach from exactly where each child stands. Come and spend a day on the campus first.</p>
+  <ol class="steps in-u">
+    <li><b>1</b>Parents’ interview</li>
+    <li><b>2</b>Child’s interview</li>
+    <li><b>3</b>Written exam</li>
+    <li><b>4</b>Medical history</li>
+    <li><b>5</b>Blood tests <span>(Std VIII onwards)</span></li>
+  </ol>
+  <div class="adm-notes in-u">
+    <div><h3>Good to know</h3><ul><li>Below-average performance in the written exam cannot be considered.</li><li>Students with a history of addiction are not admitted, and over-age students are not enrolled.</li><li>An undertaking and indemnity on a ₹500 bond is required.</li></ul></div>
+    <div><h3>Fees</h3><ul><li>Paid in two terms: the first once admission is confirmed, the second after the Diwali break.</li><li>The balance is settled with a post-dated cheque and a promissory note.</li><li>Competitive-exam courses carry extra fees.</li></ul></div>
+  </div>
+  <form class="aform in-u" id="visit" onsubmit="event.preventDefault();this.querySelector('button').textContent='JazakAllah khair';">
+    <input required placeholder="Parent’s name" aria-label="Parent's name">
+    <input required inputmode="tel" placeholder="Phone / WhatsApp" aria-label="Phone">
+    <select aria-label="Class"><option>Primary</option><option>V – VII</option><option>VIII – X</option><option>XI – XII Junior College</option></select>
+    <button class="btn" type="submit">Book a visit</button>
+  </form>
+  <p class="phone in-u">Or call +91 82752 04302 · +91 82752 05404</p>
+</section>
+
+<footer>
+  <img class="crest" src="img/crest-ivory.webp" alt="">
+  <b>Anjuman-I-Islam</b>
+  <p>Public School &amp; Jr. College<br>Nandanwan, Panchgani, Maharashtra 412805<br>+91 82752 04302 · +91 82752 05404</p>
+  <div class="fine"><span>Part of Anjuman-I-Islam, Mumbai · since 1874</span><span>Concept 03 · “Since 1874”</span></div>
+</footer>
+
+<script>
+(() => {
+  const $ = id => document.getElementById(id);
+
+  /* ── menu + slim bar ── */
+  const ov = $('overlay');
+  $('menuBtn').onclick = () => ov.classList.add('open');
+  $('menuX').onclick = () => ov.classList.remove('open');
+  ov.querySelectorAll('a').forEach(a => a.onclick = () => ov.classList.remove('open'));
+  addEventListener('keydown', e => { if (e.key === 'Escape') ov.classList.remove('open'); });
+  const mini = $('mini'), hero = $('top');
+  const onScroll = () => mini.classList.toggle('on', scrollY > hero.offsetHeight - 70);
+  addEventListener('scroll', onScroll, { passive: true }); onScroll();
+
+  /* ── 1 · hero carousel: loops both ways, swipe or drag, dots, autoplay ── */
+  {
+    const track = $('hTrack'), real = [...track.children], n = real.length, dots = $('hDots');
+    track.prepend(real[n - 1].cloneNode(true)); track.append(real[0].cloneNode(true));
+    const all = [...track.children]; let i = 1, timer;
+    real.forEach((_, k) => { const b = document.createElement('button'); b.setAttribute('aria-label', `Photo ${k + 1}`); b.onclick = () => { go(k + 1); restart(); }; dots.append(b); });
+    const place = (anim, dx = 0) => {
+      track.classList.toggle('anim', anim);
+      track.style.transform = `translate3d(calc(${-i * 100}% + ${dx}px),0,0)`;
+      const twin = k => ((k - 1) % n + n) % n;   // clone 0 is real n-1, clone n+1 is real 0
+      all.forEach((s, k) => s.classList.toggle('on', twin(k) === twin(i)));
+      [...dots.children].forEach((d, k) => d.classList.toggle('on', k === ((i - 1) % n + n) % n));
+    };
+    // jump from a clone back to its real slide once the slide has finished (timer as a safety net if transitionend never fires)
+    let wrapT;
+    const wrap = () => { if (i <= 0) { i = n; place(false); } else if (i >= n + 1) { i = 1; place(false); } };
+    const go = k => { wrap(); i = Math.max(0, Math.min(n + 1, k)); place(true); clearTimeout(wrapT); wrapT = setTimeout(wrap, 950); };
+    track.addEventListener('transitionend', e => { if (e.target === track) wrap(); });
+    let x0 = null, dx = 0;
+    hero.addEventListener('pointerdown', e => { if (e.target.closest('button,a')) return; wrap(); x0 = e.clientX; dx = 0; clearInterval(timer); track.classList.add('drag'); });
+    addEventListener('pointermove', e => { if (x0 === null) return; dx = e.clientX - x0; place(false, dx); });
+    addEventListener('pointerup', () => { if (x0 === null) return; x0 = null; track.classList.remove('drag'); if (Math.abs(dx) > innerWidth * .12) go(i + (dx < 0 ? 1 : -1)); else place(true); restart(); });
+    const restart = () => { clearInterval(timer); timer = setInterval(() => go(i + 1), 6500); };
+    place(false); restart();
+  }
+
+  /* ── 4 · five pillars ── */
+  {
+    const items = [...$('plist').children], film = $('film'), cap = $('filmCap');
+    const imgs = {}; film.querySelectorAll('img').forEach(im => imgs[im.getAttribute('src')] = im);
+    items.forEach(li => li.querySelector('button').addEventListener('click', () => {
+      items.forEach(x => x.classList.toggle('on', x === li));
+      const src = li.dataset.img;
+      if (!imgs[src]) { const im = new Image(); im.src = src; im.alt = ''; film.prepend(im); imgs[src] = im; im.offsetWidth; }
+      Object.values(imgs).forEach(im => im.classList.toggle('on', im === imgs[src]));
+      cap.textContent = li.dataset.cap;
+    }));
+  }
+
+  /* ── 7 · history: the ruler ── */
+  {
+    const H = [
+      { y: 1874, t: 'Bombay · The first school', p: 'Justice Badruddin Tyabji and a small group of devout, progressive Muslims found Anjuman-I-Islam, out of a desire to see their community advance in education and social standing. It begins with one school.', img: 'img/c3-point-1.jpg' },
+      { y: 1920, t: 'Panchgani · The campus in the hills', p: 'Anjuman comes to Panchgani: 174 acres of forest, flora and fauna on the Sahyadri plateau, 4,242 feet above the sea. Generations of boarders will call it home.', img: 'img/c3-campus-1920.jpg' },
+      { y: 2019, t: 'Recognition', p: 'The Golden School Award 2018–19 from Indian Talent Search. An INSPIRE award for scientific research at taluka level. A gold medal at the World Thai Boxing Championship in Goa.', img: 'img/c3-point-7.jpg' },
+      { y: 2020, t: 'One hundred years', p: 'The Panchgani campus completes a century of education. Its alumni are doctors, engineers, lawyers and leaders across the globe.', img: 'img/c1-ghat-fog.jpg' },
+      { y: 2024, t: '150 years · New skills', p: 'Anjuman-I-Islam turns 150. In Panchgani, Robotics, Agriculture and Basic Aviation join horse riding, pottery and archery, so that learning is practical as well as deep.', img: 'img/c3-point-3.jpg' },
+      { y: 2025, t: 'Founder’s Day', p: 'Founder’s Day is presided over by Padma Shri Dr. Zahir Kazi, President of Anjuman-I-Islam, who leads a family of 97 institutions serving more than one lakh students.', img: 'img/c3-point-5.jpg' },
+      { y: 2026, today: true, t: 'Today · Ninety-seven institutions', p: 'From KG to Ph.D.: colleges of engineering, architecture, pharmacy, law, Unani medicine, management and education. And on a plateau in Panchgani, one boarding school where it all begins early.', img: 'img/c3-valley.jpg' },
+      { y: 2027, future: true, t: 'The future · The next mark', p: 'Past today the ruler is faint: those years are not yet written. The next mark belongs to the children who join us in 2027–28, and we would like one of them to be yours.', img: 'img/c2-dhuhr-students.jpg' }
+    ];
+    const Y0 = 1866, Y1 = 2034, FIRST = H[0].y, LAST = H[H.length - 1].y, NOW = 2026;
+    const stage = $('stage'), ruler = $('ruler'), tape = $('tape'), photo = $('rPhoto'), hint = $('rHint');
+    const rk = $('rk'), ry = $('ry'), rm = $('rm'), rt = $('rt'), rp = $('rp'), rc = $('rc'), rs = $('rs');
+    const pics = H.map(h => { const im = new Image(); im.src = h.img; im.alt = h.t; im.draggable = false; photo.append(im); return im; });
+    const phoneMQ = matchMedia('(max-width:900px)');
+    let vert = true, ppy = 46, pos = FIRST, cur = 0, marks = [];
+    const at = y => (y - Y0) * ppy;
+    function build() {
+      vert = !phoneMQ.matches; ppy = vert ? 46 : 34;
+      const side = vert ? 'top' : 'left';
+      let html = '';
+      for (let y = Y0; y <= Y1; y++) {
+        const c = 'tick' + (y % 10 === 0 ? ' t10' : y % 5 === 0 ? ' t5' : '') + (y > NOW ? ' fut' : '');
+        html += `<i class="${c}" style="${side}:${at(y)}px"></i>`;
+      }
+      html += H.map((h, k) => `<button class="ms" data-k="${k}" style="${side}:${at(h.y)}px" aria-label="${h.today ? 'Today' : h.y}"><svg><use href="#star"/></svg><span>${h.today ? 'Today' : h.y}</span></button>`).join('');
+      tape.innerHTML = html;
+      tape.style.width = vert ? '' : at(Y1) + 'px'; tape.style.height = vert ? at(Y1) + 'px' : '';
+      marks = [...tape.querySelectorAll('.ms')];
+      marks.forEach(b => b.addEventListener('click', () => { if (!moved) goTo(+b.dataset.k); }));
+      marks.forEach((b, j) => b.classList.toggle('on', j === cur));
+      render();
+    }
+    const nearest = y => H.reduce((b, h, k) => Math.abs(h.y - y) < Math.abs(H[b].y - y) ? k : b, 0);
+    function render() {
+      const off = ((vert ? ruler.clientHeight : ruler.clientWidth) / 2 - at(pos)).toFixed(1);
+      tape.style.transform = vert ? `translate3d(0,${off}px,0)` : `translate3d(${off}px,0,0)`;
+      const yr = Math.round(pos), k = nearest(pos), h = H[k], d = Math.abs(h.y - pos);
+      ry.textContent = yr;
+      rk.innerHTML = d < .5 && h.today ? 'Today' : d < .5 && h.future ? 'The future' : 'Year <i>of</i>';
+      rs.textContent = yr > NOW ? 'Not yet written' : yr === FIRST ? 'Where the line begins' : `${yr - FIRST} years since the first school`;
+      rm.style.opacity = d < .5 ? 1 : Math.max(.2, 1 - d / 5).toFixed(2);
+      if (k !== cur || !rt.textContent) {
+        cur = k;
+        rt.textContent = h.t; rp.textContent = h.p;
+        rc.innerHTML = h.future ? '<a class="btn" href="#admissions">Book your visit</a>' : '';
+        pics.forEach((im, j) => im.classList.toggle('on', j === k));
+        marks.forEach((b, j) => b.classList.toggle('on', j === k));
+      }
+    }
+    // glide along the ruler to a milestone, easing out (lands even if animation frames are paused)
+    let raf;
+    function goTo(k, ms) {
+      k = Math.max(0, Math.min(H.length - 1, k));
+      const target = H[k].y, from = pos, t0 = performance.now();
+      ms = ms || Math.min(1100, 450 + Math.abs(target - from) * 6);
+      cancelAnimationFrame(raf); hint.classList.add('gone');
+      const step = t => { const u = Math.min(1, (t - t0) / ms), e = 1 - Math.pow(1 - u, 3); pos = from + (target - from) * e; render(); if (u < 1) raf = requestAnimationFrame(step); };
+      raf = requestAnimationFrame(step);
+      clearTimeout(goTo.t); goTo.t = setTimeout(() => { if (!drag && pos !== target) { pos = target; render(); } }, ms + 150);
+    }
+    // one swipe = one milestone. The ruler follows your finger while you drag;
+    // when you let go it moves on to the next star in that direction, however far apart the years are.
+    let drag = null, moved = false;
+    const axis = e => vert ? e.clientY : e.clientX;
+    ruler.addEventListener('pointerdown', e => {
+      if (e.target.closest('.ms')) { moved = false; return; }
+      cancelAnimationFrame(raf); moved = false;
+      drag = { src: 'ruler', a: axis(e), p: pos, k: cur };
+      ruler.classList.add('grabbing');
+    });
+    stage.addEventListener('pointerdown', e => {
+      if (e.target.closest('.ruler, a, button')) return;
+      drag = { src: 'stage', x: e.clientX, y: e.clientY, k: cur }; moved = false;
+    });
+    addEventListener('pointermove', e => {
+      if (!drag) return;
+      if (drag.src === 'ruler') {
+        const d = axis(e) - drag.a; if (Math.abs(d) > 6) moved = true;
+        pos = Math.max(FIRST, Math.min(LAST, drag.p - d / ppy)); render();
+      } else if (Math.abs(e.clientX - drag.x) > 6) moved = true;
+    });
+    addEventListener('pointerup', e => {
+      if (!drag) return;
+      const g = drag; drag = null; ruler.classList.remove('grabbing');
+      if (g.src === 'ruler') {
+        const d = axis(e) - g.a;
+        if (Math.abs(d) < 24) { goTo(g.k); }
+        else {
+          const dir = d < 0 ? 1 : -1;                    // drag up or left = later
+          const passed = nearest(pos);                     // a long drag may already sit past several stars
+          goTo((passed - g.k) * dir > 0 ? passed : g.k + dir);
+        }
+      } else {
+        const dx = e.clientX - g.x, dy = e.clientY - g.y;
+        if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy)) goTo(g.k + (dx < 0 ? 1 : -1));
+      }
+      setTimeout(() => moved = false, 0);
+    });
+    // trackpads: a sideways swipe over the timeline steps one milestone (vertical scrolling is left alone)
+    let wheelLock = 0;
+    stage.addEventListener('wheel', e => {
+      if (Math.abs(e.deltaX) <= Math.abs(e.deltaY) || Math.abs(e.deltaX) < 12) return;
+      e.preventDefault(); const t = performance.now(); if (t < wheelLock) return;
+      wheelLock = t + 650; goTo(cur + (e.deltaX > 0 ? 1 : -1));
+    }, { passive: false });
+    ruler.addEventListener('keydown', e => {
+      if (['ArrowRight', 'ArrowDown'].includes(e.key)) { e.preventDefault(); goTo(cur + 1); }
+      if (['ArrowLeft', 'ArrowUp'].includes(e.key)) { e.preventDefault(); goTo(cur - 1); }
+    });
+    let lastW = innerWidth;
+    addEventListener('resize', () => { if (innerWidth !== lastW) { lastW = innerWidth; build(); } else render(); });
+    build();
+  }
+
+  /* ── slide-ins ── */
+  const els = document.querySelectorAll('.in-l,.in-r,.in-u');
+  if (/[?&]all\b/.test(location.search)) els.forEach(el => el.classList.add('seen')), hero.style.height = '900px'; // for full-page review captures
+  const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('seen'); io.unobserve(e.target); } }), { threshold: .15 });
+  els.forEach(el => io.observe(el));
+})();
+</script>
+</body>
+</html>

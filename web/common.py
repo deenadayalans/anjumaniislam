@@ -211,16 +211,18 @@ def palette_css(pals, fonts=()):
     return "\n".join(out)
 
 
+def pal_script(pal):
+    slug, lst, fsets = pal
+    data = json.dumps(dict(k=slug, list=[dict(id=p["id"], n=p["name"], c=p["sw"]) for p in lst], f=[dict(id=f["id"], n=f["name"], u=f.get("url", "")) for f in fsets]), separators=(",", ":"))
+    return ("<script>(function(){var P=" + data + ",s,f,d=document.documentElement;try{s=localStorage.getItem('pal-'+P.k);f=localStorage.getItem('fnt-'+P.k)}catch(e){}"
+            "if(!P.list.some(function(x){return x.id===s}))s=P.list[0].id;"
+            "var F=P.f.filter(function(x){return x.id===f})[0]||P.f[0];"
+            "window.PAL=P;d.dataset.palette=s;d.dataset.font=F.id;"
+            "if(F.u){var l=document.createElement('link');l.rel='stylesheet';l.href=F.u;document.head.appendChild(l)}})()</script>\n")
+
+
 def head(title, desc, fonts, theme_color, pal=None):
-    pal_js = ""
-    if pal:
-        slug, lst, fsets = pal
-        data = json.dumps(dict(k=slug, list=[dict(id=p["id"], n=p["name"], c=p["sw"]) for p in lst], f=[dict(id=f["id"], n=f["name"], u=f.get("url", "")) for f in fsets]), separators=(",", ":"))
-        pal_js = ("<script>(function(){var P=" + data + ",s,f,d=document.documentElement;try{s=localStorage.getItem('pal-'+P.k);f=localStorage.getItem('fnt-'+P.k)}catch(e){}"
-                  "if(!P.list.some(function(x){return x.id===s}))s=P.list[0].id;"
-                  "var F=P.f.filter(function(x){return x.id===f})[0]||P.f[0];"
-                  "window.PAL=P;d.dataset.palette=s;d.dataset.font=F.id;"
-                  "if(F.u){var l=document.createElement('link');l.rel='stylesheet';l.href=F.u;document.head.appendChild(l)}})()</script>\n")
+    pal_js = pal_script(pal) if pal else ""
     return f'''<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -229,6 +231,9 @@ def head(title, desc, fonts, theme_color, pal=None):
 <title>{esc(title)}</title>
 <meta name="description" content="{esc(desc)}">
 <meta name="theme-color" content="{theme_color}">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="../real/apple-touch-icon.png">
+<meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="Anjuman"><meta name="apple-mobile-web-app-status-bar-style" content="default">
 <link rel="icon" href="assets/real/school-favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="{fonts}" rel="stylesheet">

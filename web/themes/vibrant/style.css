@@ -121,5 +121,6 @@ h1 em,h2 em{font-style:italic;color:var(--c)}p{margin:0 0 1em}.wrap{max-width:12
 .dt-time{font-family:var(--disp);font-weight:800;font-size:1.1rem}.dt-row b{font-family:var(--disp);font-size:1.3rem}.dt-row{border-bottom:2px dashed rgba(7,59,48,.3)}
 .mapbox{border:var(--bw) solid var(--gd);box-shadow:var(--sh);border-radius:var(--r)}.maplink{color:var(--gd)}
 .dc-stage{top:81px;height:calc(100vh - 81px);min-height:560px}.dayclock .dc-wrap{padding-top:30px}
+@supports (height:100dvh){.dc-stage{height:calc(100dvh - 81px)}}
 .aerial{--stage-top:81px}
 .dc-panel .dc-sub li.on{background:var(--y);border:2px solid var(--gd);padding:4px 8px}.dc-panel .dc-sub li{border:2px solid transparent}

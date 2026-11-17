@@ -212,6 +212,7 @@ blockquote.big{font-size:clamp(1.8rem,3.6vw,2.8rem)}
 .mapbox{border:1px solid var(--gold);padding:8px;background:var(--paper);border-radius:0}.maplink{color:var(--emerald)}
 .dc-stage{top:76px;height:calc(100vh - 76px);min-height:560px}.dayclock .dc-wrap{padding-top:30px}
 @media(max-width:1020px){.dc-stage{top:80px;height:calc(100vh - 80px)}}
+@supports (height:100dvh){.dc-stage{height:calc(100dvh - 76px)}@media(max-width:1020px){.dc-stage{height:calc(100dvh - 80px)}}}
 .aerial{--stage-top:76px}@media(max-width:1020px){.aerial{--stage-top:80px}}
 /* desktop header: full on top, then logo-only; margin-bottom keeps the page from jumping as it shrinks */
 @media(min-width:1021px){

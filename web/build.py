@@ -5,18 +5,39 @@
     python3 build.py serve      # build, then serve on http://localhost:8000
 """
 import importlib
+import json
 import shutil
 import sys
 from pathlib import Path
 
 ROOT = Path(__file__).parent.resolve()
 sys.path.insert(0, str(ROOT))
-from common import palette_css  # noqa: E402
+from common import palette_css, pal_script  # noqa: E402
+import concept_config  # noqa: E402
 DIST = ROOT / "dist"
 THEMES = ["heritage", "modern", "vibrant", "hillstation"]
 DOMAIN = "www.anjumaniislam.com"
-# Demo-only link back to the theme chooser; set to "" at launch.
-BACK_LINK = '<a class="demo-back" href="../index.html">&larr; All themes</a>'
+# Demo-only link back to the chooser and the colour/font picker; remove both at launch.
+BACK_LINK = '<a class="demo-back" href="../index.html">&larr; All designs</a>'
+# The three scroll-story designs live in web/concepts/ with their own images and sample video.
+CONCEPTS = [
+    dict(file="01-the-ascent.html", thumb="concepts/thumbs/01.jpg", name="Above the Noise", tagline="Climb through the clouds to the school", palette=["#071631", "#c2a876", "#f4f2ed"], accent="#071631", fonts="DM Serif Display · Montserrat",
+         blurb="The site is the drive up the ghat. It opens on the school's front door and, as you scroll, climbs through the clouds to Fajr on the Table Land, with an altimeter on the right edge. It sells escape, and turns Panchgani's altitude into the reason to choose the school."),
+    dict(file="02-five-times-a-day.html", thumb="concepts/thumbs/02.jpg", name="Five Times a Day", tagline="Know exactly where your child is", palette=["#0b1220", "#ffc08f", "#ffffff"], accent="#0b1220", fonts="Fraunces · DM Sans",
+         blurb="A live clock set to Panchgani time tells a parent what a child at the school is doing right now. One day, ordered by the five salah, with the sky changing as you scroll. It answers the boarding-school worry before anything else."),
+    dict(file="03-the-pattern.html", thumb="concepts/thumbs/03.jpg", name="Since 1874", tagline="Heritage and trust, minimal and white", palette=["#ffffff", "#988360", "#071631"], accent="#071631", fonts="Cormorant Garamond · Jost",
+         blurb="Minimalist, in the spirit of Repton UK. A full-screen photo carousel under a white crest, a welcome and Chairman's message, five clickable pillars, school news, and the history as a date carousel on a single line."),
+]
+
+
+def manifest(name, start, color, up="../"):
+    """Web app manifest so 'Add to Home Screen' / 'Install app' opens the design full screen, without browser chrome."""
+    icons = [("app-icon-192.png", "192x192", "any"), ("app-icon-512.png", "512x512", "any"), ("app-icon-maskable-512.png", "512x512", "maskable")]
+    return json.dumps(dict(name=name, short_name="Anjuman", description="Anjuman-I-Islam Public School & Jr. College, Panchgani", lang="en", start_url=start, scope="./", display="standalone",
+                           background_color="#faf6ec", theme_color=color, icons=[dict(src=f"{up}real/{n}", sizes=s, type="image/png", purpose=p) for n, s, p in icons]), indent=1)
+
+
+APP_META = '<meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="Anjuman"><meta name="apple-mobile-web-app-status-bar-style" content="default">'
 
 
 def build():
@@ -31,8 +52,8 @@ def build():
         out = DIST / slug
         (out / "assets").mkdir(parents=True)
         shutil.copytree(ROOT / "assets" / "real", out / "assets" / "real")
-        shutil.copy(ROOT / "core" / "core.js", out / "assets" / "core.js")
-        css = (ROOT / "core" / "base.css").read_text() + "\n" + (ROOT / "themes" / slug / "style.css").read_text()
+        (out / "assets" / "core.js").write_text((ROOT / "core" / "core.js").read_text() + "\n" + (ROOT / "core" / "picker.js").read_text())
+        css = (ROOT / "core" / "base.css").read_text() + "\n" + (ROOT / "core" / "picker.css").read_text() + "\n" + (ROOT / "themes" / slug / "style.css").read_text()
         css += "\n" + palette_css(getattr(mod, "PALETTES", []), getattr(mod, "FONTSETS", []))
         (out / "assets" / "style.css").write_text(css)
         pages = mod.build()
@@ -40,9 +61,25 @@ def build():
             html = html.replace("</body>", BACK_LINK + "</body>", 1)
             (out / f"{name}.html").write_text(html, encoding="utf-8")
         metas.append(mod.META)
+        (out / "manifest.webmanifest").write_text(manifest(f'Anjuman-I-Islam Panchgani · {mod.META["name"]}', "./index.html", mod.META["palette"][0]))
         print(f"  {slug:12s} {len(pages)} pages")
     (DIST / "index.html").write_text(chooser(metas), encoding="utf-8")
+    shutil.copytree(ROOT / "concepts", DIST / "concepts")
+    shutil.copy(ROOT / "core" / "picker.js", DIST / "concepts" / "picker.js")
+    picker_css = (ROOT / "core" / "picker.css").read_text()
+    for f in CONCEPTS:
+        p = DIST / "concepts" / f["file"]
+        html = p.read_text(encoding="utf-8")
+        head = pal_script(concept_config.style(f["file"])) + "<style>" + concept_config.css(f["file"]) + "\n" + picker_css + "</style>\n"
+        stem = f["file"].rsplit(".", 1)[0]
+        head += f'<link rel="manifest" href="{stem}.webmanifest"><link rel="apple-touch-icon" href="../real/apple-touch-icon.png">{APP_META}\n'
+        (DIST / "concepts" / f"{stem}.webmanifest").write_text(manifest(f'Anjuman-I-Islam Panchgani · {f["name"]}', f"./{f['file']}", f["palette"][0]))
+        html = html.replace("</head>", head + "</head>", 1).replace("</body>", BACK_LINK + '<script src="picker.js"></script></body>', 1)
+        p.write_text(html, encoding="utf-8")
+    print(f"  concepts     {len(CONCEPTS)} designs")
     shutil.copytree(ROOT / "assets" / "real", DIST / "real")
+    shutil.copy(ROOT / "core" / "sw.js", DIST / "sw.js")
+    (DIST / "manifest.webmanifest").write_text(manifest("Anjuman-I-Islam Panchgani · Website options", "./", "#0d1512", ""))
     (DIST / "CNAME").write_text(DOMAIN + "\n")
     (DIST / ".nojekyll").write_text("")
     # Demo phase: block crawlers. Change to "Allow: /" when the site goes live.
@@ -61,9 +98,18 @@ def chooser(metas):
   <div class="sw">{sw}</div><p class="meta"><b>Fonts:</b> {m["fonts"]}</p>
   <div class="go"><a class="primary" href="{m["slug"]}/index.html">Open full website</a></div>
   <div class="pages">{links}</div></div></article>''')
+    fcards = []
+    for j, f in enumerate(CONCEPTS, len(metas) + 1):
+        sw = "".join(f'<i style="background:{c}"></i>' for c in f["palette"])
+        fcards.append(f'''<article class="card" style="--c:{f["accent"]};--c2:{f["palette"][1]}">
+  <a class="prev img" href="concepts/{f["file"]}" aria-label="Open {f["name"]}"><img src="{f["thumb"]}" alt="{f["name"]} preview" loading="lazy"></a>
+  <div class="body"><span class="n">Option {j}</span><h2>{f["name"]}</h2><p class="tag">{f["tagline"]}</p><p>{f["blurb"]}</p>
+  <div class="sw">{sw}</div><p class="meta"><b>Fonts:</b> {f["fonts"]}</p>
+  <div class="go"><a class="primary" href="concepts/{f["file"]}">Open design</a></div></div></article>''')
     return f'''<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Website options — Anjuman-I-Islam Public School &amp; Jr. College, Panchgani</title>
 <link rel="icon" href="real/school-favicon.png">
+<meta name="theme-color" content="#0d1512"><link rel="manifest" href="manifest.webmanifest"><link rel="apple-touch-icon" href="real/apple-touch-icon.png">{APP_META}
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
 *{{box-sizing:border-box;margin:0}}body{{font-family:Inter,system-ui,sans-serif;background:#0d1512;color:#e8f0ec;line-height:1.6}}
@@ -76,6 +122,7 @@ header p{{color:#9fb3a9;max-width:720px;font-size:1.05rem}}
 .card:hover{{transform:translateY(-6px);border-color:var(--c)}}
 .prev{{display:block;position:relative;height:340px;overflow:hidden;background:#fff}}
 .prev iframe{{width:1440px;height:1000px;border:0;transform-origin:0 0;pointer-events:none}}
+.prev.img img{{width:100%;height:100%;object-fit:cover;object-position:top;display:block;transition:transform .6s}}.card:hover .prev.img img{{transform:scale(1.03)}}
 .body{{padding:28px;display:flex;flex-direction:column;gap:10px;flex:1}}
 .n{{font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:#7fd3b0;font-weight:700}}
 .body h2{{font-size:1.7rem;letter-spacing:-.02em}}.tag{{color:#fff;font-weight:600}}.body p{{color:#9fb3a9;font-size:.95rem}}
@@ -87,11 +134,12 @@ footer{{border-top:1px solid #243530;padding:36px 0 60px;color:#6f8a7f;font-size
 @media(max-width:900px){{.grid{{grid-template-columns:1fr}}.prev{{height:260px}}}}
 </style></head><body>
 <header><div class="wrap"><div class="k">Design proposal · Anjuman-I-Islam Public School &amp; Jr. College, Panchgani</div>
-<h1>Four complete websites. One school. Pick the one that feels like home.</h1>
-<p>Each option is a full 7-page website with its own layout, typography, motion and page designs — all built from the same verified content (school prospectus + anjumaniislam.org). Logos and campus photographs are placeholders until real assets arrive.</p></div></header>
-<main class="wrap"><div class="grid">{"".join(cards)}</div></main>
+<h1>Seven designs for one school. Pick the one that feels like home.</h1>
+<p>Seven complete websites, each with its own layout, typography, motion and story, built on the same verified school content (prospectus and anjumaniislam.org). Open any of them and use the Style button (bottom-left) to try other colours and fonts. Logos and campus photographs are placeholders until real assets arrive.</p></div></header>
+<main class="wrap"><div class="grid">{"".join(cards + fcards)}</div></main>
 <footer><div class="wrap">Content source: school prospectus and anjumaniislam.org (about, vision &amp; mission, founders &amp; past presidents, institutions, results). Placeholder figures are marked <b>00</b>.</div></footer>
-<script>function fit(){{document.querySelectorAll('.prev').forEach(p=>{{const s=p.clientWidth/1440;p.firstElementChild.style.transform='scale('+s+')'}})}}addEventListener('load',fit);addEventListener('resize',fit);</script>
+<script>function fit(){{document.querySelectorAll('.prev:not(.img)').forEach(p=>{{const s=p.clientWidth/1440;p.firstElementChild.style.transform='scale('+s+')'}})}}addEventListener('load',fit);addEventListener('resize',fit);</script>
+<script>if('serviceWorker' in navigator&&location.protocol!=='file:')navigator.serviceWorker.register('sw.js').catch(function(){{}})</script>
 </body></html>'''
 
 

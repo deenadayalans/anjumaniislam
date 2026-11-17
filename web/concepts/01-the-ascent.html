@@ -1,0 +1,726 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Above the Noise · Concept 01</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Montserrat:wght@400;500;600;700&family=Amiri:wght@400;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+/*
+  CONCEPT 01 — "ABOVE THE NOISE"
+  Panchgani's altitude and air as the reason to choose the school: a quieter place
+  to raise good humans. Palette after Repton Dubai: navy, bronze-gold, ivory.
+  Rules for this round: every photo is full-bleed, every word over a photo is white,
+  clouds sit OVER the words and part to reveal them.
+*/
+:root{
+  /* Palette after Repton Dubai: deep navy, navy, bronze-gold, ivory, steel blue */
+  --night:#071631; --ink:#0b1a33; --ghat:#243253; --moss:#6f96b7;
+  --mist:#f4f2ed; --paper:#faf8f3;
+  --dawn:#c2a876; --ember:#8d7a50; --gold:#988360; --grey:#575757;
+  --light:#fff; --dim:rgba(255,255,255,.78);
+  --serif:"DM Serif Display", Georgia, serif;
+  --sans:"Montserrat", system-ui, sans-serif;
+  --mono:"JetBrains Mono", ui-monospace, monospace;
+  --arabic:"Amiri", serif;
+  --gutter:max(24px, 5.5vw);
+  /* Type scale: every heading on the page uses one of these four sizes */
+  --t-display:clamp(42px,5.4vw,88px);   /* hero + the clearing */
+  --t-h2:clamp(34px,4vw,62px);          /* every section headline */
+  --t-h3:clamp(26px,2.6vw,38px);        /* sub-heads, quotes */
+  --t-lead:clamp(16px,1.25vw,18px);     /* paragraphs under headlines */
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--night);color:var(--light);font-family:var(--sans);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+img{display:block}
+.wrap{width:min(1180px,100% - 2*var(--gutter));margin-inline:auto}
+.kicker{font-size:12px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;display:flex;align-items:center;gap:14px}
+.kicker::before{content:"";width:40px;height:1px;background:var(--dawn)}
+h1,h2,h3{font-family:var(--serif);font-weight:400;letter-spacing:-.01em}
+h1 em,h2 em{font-style:italic}
+
+/* ───────── HEADER + MENU (two tiers, after Repton) ───────── */
+.top{position:fixed;inset:0 0 auto 0;z-index:60;color:#fff;transition:background .4s,box-shadow .4s;background:linear-gradient(color-mix(in srgb,var(--night) 72%,transparent),transparent)}
+.top.solid{background:color-mix(in srgb,var(--night) 96%,transparent);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);box-shadow:0 1px 0 rgba(194,168,118,.25)}
+.tier1{display:flex;align-items:center;gap:24px;padding:16px var(--gutter) 12px;transition:padding .4s}
+.top.solid .tier1{padding-block:8px 6px}
+.crest{display:flex;align-items:center;gap:16px;text-decoration:none;flex-shrink:0}
+.crest img{width:78px;height:auto;transition:width .4s}
+.top.solid .crest img{width:52px}
+.crest .name{border-left:1px solid rgba(194,168,118,.55);padding-left:16px}
+.crest b{display:block;font-family:var(--serif);font-weight:400;font-size:25px;line-height:1.05;letter-spacing:.01em;color:#f3ecdc}
+.crest small{display:block;font-size:10px;font-weight:600;letter-spacing:.24em;text-transform:uppercase;color:var(--dawn);margin-top:6px}
+.tier1 .phone{margin-left:auto;font-size:13px;font-weight:500;color:rgba(255,255,255,.85)}
+.tier1 .phone span{color:var(--dawn);font-weight:600;letter-spacing:.08em;text-transform:uppercase;font-size:11px;margin-right:6px}
+.tier1 .phone a{text-decoration:none}
+.actions{display:flex;gap:2px}
+.actions a{font:600 12px var(--sans);letter-spacing:.14em;text-transform:uppercase;text-decoration:none;padding:13px 20px;background:rgba(36,50,83,.85);color:#fff;transition:background .3s}
+.actions a:last-child{background:var(--gold)}
+.actions a:hover{background:var(--dawn);color:var(--night)}
+.tier2{border-top:1px solid rgba(194,168,118,.28);padding:0 var(--gutter)}
+.top.solid .tier2{border-top-color:rgba(194,168,118,.18)}
+.menu{display:flex;align-items:center;justify-content:center;gap:4px}
+.menu>div{position:relative}
+.menu .item{font:600 12.5px var(--sans);letter-spacing:.08em;text-transform:uppercase;color:inherit;background:none;border:0;padding:14px 16px;cursor:pointer;text-decoration:none;display:flex;align-items:center;gap:7px}
+.menu .item:hover{color:var(--dawn)}
+.menu .item svg{width:9px;height:9px;transition:transform .3s}
+.menu>div:hover .item svg,.menu>div:focus-within .item svg{transform:rotate(180deg)}
+.drop{position:absolute;top:100%;left:0;min-width:290px;background:#fff;color:var(--ink);border-radius:2px;border-top:2px solid var(--gold);padding:10px;box-shadow:0 30px 70px rgba(0,0,0,.28);opacity:0;visibility:hidden;transform:translateY(8px);transition:opacity .25s,transform .25s,visibility .25s}
+.drop::before{content:"";position:absolute;inset:-14px 0 auto 0;height:14px}
+.menu>div:hover .drop,.menu>div:focus-within .drop{opacity:1;visibility:visible;transform:none}
+.drop a{display:block;padding:10px 14px;border-radius:2px;text-decoration:none;font-size:14.5px;font-weight:600}
+.drop a small{display:block;font-weight:400;font-size:12.5px;color:#6b6f78;margin-top:2px}
+.drop a:hover{background:#f4f2ed}
+.burger{display:none;background:none;border:0;color:#fff;width:44px;height:44px;cursor:pointer}
+.burger svg{width:26px;height:26px}
+.mnav{position:fixed;inset:0;z-index:70;background:var(--night);padding:90px var(--gutter) 40px;overflow:auto;transform:translateY(-100%);transition:transform .45s cubic-bezier(.7,0,.2,1)}
+.mnav.open{transform:none}
+.mnav .x{position:absolute;top:18px;right:var(--gutter);background:none;border:0;color:#fff;font-size:34px;line-height:1;cursor:pointer}
+.mnav details{border-bottom:1px solid rgba(255,255,255,.12)}
+.mnav summary{list-style:none;font-family:var(--serif);font-size:34px;padding:16px 0;cursor:pointer;display:flex;justify-content:space-between}
+.mnav summary::after{content:"+";font-family:var(--sans);font-weight:300}
+.mnav details[open] summary::after{content:"–"}
+.mnav details a{display:block;padding:9px 0;color:var(--dim);text-decoration:none;font-size:16px}
+.mnav details div{padding-bottom:16px}
+@media (max-width:1100px){.tier2,.tier1 .phone,.actions{display:none}.burger{display:block;margin-left:auto}.crest img{width:58px}.crest b{font-size:20px}}
+@media (max-width:520px){.crest small{letter-spacing:.14em;font-size:9px;white-space:normal;line-height:1.35}.crest b{font-size:18px}.crest .name{padding-left:12px;min-width:0}.crest{gap:12px;flex-shrink:1;min-width:0}.crest img{width:46px}.burger{flex:none}}
+
+
+/* ───────── FULL-BLEED SECTIONS (shared) ───────── */
+.fx{position:relative;min-height:100svh;overflow:hidden;color:#fff;display:flex;align-items:flex-end;isolation:isolate;background:#0b1220}
+.fx-media{position:absolute;left:0;right:0;top:-12%;bottom:-12%;z-index:-3;will-change:transform}
+.fx-media video,.fx-media img{width:100%;height:100%;object-fit:cover}
+.fx-shade{position:absolute;inset:0;z-index:-1;pointer-events:none}
+.fx-copy{position:relative;width:min(1180px,100% - 2*var(--gutter));margin:0 auto;padding:26vh 0 12vh;will-change:transform,opacity}
+.fx h1,.fx h2{font-size:var(--t-h2);line-height:1.02;margin:22px 0 24px;text-shadow:0 2px 30px rgba(0,0,0,.25)}
+.fx h2 em,.fx h1 em{color:#fff}
+.fx-copy p{max-width:580px;font-size:var(--t-lead);line-height:1.65;color:var(--dim)}
+.fx-tag{position:absolute;right:var(--gutter);bottom:20px;z-index:5;font:600 10px/1 var(--sans);letter-spacing:.16em;text-transform:uppercase;color:#fff;background:rgba(0,0,0,.4);backdrop-filter:blur(8px);padding:9px 13px;border-radius:999px;display:none;align-items:center;gap:8px}
+.fx-tag i{width:7px;height:7px;border-radius:50%;background:#ffb020}
+.fx.is-sample .fx-tag{display:flex}
+.credit{position:absolute;right:var(--gutter);bottom:20px;z-index:5;font-size:11px;letter-spacing:.06em;color:rgba(255,255,255,.7)}
+
+/* ───────── CLOUD VEIL — clouds float over the words and part to reveal them ───────── */
+.veil{position:absolute;inset:0;z-index:4;pointer-events:none;overflow:hidden}
+.veil .cl{position:absolute;left:var(--x);top:var(--y);width:var(--w);max-width:none;
+  transform:translate3d(calc(var(--dx) * var(--part,1) * 1vw),calc(var(--dy) * var(--part,1) * 1vh),0) scale(calc(var(--s,1) + var(--part,1) * .35));
+  opacity:calc(var(--o,1) * (1 - var(--part,1) * .92));will-change:transform,opacity}
+.veil .fog{position:absolute;inset:0;background:radial-gradient(120% 70% at 30% 80%,rgba(240,244,248,.95),rgba(240,244,248,.55) 50%,rgba(240,244,248,.15));opacity:calc((1 - var(--part,1)) * .85)}
+.veiled .fx-copy>*,.veiled .clear-copy>*{filter:blur(calc((1 - var(--part,1)) * 12px));opacity:calc(.15 + var(--part,1) * .85)}
+.c1{--x:-18%;--y:42%;--w:max(90vw,760px);--dx:-70;--dy:8;--s:1.05}
+.c2{--x:30%;--y:50%;--w:max(85vw,700px);--dx:70;--dy:6}
+.c3{--x:-6%;--y:62%;--w:max(75vw,640px);--dx:-25;--dy:40;--s:1.1}
+.c4{--x:42%;--y:8%;--w:max(62vw,560px);--dx:55;--dy:-30;--o:.75}
+.c5{--x:-10%;--y:4%;--w:max(55vw,500px);--dx:-55;--dy:-25;--o:.6}
+
+/* ───────── 0 · HERO — the school's own front door ───────── */
+#top .fx-media img{object-position:66% 55%}
+#top .fx-shade{background:linear-gradient(90deg,rgba(7,22,49,.72) 0%,rgba(7,22,49,.45) 38%,rgba(7,22,49,0) 70%),linear-gradient(180deg,rgba(0,0,0,0) 45%,rgba(0,0,0,.55) 100%)}
+#top h1{font-size:var(--t-display);line-height:1;margin:18px 0 18px}
+#top .fx-copy{padding-bottom:9vh}
+#top .cta{margin-top:26px}
+.cta{display:flex;flex-wrap:wrap;gap:14px;align-items:center;margin-top:34px}
+.btn{font:700 14px var(--sans);text-decoration:none;padding:16px 26px;border-radius:999px;background:#fff;color:var(--ink);transition:background .3s}
+.btn:hover{background:var(--dawn)}
+.btn.ghost{background:transparent;color:#fff;border:1px solid rgba(255,255,255,.55)}
+.btn.ghost:hover{background:rgba(255,255,255,.12)}
+
+
+/* ───────── 2 · ABOVE THE CLOUDS (drone) ───────── */
+#above .fx-shade{background:linear-gradient(180deg,rgba(0,0,0,.3) 0%,rgba(0,0,0,0) 35%,rgba(0,0,0,.6) 100%)}
+
+/* ───────── 3 · THE CLEARING — pinned photo, one line sharpens at a time ───────── */
+.clear{position:relative;height:340vh;background:#0b1220}
+.clear-stick{position:sticky;top:0;height:100svh;overflow:hidden;display:flex;align-items:center;isolation:isolate}
+.clear-media{position:absolute;inset:0;z-index:-3}
+.clear-media img{width:100%;height:100%;object-fit:cover;transform:scale(var(--zoom,1.15));will-change:transform}
+.clear-shade{position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,rgba(7,22,49,.7),rgba(7,22,49,.25) 60%,rgba(7,22,49,.1)),linear-gradient(180deg,rgba(0,0,0,.2),rgba(0,0,0,0) 40%,rgba(0,0,0,.45))}
+.clear-copy{width:min(1180px,100% - 2*var(--gutter));margin:0 auto}
+.clear h2{font-size:var(--t-display);line-height:1.02;margin:24px 0 0}
+.clear h2 .ln{display:block;filter:blur(var(--b,16px));opacity:var(--op,.12);transform:translateY(var(--ty,24px));will-change:filter,opacity}
+.clear h2 .ln:nth-child(3){font-style:italic}
+.clear-sub{max-width:520px;margin-top:30px;font-size:var(--t-lead);line-height:1.65;color:var(--dim);opacity:0;transform:translateY(16px);transition:opacity .8s,transform .8s}
+.clear .clear-copy .clear-sub{opacity:0;filter:none}
+.clear .clear-copy .clear-sub.in{opacity:1;transform:none}
+
+/* ───────── 4 · ACADEMICS ───────── */
+.acad{background:var(--mist);color:var(--ink);padding:16vh 0 14vh}
+.acad .kicker{color:var(--gold)}
+.acad h3{font-size:var(--t-h2);line-height:1.05;max-width:820px;margin:20px 0 22px}
+.acad .lead{max-width:640px;font-size:var(--t-lead);line-height:1.7;color:var(--grey);margin-bottom:64px}
+.camps{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid rgba(11,26,51,.2)}
+.camp{padding:30px 22px 34px;border-right:1px solid rgba(11,26,51,.15)}
+.camp:last-child{border-right:0}
+.camp svg{width:44px;height:44px;margin-bottom:28px}
+.camp small{font-size:11px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--gold)}
+.camp h4{font-family:var(--serif);font-weight:400;font-size:var(--t-h3);line-height:1;margin:8px 0 10px}
+.camp p{font-size:14.5px;line-height:1.6;color:var(--grey)}
+.labs{display:flex;flex-wrap:wrap;gap:10px;margin-top:48px}
+.labs span{border:1px solid rgba(11,26,51,.25);border-radius:999px;padding:9px 16px;font-size:13px;font-weight:600}
+.tongues{margin-top:80px;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.3fr);gap:48px;align-items:end;border-top:1px solid rgba(11,26,51,.15);padding-top:40px}
+.tongues p{font-size:16px;line-height:1.7;color:var(--grey);margin-top:14px;max-width:380px}
+.tongues .words{font-family:var(--serif);font-size:var(--t-h3);line-height:1.3}
+.tongues .words span{display:inline-block;margin-right:20px}
+@media (max-width:900px){.camps{grid-template-columns:repeat(2,minmax(0,1fr))}.camp{border-bottom:1px solid rgba(11,26,51,.15);min-width:0;overflow-wrap:anywhere}.tongues{grid-template-columns:1fr}}
+@media (max-width:420px){.camp{padding:26px 14px 30px}}
+
+/* ───────── 5 · THE STRENGTH ───────── */
+#strength .fx-media img{object-position:50% 40%}
+#strength .fx-shade{background:linear-gradient(180deg,rgba(0,0,0,.15) 0%,rgba(0,0,0,0) 35%,rgba(0,0,0,.7) 100%)}
+.skills-sec{background:var(--paper);color:var(--ink);padding:12vh 0 14vh}
+.skills{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:rgba(11,26,51,.12);border:1px solid rgba(11,26,51,.12)}
+.skill{background:var(--paper);padding:28px 22px 30px;min-height:270px;display:flex;flex-direction:column;transition:background .35s,color .35s}
+.skill:hover{background:var(--ghat);color:#fff}
+.skill:hover .teaches{color:var(--dawn)}
+.skill svg{width:50px;height:50px;margin-bottom:auto}
+.skill h4{font-size:18px;font-weight:700;margin-top:30px}
+.skill .teaches{font-family:var(--serif);font-style:italic;font-size:24px;color:var(--ember);margin:4px 0 8px;transition:color .35s}
+.skill p{font-size:13.5px;line-height:1.6;opacity:.75}
+.hadith{margin-top:64px;display:flex;gap:24px;max-width:780px}
+.hadith .bar{width:3px;flex-shrink:0;background:var(--ember)}
+.hadith p{font-family:var(--serif);font-size:var(--t-h3);line-height:1.35}
+.hadith small{display:block;font:600 10px var(--sans);letter-spacing:.16em;text-transform:uppercase;margin-top:12px;opacity:.55}
+@media (max-width:1100px){.skills{grid-template-columns:repeat(3,1fr)}}
+@media (max-width:640px){.skills{grid-template-columns:1fr 1fr}.skill{min-height:230px}}
+
+/* ───────── 6 · THE SHELTER — full-bleed dusk, words in white ───────── */
+#shelter{align-items:center}
+#shelter .fx-media img{object-position:50% 55%}
+#shelter .fx-shade{background:linear-gradient(90deg,rgba(7,22,49,.78) 0%,rgba(7,22,49,.45) 50%,rgba(7,22,49,.08) 100%),linear-gradient(180deg,rgba(0,0,0,.25),rgba(0,0,0,0) 30%,rgba(0,0,0,.35))}
+#shelter .fx-copy{padding:18vh 0 14vh}
+.shelter-grid{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:clamp(32px,6vw,96px);align-items:end}
+#shelter h2{font-size:var(--t-h2);line-height:1.04}
+.promises{list-style:none}
+.promises li{display:grid;grid-template-columns:96px 1fr;gap:18px;padding:16px 0;border-top:1px solid rgba(255,255,255,.2);align-items:baseline}
+.promises li b{font-family:var(--serif);font-weight:400;font-size:32px}
+.promises li span{font-size:15px;line-height:1.5;color:var(--dim)}
+@media (max-width:900px){.shelter-grid{grid-template-columns:1fr}}
+
+/* ───────── 7 · ABOUT US — messages, vision, mission as a looping carousel ───────── */
+.lead-sec{background:var(--paper);color:var(--ink);padding:14vh 0 12vh;overflow:hidden}
+.lead-head{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;margin-bottom:56px}
+.lead-sec .kicker{color:var(--gold)}
+.lead-sec h2{font-size:var(--t-h2);line-height:1.05;margin-top:20px;max-width:760px}
+.car-nav{display:flex;gap:10px;flex-shrink:0}
+.car-nav button{width:52px;height:52px;border-radius:50%;border:1px solid rgba(11,26,51,.25);background:none;color:var(--ink);font-size:20px;cursor:pointer;transition:background .3s,color .3s,border-color .3s}
+.car-nav button:hover{background:var(--ink);color:#fff;border-color:var(--ink)}
+.car{position:relative;cursor:grab;touch-action:pan-y;user-select:none;-webkit-user-select:none}
+.car.dragging{cursor:grabbing}
+.car-track{display:flex;gap:var(--cgap);will-change:transform}
+.car-track.anim{transition:transform .8s cubic-bezier(.65,0,.25,1)}
+/* the slides on either side stay visible, softened, so you can see what's coming and what's gone */
+.car{--sw:80%;--cgap:5%}
+.slide{transition:filter .8s ease,opacity .8s ease}
+.slide:not(.on){filter:blur(7px);opacity:.32;cursor:pointer}
+.car-track:not(.anim) .slide{transition:none}
+@media (max-width:900px){.car{--sw:86%;--cgap:4%}}
+.slide{flex:0 0 var(--sw);display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(32px,6vw,96px);align-items:center;padding:0 2px}
+.slide .ph{position:relative;aspect-ratio:1/1;max-height:62vh;overflow:hidden;width:100%}
+.slide .ph img{width:100%;height:100%;object-fit:cover;pointer-events:none}
+.slide .ph .tag{position:absolute;left:14px;bottom:14px;font:600 10px var(--sans);letter-spacing:.16em;text-transform:uppercase;color:#fff;background:rgba(7,22,49,.55);padding:8px 12px}
+.slide.flip .ph{order:-1}
+.slide .tx{max-width:520px}
+.slide .tx small{font-size:11px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--gold)}
+.slide blockquote{font-family:var(--serif);font-size:var(--t-h3);line-height:1.22;margin:18px 0 20px}
+.slide .tx p{font-size:var(--t-lead);line-height:1.7;color:var(--grey)}
+.slide .who{margin-top:26px;padding-top:18px;border-top:1px solid rgba(11,26,51,.15)}
+.slide .who b{display:block;font-size:15px}
+.slide .who span{font-size:13px;color:#6b6f78}
+.slide .more{display:inline-block;margin-top:22px;font-weight:700;font-size:13px;letter-spacing:.08em;text-transform:uppercase;text-decoration:none;color:var(--ink);border-bottom:1px solid var(--gold);padding-bottom:4px}
+.car-dots{display:flex;gap:8px;margin-top:44px;justify-content:center}
+.car-dots button{width:28px;height:2px;border:0;background:rgba(11,26,51,.2);cursor:pointer;padding:0;transition:background .3s,width .3s}
+.car-dots button.on{background:var(--gold);width:48px}
+@media (max-width:900px){.slide{grid-template-columns:1fr;gap:28px}.slide.flip .ph{order:0}.slide .ph{aspect-ratio:4/3}.lead-head{flex-direction:column;align-items:flex-start}}
+
+/* ───────── 8 · THE SUMMIT ───────── */
+.summit{position:relative;min-height:96vh;background:linear-gradient(to bottom,var(--night) 0%,var(--ghat) 32%,#5b5a63 55%,var(--gold) 78%,var(--mist) 100%);overflow:hidden;padding-top:18vh}
+.summit::before{content:"";position:absolute;inset:0;background:url(img/c1-fajr-rays.jpg) center 20%/cover;mix-blend-mode:soft-light;opacity:.7;pointer-events:none;filter:grayscale(.6)}
+.summit .wrap{position:relative;z-index:3;text-align:center}
+.summit .ar{font-family:var(--arabic);font-size:var(--t-h3);line-height:1.5;direction:rtl;color:#f3ecdc}
+.summit .tr{font-family:var(--serif);font-style:italic;font-size:var(--t-lead);opacity:.85;margin-top:4px}
+.summit .tr small{display:block;font:600 10px var(--sans);font-style:normal;letter-spacing:.2em;text-transform:uppercase;margin-top:10px;opacity:.75}
+.summit h2{font-size:var(--t-h2);line-height:1.05;margin-top:6vh}
+.summit .deen{display:flex;justify-content:center;flex-wrap:wrap;gap:12px 28px;margin-top:36px;font-size:12px;font-weight:600;letter-spacing:.18em;text-transform:uppercase}
+.summit .deen span::before{content:"✦ "}
+#tableland{position:absolute;left:0;right:0;bottom:-2px;width:100%;height:46vh;z-index:2}
+
+/* ───────── 9 · VISIT ───────── */
+.visit-sec{background:var(--ink);padding:16vh 0 8vh}
+.visit-grid{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:clamp(32px,6vw,96px)}
+.visit-sec h2{font-size:var(--t-h2);line-height:1.02;margin-top:20px}
+.visit-sec .lede{color:var(--dim);line-height:1.7;margin-top:24px;max-width:480px;font-size:17px}
+.calls{margin-top:40px;display:flex;flex-direction:column;gap:6px}
+.calls a{font-family:var(--serif);font-size:32px;text-decoration:none;overflow-wrap:anywhere}
+.calls a:hover{color:var(--dawn)}
+form.ticket{background:var(--paper);color:var(--ink);border-radius:18px;padding:34px;position:relative}
+form.ticket::before,form.ticket::after{content:"";position:absolute;top:118px;width:28px;height:28px;border-radius:50%;background:var(--ink)}
+form.ticket::before{left:-14px}form.ticket::after{right:-14px}
+.ticket .route{display:flex;justify-content:space-between;align-items:center;padding-bottom:26px;border-bottom:2px dashed rgba(11,26,51,.2);margin-bottom:26px}
+.ticket .route b{font-family:var(--serif);font-weight:400;font-size:32px;display:block}
+.ticket .route small{font-size:10px;font-weight:700;letter-spacing:.16em;opacity:.6}
+.ticket .route svg{flex:1;height:30px;margin:0 14px}
+.field{display:flex;flex-direction:column;gap:6px;margin-bottom:16px}
+.field label{font-size:10.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;opacity:.65}
+.field input,.field select{font:inherit;font-size:16px;padding:12px 0;border:0;border-bottom:1px solid rgba(11,26,51,.3);background:transparent;color:var(--ink);outline:none}
+.field input:focus,.field select:focus{border-color:var(--ember)}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.ticket button{width:100%;margin-top:12px;padding:18px;border:0;border-radius:999px;background:var(--ghat);color:#fff;font:700 15px var(--sans);cursor:pointer;transition:background .3s}
+.ticket button:hover{background:var(--ember)}
+footer{margin-top:14vh;padding-top:40px;border-top:1px solid rgba(255,255,255,.1);display:grid;grid-template-columns:2fr repeat(4,1fr);gap:28px;color:var(--dim);font-size:14px}
+footer b{display:block;color:#fff;margin-bottom:12px;font-size:13px;letter-spacing:.06em}
+footer a{display:block;text-decoration:none;padding:4px 0}
+footer a:hover{color:#fff}
+.fine{margin-top:40px;padding:20px 0;border-top:1px solid rgba(255,255,255,.08);display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;color:rgba(255,255,255,.45);font-size:12px}
+@media (max-width:900px){.visit-grid,.row2{grid-template-columns:minmax(0,1fr)}footer{grid-template-columns:1fr 1fr}}
+
+@media (max-width:700px){
+  #top .fx-shade,#shelter .fx-shade{background:linear-gradient(180deg,rgba(0,0,0,.4) 0%,rgba(0,0,0,.1) 28%,rgba(7,22,49,.78) 62%,rgba(7,22,49,.92) 100%)}
+  #top .fx-media img{object-position:56% 40%}
+  .credit{display:none}
+  .btn{padding:14px 22px}
+}
+.reveal{opacity:0;transform:translateY(28px);transition:opacity 1s ease,transform 1s ease}
+.reveal.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.reveal{opacity:1;transform:none}.fx-media{top:0;bottom:0}}
+</style>
+</head>
+<body>
+
+<!-- HEADER — the crest (a hairpin road ending in a crescent over the peak) plus a real menu -->
+<header class="top" id="bar">
+  <div class="tier1">
+    <!-- The school's own crest, with the name set beside it -->
+    <a class="crest" href="#top" aria-label="Anjuman-I-Islam Public School, Panchgani: home">
+      <img src="img/crest-ivory.webp" alt="Anjuman-I-Islam Public School &amp; Jr. College crest, since 1920">
+      <span class="name"><b>Anjuman-I-Islam</b><small>Public School &amp; Jr. College · Panchgani</small></span>
+    </a>
+    <div class="phone"><span>Admissions</span><a href="tel:+918275204302">+91 82752 04302</a></div>
+    <div class="actions"><a href="#visit">Enquire</a><a href="#visit">Visit</a><a href="#visit">Apply</a></div>
+    <button class="burger" aria-label="Open menu" id="burger"><svg viewBox="0 0 26 26" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 8h20M3 18h20"/></svg></button>
+  </div>
+  <div class="tier2">
+  <nav class="menu" aria-label="Main">
+    <div><button class="item">About <svg viewBox="0 0 10 10"><path d="M1 3l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></button>
+      <div class="drop">
+        <a href="#leadership">Anjuman-I-Islam since 1874<small>97 institutions, one mission</small></a>
+        <a href="#leadership">The Panchgani campus<small>174 acres, 100+ years</small></a>
+        <a href="#leadership">Vision &amp; mission</a>
+        <a href="#leadership">President’s preface<small>Dr. Zahir Kazi, Padma Shri</small></a>
+        <a href="#leadership">Chairman’s message</a>
+        <a href="#leadership">Principal’s message</a>
+        <a href="#leadership">Faculty &amp; staff</a>
+      </div></div>
+    <div><button class="item">Academics <svg viewBox="0 0 10 10"><path d="M1 3l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></button>
+      <div class="drop">
+        <a href="#academics">Curriculum<small>Primary to Class X</small></a>
+        <a href="#academics">Junior College<small>Classes XI–XII</small></a>
+        <a href="#academics">Entrance coaching<small>NEET · JEE · MHT-CET · NATA · CA</small></a>
+        <a href="#academics">Labs &amp; library<small>AI &amp; Robotics, sciences, computers</small></a>
+        <a href="#academics">Results &amp; achievements</a>
+      </div></div>
+    <div><button class="item">Boarding <svg viewBox="0 0 10 10"><path d="M1 3l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></button>
+      <div class="drop">
+        <a href="#shelter">Boys’ &amp; girls’ hostels</a>
+        <a href="#shelter">Food &amp; dining<small>Five meals, dietician-planned</small></a>
+        <a href="#shelter">Health &amp; pastoral care<small>24/7 nurse, doctor visits</small></a>
+        <a href="#shelter">A day at Anjuman</a>
+        <a href="#shelter">Safety &amp; discipline</a>
+      </div></div>
+    <div><button class="item">Campus life <svg viewBox="0 0 10 10"><path d="M1 3l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></button>
+      <div class="drop">
+        <a href="#summit">Deen &amp; tarbiyah<small>Salah, Qur’an, akhlaq</small></a>
+        <a href="#skills">Sports &amp; riding</a>
+        <a href="#skills">Arts, clubs &amp; aviation</a>
+        <a href="#skills">Events &amp; calendar</a>
+      </div></div>
+    <div><button class="item">Admissions <svg viewBox="0 0 10 10"><path d="M1 3l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></button>
+      <div class="drop">
+        <a href="#visit">How to apply<small>Interview + written test</small></a>
+        <a href="#visit">Fees</a>
+        <a href="#visit">Admission form</a>
+        <a href="#visit">Plan a visit</a>
+        <a href="#visit">FAQs</a>
+      </div></div>
+    <div><a class="item" href="#visit">Contact</a></div>
+  </nav>
+  </div>
+</header>
+
+<nav class="mnav" id="mnav" aria-label="Mobile">
+  <button class="x" id="mclose" aria-label="Close menu">×</button>
+  <details><summary>About</summary><div><a href="#leadership">Anjuman-I-Islam since 1874</a><a href="#leadership">The Panchgani campus</a><a href="#leadership">Vision &amp; mission</a><a href="#leadership">President’s preface</a><a href="#leadership">Chairman’s message</a><a href="#leadership">Principal’s message</a></div></details>
+  <details><summary>Academics</summary><div><a href="#academics">Curriculum</a><a href="#academics">Junior College</a><a href="#academics">Entrance coaching</a><a href="#academics">Labs &amp; library</a></div></details>
+  <details><summary>Boarding</summary><div><a href="#shelter">Hostels</a><a href="#shelter">Food &amp; dining</a><a href="#shelter">Health &amp; pastoral care</a><a href="#shelter">A day at Anjuman</a></div></details>
+  <details><summary>Campus life</summary><div><a href="#summit">Deen &amp; tarbiyah</a><a href="#skills">Sports &amp; riding</a><a href="#skills">Arts, clubs &amp; aviation</a></div></details>
+  <details><summary>Admissions</summary><div><a href="#visit">How to apply</a><a href="#visit">Fees</a><a href="#visit">Plan a visit</a></div></details>
+</nav>
+
+<!-- 0 · HERO — clouds part on arrival, revealing the school's front door -->
+<section class="fx" id="top">
+  <div class="fx-media"><img src="img/c1-entrance.jpg" alt="The arched main building of Anjuman-I-Islam Public School, Panchgani, with steps leading up through the garden"></div>
+  <div class="fx-shade"></div>
+  <div class="fx-copy">
+    <div class="kicker">Panchgani · Since 1920 · Primary to XII</div>
+    <h1>The world got loud.<br><em>So we raise them<br>4,242 feet above it.</em></h1>
+    <p>A boarding school for boys and girls on a 174-acre plateau, where the first notification of the day is the adhan.</p>
+  </div>
+  <div class="veil" data-veil="load">
+    <div class="fog"></div>
+    <img class="cl c5" src="img/cloud-c.webp" alt="">
+    <img class="cl c4" src="img/cloud-b.webp" alt="">
+    <img class="cl c1" src="img/cloud-a.webp" alt="">
+    <img class="cl c2" src="img/cloud-b.webp" alt="">
+    <img class="cl c3" src="img/cloud-a.webp" alt="">
+  </div>
+  <div class="credit">Main building · Nandanwan, Panchgani</div>
+</section>
+
+<!-- 2 · ABOVE THE CLOUDS — drone slot; clouds cover the words until you scroll in -->
+<section class="fx" id="above">
+  <div class="fx-media"><video autoplay muted loop playsinline preload="auto" poster="video/sample-above-clouds-poster.jpg"><source src="video/drone-campus.mp4" type="video/mp4"><source src="video/sample-above-clouds.mp4" type="video/mp4"></video></div>
+  <div class="fx-shade"></div>
+  <div class="fx-copy">
+    <div class="kicker">Panchgani · monsoon mornings</div>
+    <h2>And then the clouds<br><em>fall below you.</em></h2>
+    <p>Most monsoon mornings in Panchgani begin above a sea of cloud. Your child wakes up on the right side of it.</p>
+  </div>
+  <div class="veil" data-veil="scroll">
+    <img class="cl c1" src="img/cloud-a.webp" alt="">
+    <img class="cl c2" src="img/cloud-b.webp" alt="">
+    <img class="cl c3" src="img/cloud-c.webp" alt="">
+  </div>
+  <div class="fx-tag"><i></i>Sample footage · drone shoot slot: video/drone-campus.mp4</div>
+</section>
+
+<!-- 3 · THE CLEARING — pinned full-screen campus; the three lines sharpen one by one -->
+<section class="clear" id="clearing">
+  <div class="clear-stick">
+    <div class="clear-media"><img id="clearImg" src="img/c1-campus-clouds.jpg" alt="Aerial view of the Anjuman-I-Islam Panchgani campus with clouds drifting through"></div>
+    <div class="clear-shade"></div>
+    <div class="veil" id="clearVeil">
+      <img class="cl c1" src="img/cloud-a.webp" alt="">
+      <img class="cl c2" src="img/cloud-b.webp" alt="">
+      <img class="cl c4" src="img/cloud-c.webp" alt="">
+    </div>
+    <div class="clear-copy">
+      <div class="kicker">The clearing</div>
+      <h2><span class="ln">Clear air.</span><span class="ln">Clear minds.</span><span class="ln">Kind hearts.</span></h2>
+      <p class="clear-sub" id="clearSub">We aren’t raising rank-holders. We’re raising better neighbours, better sons and daughters, and a better future for the nation.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 4 · ACADEMICS -->
+<section class="acad" id="academics">
+  <div class="wrap">
+    <div class="kicker">Academics</div>
+    <h3>Strong foundations, and every door kept open.</h3>
+    <p class="lead">Primary to Class X, then the Junior College. AI &amp; Robotics, science and computer labs, and entrance coaching on campus, so your child doesn’t have to leave the mountain to crack NEET or JEE.</p>
+    <!-- each exam drawn as a different peak: four summits, one base camp -->
+    <div class="camps">
+      <div class="camp reveal"><svg viewBox="0 0 44 44" fill="none" stroke="#243253" stroke-width="1.5"><path d="M2 40 L22 6 L42 40Z"/><path d="M22 6 V0 M22 1 L30 3 L22 5"/></svg><small>Medicine</small><h4>NEET</h4><p>For the ones who will heal. Biology taught as a sign of creation.</p></div>
+      <div class="camp reveal"><svg viewBox="0 0 44 44" fill="none" stroke="#243253" stroke-width="1.5"><path d="M2 40 L14 18 L22 28 L32 8 L42 40Z"/><path d="M32 8 V2 M32 3 L40 5 L32 7"/></svg><small>Engineering</small><h4>JEE</h4><p>For the ones who will build. The robotics lab is part of it.</p></div>
+      <div class="camp reveal"><svg viewBox="0 0 44 44" fill="none" stroke="#243253" stroke-width="1.5"><path d="M2 40 L12 24 L20 32 L30 14 L42 40Z"/><path d="M30 14 V8 M30 9 L38 11 L30 13"/></svg><small>Maharashtra</small><h4>MHT‑CET</h4><p>The home-state route, prepared for from Class XI.</p></div>
+      <div class="camp reveal"><svg viewBox="0 0 44 44" fill="none" stroke="#243253" stroke-width="1.5"><path d="M2 40 V20 L22 6 L42 20 V40Z"/><path d="M16 40 V28 A6 6 0 0 1 28 28 V40"/></svg><small>Architecture</small><h4>NATA</h4><p>For the ones who will design, heirs to the builders of the Alhambra.</p></div>
+    </div>
+    <div class="labs"><span>AI &amp; Robotics Lab</span><span>Science Lab</span><span>Computer Lab</span><span>Library</span><span>Digital classrooms</span><span>Basic Aviation</span><span>Agriculture</span><span>CA Foundation</span></div>
+  </div>
+</section>
+
+<!-- 5 · THE STRENGTH — full-bleed photo, then what each activity really teaches -->
+<section class="fx" id="strength">
+  <div class="fx-media"><img src="img/c1-archery.jpg" alt="A student drawing a bow on the school archery range"></div>
+  <div class="fx-shade"></div>
+  <div class="fx-copy">
+    <div class="kicker">Campus life</div>
+    <h2>They will ride.<br>They will aim.<br><em>They will make.</em></h2>
+  </div>
+</section>
+<section class="skills-sec" id="skills">
+  <div class="wrap">
+    <div class="skills">
+      <div class="skill reveal"><svg viewBox="0 0 56 56" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 6 C 40 14, 40 42, 14 50"/><path d="M14 6 V50"/><path d="M6 28 H50 M44 23 L50 28 L44 33"/></svg><h4>Archery</h4><div class="teaches">Teaches focus.</div><p>One breath. One target.</p></div>
+      <div class="skill reveal"><svg viewBox="0 0 56 56" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M10 46 L16 30 C 18 22 26 18 34 18 L40 10 L42 18 C 48 22 50 28 46 32 L40 30 L38 46"/><path d="M22 30 L20 46 M30 30 L30 46"/></svg><h4>Horse riding</h4><div class="teaches">Teaches courage.</div><p>To lead a horse, a child first leads themselves.</p></div>
+      <div class="skill reveal"><svg viewBox="0 0 56 56" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="28" cy="28" r="22"/><circle cx="28" cy="28" r="14"/><circle cx="28" cy="28" r="6"/><circle cx="28" cy="28" r="1.5" fill="currentColor"/></svg><h4>Shooting range</h4><div class="teaches">Teaches stillness.</div><p>Steady hands come from a steady heart.</p></div>
+      <div class="skill reveal"><svg viewBox="0 0 56 56" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 14 C 18 24 12 30 12 38 C 12 46 20 50 28 50 C 36 50 44 46 44 38 C 44 30 38 24 38 14"/><path d="M16 14 H40"/><ellipse cx="28" cy="52" rx="20" ry="2"/></svg><h4>Pottery</h4><div class="teaches">Teaches humility.</div><p>We were shaped from clay. Here they learn to shape.</p></div>
+      <div class="skill reveal"><svg viewBox="0 0 56 56" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 32 L50 18 L46 28 L30 32 L22 46 L18 46 L22 34 L10 37Z"/></svg><h4>Basic aviation</h4><div class="teaches">Teaches ambition.</div><p>New in 2024. The sky is closer up here.</p></div>
+      <div class="skill reveal"><svg viewBox="0 0 56 56" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M10 44 L22 26 L30 34 L46 12"/><circle cx="46" cy="12" r="3"/><path d="M8 50 H48"/></svg><h4>Gymnastics &amp; yoga</h4><div class="teaches">Teaches balance.</div><p>Body and breath, in step.</p></div>
+      <div class="skill reveal"><svg viewBox="0 0 56 56" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 10 H44 V30 C 44 40 36 48 28 48 C 20 48 12 40 12 30Z"/><path d="M20 24 h4 M32 24 h4 M22 36 C 26 40 30 40 34 36"/></svg><h4>Theatre &amp; debate</h4><div class="teaches">Teaches voice.</div><p>The shy child becomes the one who addresses the hall.</p></div>
+      <div class="skill reveal"><svg viewBox="0 0 56 56" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M10 40 L30 20 M26 16 L34 24 L40 18 L32 10Z"/><path d="M20 30 L14 48 M20 30 L28 48"/><circle cx="46" cy="10" r="1.5" fill="currentColor"/><circle cx="48" cy="30" r="1" fill="currentColor"/></svg><h4>Sky gazing</h4><div class="teaches">Teaches awe.</div><p>No city glow. Real stars.</p></div>
+      <div class="skill reveal"><svg viewBox="0 0 56 56" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20 42 V12 L44 8 V38"/><circle cx="16" cy="42" r="5"/><circle cx="40" cy="38" r="5"/></svg><h4>Music</h4><div class="teaches">Teaches listening.</div><p>The rarest skill of this century.</p></div>
+      <div class="skill reveal"><svg viewBox="0 0 56 56" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 46 C 20 46 20 30 28 30 C 36 30 36 46 48 46"/><path d="M28 30 V12 M20 18 L28 12 L36 18"/></svg><h4>Agriculture</h4><div class="teaches">Teaches patience.</div><p>Seeds don’t hurry. Neither does character.</p></div>
+    </div>
+    <div class="hadith reveal"><div class="bar"></div><p>Archery and horsemanship, honoured in our tradition for fourteen centuries, are not electives here. They are inheritance. And on the Akbar Peerboy Stadium, the largest ground in Panchgani, cricket, football and hockey carry on until Maghrib.<small>Concept copy · to be finalised with the school’s scholars</small></p></div>
+  </div>
+</section>
+
+<!-- 6 · THE SHELTER — boarding, the parent's real fear, over a full-bleed dusk -->
+<section class="fx" id="shelter">
+  <div class="fx-media"><img src="img/c1-dusk-wide.jpg" alt="The sun setting over the Sahyadri ridges seen from Table Land"></div>
+  <div class="fx-shade"></div>
+  <div class="fx-copy">
+    <div class="shelter-grid">
+      <div>
+        <div class="kicker">Boarding</div>
+        <h2>You’re handing us your whole heart.<br><em>We built a home big enough to hold it.</em></h2>
+        <p>Renovated hostels for boys and girls, with a dorm in-charge who gives every child guidance and a listening ear.</p>
+      </div>
+      <ul class="promises">
+        <li><b>24/7</b><span>On-site nurse and medical care, day and night</span></li>
+        <li><b>Dorm</b><span>A dorm in-charge in every hostel: guidance, advice and a listening ear</span></li>
+        <li><b>5</b><span>Meals a day, planned by a dietician, in a 300-seat dining hall</span></li>
+        <li><b>Sick bay</b><span>In-house care, with regular doctor visits</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- 7 · LEADERSHIP — the messages every parent looks for -->
+<section class="lead-sec" id="leadership">
+  <div class="wrap">
+    <div class="lead-head">
+      <div><div class="kicker">About us · since 1874</div><h2>Part of a 150-year promise.</h2></div>
+      <div class="car-nav"><button id="carPrev" aria-label="Previous">←</button><button id="carNext" aria-label="Next">→</button></div>
+    </div>
+    <div class="car" id="car" aria-roledescription="carousel">
+      <div class="car-track" id="carTrack">
+      <article class="slide">
+        <div class="tx">
+          <small>President’s preface</small>
+          <blockquote>Anjuman-I-Islam now runs 97 institutions, from KG to PhD, for more than one lakh students.</blockquote>
+          <p>A radiologist who cut back his own practice to give his time to education, Dr. Kazi believes India can lead the world, if we put our effort into teaching.</p>
+          <div class="who"><b>Dr. Zahir Kazi, Padma Shri</b><span>President, Anjuman-I-Islam</span></div>
+          <a class="more" href="#leadership">Read the President’s preface →</a>
+        </div>
+        <div class="ph"><img src="img/c3-campus-1920.jpg" alt="" draggable="false"><span class="tag">Portrait to come</span></div>
+      </article>
+      <article class="slide">
+        <div class="tx">
+          <small>Chairman’s message</small>
+          <blockquote>“Step into a world where education meets compassion, and learning goes beyond the books.”</blockquote>
+          <p>Welcome to your new adventure, a place where lifelong friendship begins and the future is bright.</p>
+          <div class="who"><b>[Name to confirm]</b><span>Executive Chairman</span></div>
+          <a class="more" href="#leadership">Read the Chairman’s message →</a>
+        </div>
+        <div class="ph"><img src="img/c3-library.jpg" alt="" draggable="false"><span class="tag">Portrait to come</span></div>
+      </article>
+      <article class="slide">
+        <div class="tx">
+          <small>Principal’s message</small>
+          <blockquote>The Principal’s message goes here.</blockquote>
+          <p>It isn’t in the prospectus yet. This slide is ready for it, with a portrait of the Principal.</p>
+          <div class="who"><b>[Principal’s name]</b><span>Principal, Anjuman-I-Islam Public School &amp; Jr. College</span></div>
+          <a class="more" href="#leadership">Read the Principal’s message →</a>
+        </div>
+        <div class="ph"><img src="img/c2-dhuhr-students.jpg" alt="" draggable="false"><span class="tag">Portrait to come</span></div>
+      </article>
+      <article class="slide">
+        <div class="tx">
+          <small>Our vision</small>
+          <blockquote>To enrich lives and develop model citizens through inclusive, globally competitive, quality education.</blockquote>
+        </div>
+        <div class="ph"><img src="img/c1-ghat-fog.jpg" alt="" draggable="false"></div>
+      </article>
+      <article class="slide">
+        <div class="tx">
+          <small>Our mission</small>
+          <blockquote>To create and nurture educational and social institutions, with a special focus on women and marginalised sections of society.</blockquote>
+        </div>
+        <div class="ph"><img src="img/c2-fajr-mist.jpg" alt="" draggable="false"></div>
+      </article>
+      <article class="slide">
+        <div class="tx">
+          <small>Our story · since 1874</small>
+          <blockquote>It began with one school in Bombay, founded by Justice Badruddin Tyabji.</blockquote>
+          <p>Tyabji was the third President of the Indian National Congress and the first Indian to serve as Acting Chief Justice of the Bombay High Court. For more than a hundred years, Panchgani has been part of that promise.</p>
+          <a class="more" href="#leadership">Read our history →</a>
+        </div>
+        <div class="ph"><img src="img/c3-valley.jpg" alt="" draggable="false"></div>
+      </article>
+      </div>
+    </div>
+    <div class="car-dots" id="carDots"></div>
+  </div>
+</section>
+
+<!-- 8 · THE SUMMIT -->
+<section class="summit" id="summit">
+  <div class="wrap">
+    <div class="ar" lang="ar">رَبِّ زِدْنِي عِلْمًا</div>
+    <div class="tr">“My Lord, increase me in knowledge.”<small>Al-Qur’an · Ta-Ha 20:114</small></div>
+    <h2>At the summit, we don’t plant a flag.<br><em>We bow.</em></h2>
+    <div class="deen"><span>Adhan five times a day</span><span>Qur’an recitation</span><span>Hifz on request</span><span>Islamic education</span><span>Akhlaq</span></div>
+  </div>
+  <svg id="tableland" viewBox="0 0 1440 460" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
+    <g id="sun"><circle cx="980" cy="250" r="110" fill="#fff4d6" opacity=".9"/><circle cx="980" cy="250" r="170" fill="#fff4d6" opacity=".18"/></g>
+    <path d="M0 300 L200 260 L380 280 L520 230 L700 250 L860 200 L1060 240 L1240 210 L1440 250 V460 H0Z" fill="#6f6a6c" opacity=".55"/>
+    <path d="M0 340 C 300 320 500 330 700 320 L 1440 315 V460 H0Z" fill="#1b2747"/>
+    <g fill="#1b2747"><path d="M940 320 V270 H1020 V320Z"/><path d="M940 270 C 940 225 980 210 980 190 C 980 210 1020 225 1020 270Z"/><rect x="978" y="176" width="4" height="16"/><path d="M1050 320 V200 L1056 188 L1062 200 V320Z"/><path d="M1053 188 L1056 172 L1059 188Z"/></g>
+    <path d="M0 380 C 400 370 900 372 1440 365 V460 H0Z" style="fill:var(--night)"/>
+  </svg>
+</section>
+
+<!-- 9 · VISIT -->
+<section class="visit-sec" id="visit">
+  <div class="wrap">
+    <div class="visit-grid">
+      <div>
+        <div class="kicker" style="color:var(--dawn)">Admissions 2027–28</div>
+        <h2>Photos can’t carry the air.<br><em>Come breathe it.</em></h2>
+        <p class="lede">Primary to Class XII. Admission is by interviews and a written exam. Walk the campus, pray with us, eat in our dining hall. Then decide.</p>
+        <div class="calls"><a href="tel:+918275204302">+91 82752 04302</a><a href="tel:+918275205404">+91 82752 05404</a></div>
+      </div>
+      <!-- The form is a bus ticket to Panchgani: the parent is booking the climb -->
+      <form class="ticket" onsubmit="event.preventDefault();this.querySelector('button').textContent='Ticket reserved. We’ll call you within a day.';">
+        <div class="route">
+          <div><small>FROM</small><b>Your city</b></div>
+          <svg viewBox="0 0 120 30" fill="none" stroke="#243253" stroke-width="1.5"><path d="M2 15 H30 A6 6 0 0 0 30 3 H50 A6 6 0 0 1 50 27 H76 A6 6 0 0 0 76 15 H118" stroke-dasharray="3 4"/><circle cx="118" cy="15" r="3" fill="#988360" stroke="none"/></svg>
+          <div style="text-align:right"><small>TO</small><b>Panchgani</b></div>
+        </div>
+        <div class="field"><label>Parent’s name</label><input required placeholder="e.g. Ayesha Khan"></div>
+        <div class="row2">
+          <div class="field"><label>Phone / WhatsApp</label><input required inputmode="tel" placeholder="+91"></div>
+          <div class="field"><label>Child joining class</label><select><option>Primary</option><option>V – VII</option><option>VIII – X</option><option>XI – XII Junior College</option></select></div>
+        </div>
+        <div class="row2">
+          <div class="field"><label>Day scholar or boarder</label><select><option>Boarder</option><option>Day scholar</option><option>Not sure yet</option></select></div>
+          <div class="field"><label>Preferred visit</label><select><option>This weekend</option><option>Next weekend</option><option>A weekday</option></select></div>
+        </div>
+        <button type="submit">Reserve my visit to Panchgani →</button>
+      </form>
+    </div>
+    <footer>
+      <div><b>Anjuman-I-Islam Public School &amp; Jr. College</b>Nandanwan, Panchgani, Maharashtra 412805<br>Part of Anjuman-I-Islam, Mumbai · est. 1874</div>
+      <div><b>About</b><a href="#leadership">Our history</a><a href="#leadership">Leadership</a><a href="#leadership">Vision &amp; mission</a></div>
+      <div><b>Academics</b><a href="#academics">Curriculum</a><a href="#academics">Junior College</a><a href="#academics">Coaching</a></div>
+      <div><b>Boarding</b><a href="#shelter">Hostels</a><a href="#shelter">Food &amp; health</a><a href="#summit">Deen</a></div>
+      <div><b>Admissions</b><a href="#visit">Apply</a><a href="#visit">Fees</a><a href="#visit">Visit</a></div>
+    </footer>
+    <div class="fine"><span>Concept 01 · “Above the Noise” · mockup</span><span>Entrance photo: Google Maps contributor · landscapes: Wikimedia Commons (see img/CREDITS.md)</span></div>
+  </div>
+</section>
+
+<script>
+(() => {
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const clamp = (v,a=0,b=1) => Math.min(b, Math.max(a, v));
+
+  /* header: transparent over the hero, solid once you scroll */
+  const bar = document.getElementById('bar');
+  const mnav = document.getElementById('mnav');
+  document.getElementById('burger').onclick = () => mnav.classList.add('open');
+  document.getElementById('mclose').onclick = () => mnav.classList.remove('open');
+  mnav.querySelectorAll('a').forEach(a => a.onclick = () => mnav.classList.remove('open'));
+
+
+
+  const clear = document.getElementById('clearing'), lines = [...clear.querySelectorAll('.ln')];
+  const clearImg = document.getElementById('clearImg'), clearVeil = document.getElementById('clearVeil'), clearSub = document.getElementById('clearSub');
+  const summit = document.getElementById('summit'), sun = document.getElementById('sun');
+
+  /* cloud veils: "load" parts on arrival, "scroll" parts as the section enters */
+  const veils = [...document.querySelectorAll('[data-veil]')].map(v => {
+    const host = v.closest('section'); host.classList.add('veiled');
+    return { v, host, mode: v.dataset.veil, load: reduce ? 1 : 0 };
+  });
+  clear.classList.add('veiled');
+  veils.filter(o => o.mode === 'load').forEach(o => {
+    if (reduce) return;
+    const dur = 2600; let t0;
+    const step = t => { t0 ??= t; const k = clamp((t - t0) / dur); o.load = 1 - Math.pow(1 - k, 3); onScroll(); if (k < 1) requestAnimationFrame(step); };
+    setTimeout(() => requestAnimationFrame(step), 300);
+    setTimeout(() => { o.load = 1; onScroll(); }, 4500); // safety net if rAF is throttled
+  });
+
+  function onScroll() {
+    const vh = innerHeight || document.documentElement.clientHeight || 800;
+    bar.classList.toggle('solid', scrollY > vh * 0.6);
+
+
+
+    veils.forEach(o => {
+      const r = o.host.getBoundingClientRect();
+      let part;
+      if (reduce) part = 1;
+      else if (o.mode === 'load') part = clamp(o.load);
+      else part = clamp((vh * .8 - r.top) / (vh * .8));
+      o.host.style.setProperty('--part', part.toFixed(3));
+    });
+
+    /* clearing: pinned for 3.4 screens; clouds lift, then each line sharpens in turn */
+    const kr = clear.getBoundingClientRect(), kp = clamp(-kr.top / (kr.height - vh));
+    clear.style.setProperty('--part', reduce ? 1 : clamp(kp / .25).toFixed(3));
+    clearImg.style.setProperty('--zoom', (1.15 - kp * .15).toFixed(3));
+    lines.forEach((ln, i) => {
+      const k = reduce ? 1 : clamp((kp - (.14 + i * .22)) / .16);
+      ln.style.setProperty('--b', (16 * (1 - k)).toFixed(1) + 'px');
+      ln.style.setProperty('--op', (.12 + .88 * k).toFixed(2));
+      ln.style.setProperty('--ty', (24 * (1 - k)).toFixed(1) + 'px');
+    });
+    clearSub.classList.toggle('in', reduce || kp > .8);
+
+    const sr = summit.getBoundingClientRect();
+    sun.style.transform = `translateY(${(1 - clamp((vh - sr.top) / sr.height)) * 140}px)`;
+  }
+  addEventListener('scroll', onScroll, { passive: true });
+  addEventListener('resize', onScroll);
+  onScroll();
+
+  const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }), { threshold: .15 });
+  document.querySelectorAll('.reveal').forEach((el, i) => { el.style.transitionDelay = (i % 5 * 80) + 'ms'; io.observe(el); });
+})();
+
+/* About-us carousel: endless loop, drag or swipe either way, arrows, dots, gentle autoplay */
+(() => {
+  const car = document.getElementById('car'), track = document.getElementById('carTrack');
+  const real = [...track.children], n = real.length;
+  real.forEach((sl, k) => sl.classList.toggle('flip', k % 2 === 1)); // photo right, then photo left, alternating
+  const C = 2; // clones on each side so neighbours always exist
+  for (let k = 1; k <= C; k++) { track.prepend(real[n - k].cloneNode(true)); track.append(real[k - 1].cloneNode(true)); }
+  const all = [...track.children];
+  const dots = document.getElementById('carDots');
+  real.forEach((_, i) => { const b = document.createElement('button'); b.setAttribute('aria-label', 'Slide ' + (i + 1)); b.onclick = () => go(i + C); dots.appendChild(b); });
+  let i = C, w = 0, step = 0, off = 0, timer;
+  const place = (anim, dx = 0) => { track.classList.toggle('anim', anim); track.style.transform = `translate3d(${off - i * step + dx}px,0,0)`; all.forEach((sl, k) => sl.classList.toggle('on', k === i)); };
+  const mark = () => [...dots.children].forEach((d, k) => d.classList.toggle('on', k === ((i - C) % n + n) % n));
+  const wrapIdx = () => { if (i < C) i += n; else if (i >= n + C) i -= n; };
+  function go(k) { i = k; place(true); mark(); restart(); }
+  track.addEventListener('transitionend', e => { if (e.target !== track) return; const j = i; wrapIdx(); if (i !== j) place(false); });
+  const size = () => { w = car.clientWidth; const sw = all[0].offsetWidth; step = all[1].offsetLeft - all[0].offsetLeft; off = (w - sw) / 2; place(false); };
+  addEventListener('resize', size); size(); mark();
+  document.getElementById('carNext').onclick = () => go(i + 1);
+  document.getElementById('carPrev').onclick = () => go(i - 1);
+  let x0 = null, dx = 0;
+  car.addEventListener('pointerdown', e => { if (e.target.closest('a')) return; x0 = e.clientX; dx = 0; car.classList.add('dragging'); car.setPointerCapture(e.pointerId); clearInterval(timer);
+    wrapIdx(); place(false); });
+  car.addEventListener('pointermove', e => { if (x0 === null) return; dx = e.clientX - x0; place(false, dx); });
+  const end = () => { if (x0 === null) return; x0 = null; car.classList.remove('dragging');
+    if (Math.abs(dx) > step * .12) go(i + (dx < 0 ? 1 : -1)); else go(i); };
+  // click a softened neighbour to bring it forward
+  all.forEach((sl, k) => sl.addEventListener('click', e => { if (k !== i && Math.abs(dx) < 5) { e.preventDefault(); go(k); } }));
+  car.addEventListener('pointerup', end); car.addEventListener('pointercancel', end);
+  function restart() { clearInterval(timer); if (!matchMedia('(prefers-reduced-motion: reduce)').matches) timer = setInterval(() => go(i + 1), 7000); }
+  car.addEventListener('mouseenter', () => clearInterval(timer)); car.addEventListener('mouseleave', restart);
+  restart();
+})();
+
+/* Full-bleed parallax + drone-slot fallback */
+(() => {
+  const fx = [...document.querySelectorAll('.fx')];
+  fx.forEach(el => { const v = el.querySelector('video'); if (!v) return;
+    const mark = () => el.classList.toggle('is-sample', /sample-/.test(v.currentSrc));
+    v.addEventListener('loadeddata', mark); v.addEventListener('playing', mark); mark(); });
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  function f() { fx.forEach(el => { const r = el.getBoundingClientRect(); if (r.bottom < 0 || r.top > innerHeight) return;
+    const p = r.top / innerHeight, m = el.querySelector('.fx-media'), c = el.querySelector('.fx-copy');
+    m.style.transform = `translate3d(0,${(-p * 9).toFixed(2)}%,0) scale(${(1 + Math.max(0, -p) * .06).toFixed(3)})`;
+    if (c && el.id !== 'shelter') { c.style.transform = `translate3d(0,${(Math.min(0, p) * 80).toFixed(1)}px,0)`; c.style.opacity = Math.max(0, 1 - Math.max(0, -p) * 1.6).toFixed(2); } }); }
+  addEventListener('scroll', f, { passive: true }); addEventListener('resize', f); f();
+})();
+</script>
+</body>
+</html>
