@@ -14,6 +14,7 @@ ROOT = Path(__file__).parent.resolve()
 sys.path.insert(0, str(ROOT))
 from common import palette_css, pal_script  # noqa: E402
 import concept_config  # noqa: E402
+import concept_details  # noqa: E402
 DIST = ROOT / "dist"
 THEMES = ["heritage", "modern", "vibrant", "hillstation"]
 DOMAIN = "www.anjumaniislam.com"
@@ -70,7 +71,11 @@ def build():
     for f in CONCEPTS:
         p = DIST / "concepts" / f["file"]
         html = p.read_text(encoding="utf-8")
-        head = pal_script(concept_config.style(f["file"])) + "<style>" + concept_config.css(f["file"]) + "\n" + picker_css + "</style>\n"
+        extra = ""
+        if "<!--DETAILS-->" in html:
+            html = html.replace("<!--DETAILS-->", concept_details.html(), 1)
+            extra = concept_details.css(f["file"])
+        head = pal_script(concept_config.style(f["file"])) + "<style>" + concept_config.css(f["file"]) + "\n" + extra + "\n" + picker_css + "</style>\n"
         stem = f["file"].rsplit(".", 1)[0]
         head += f'<link rel="manifest" href="{stem}.webmanifest"><link rel="apple-touch-icon" href="../real/apple-touch-icon.png">{APP_META}\n'
         (DIST / "concepts" / f"{stem}.webmanifest").write_text(manifest(f'Anjuman-I-Islam Panchgani · {f["name"]}', f"./{f['file']}", f["palette"][0]))
