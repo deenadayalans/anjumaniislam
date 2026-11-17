@@ -141,7 +141,7 @@ blockquote.big{font-size:clamp(1.8rem,3.6vw,2.8rem)}
 .checks li::after{content:"";position:absolute;left:5px;top:19px;width:6px;height:4px;border-left:2px solid var(--deep);border-bottom:2px solid var(--deep);transform:rotate(-45deg)}
 
 /* tracks, facilities, life */
-.tracks{display:grid;grid-template-columns:repeat(5,1fr);gap:18px}
+.tracks{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:18px}
 .track{padding:30px 18px;text-align:center;border:1px solid color-mix(in srgb,var(--gold) 55%,transparent);background:var(--card-on);position:relative;overflow:hidden;transition:.3s}
 .track::before{content:"";position:absolute;inset:0;background:radial-gradient(260px circle at var(--mx,50%) var(--my,0),color-mix(in srgb,var(--gold) 22%,transparent),transparent 60%);opacity:0;transition:opacity .3s}.track:hover::before{opacity:1}
 .track b{display:block;font-family:var(--serif);font-size:2.4rem;color:var(--em-on)}.track>span{display:block;font-size:.8rem;color:var(--on3);min-height:3.4em;line-height:1.4}

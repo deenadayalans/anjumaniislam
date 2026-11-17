@@ -1,0 +1,454 @@
+{
+  "PROGRAMMES": [
+    {
+      "title": "Primary",
+      "text": "Foundations in reading, numeracy, values and curiosity — quizzes, spell bee and early activities."
+    },
+    {
+      "title": "High School · SSC",
+      "text": "Unit tests, half-yearly and preliminary exams, practicals and Std X board preparation."
+    },
+    {
+      "title": "Jr. College · HSC",
+      "text": "HSC preparation with practicals, Prelim II and integrated entrance coaching."
+    }
+  ],
+  "ACADEMIC_APPROACH": [
+    {
+      "title": "Personal advising",
+      "text": "Academic advisors meet students regularly to set goals, track progress and offer guidance."
+    },
+    {
+      "title": "Peer tutors & resident advisors",
+      "text": "Dormitory study sessions supported by peer tutors and resident advisors."
+    },
+    {
+      "title": "Data-driven monitoring",
+      "text": "Administrators use data and feedback to identify areas for improvement and apply targeted interventions."
+    },
+    {
+      "title": "Innovative teaching",
+      "text": "Hands-on activities, discussion and varied methods to suit diverse learning styles."
+    }
+  ],
+  "FACILITIES": [
+    {
+      "title": "Robotics & AI tinkering lab",
+      "icon": "chip",
+      "text": "A hub of innovation where students unlock the secrets of robotics and artificial intelligence."
+    },
+    {
+      "title": "Science labs",
+      "icon": "flask",
+      "text": "Specialised equipment, with goggles, lab coats and emergency equipment ready and strict safety training."
+    },
+    {
+      "title": "Computer lab",
+      "icon": "globe",
+      "text": "A digitised computer lab — a gateway to the future for the next generation of tech leaders."
+    },
+    {
+      "title": "Digital classrooms",
+      "icon": "play",
+      "text": "A projector and AV set-up in every class, with a pre-designed library of e-materials for teachers."
+    },
+    {
+      "title": "Library",
+      "icon": "book",
+      "text": "A vast collection of books and digital resources in the vintage academic block."
+    },
+    {
+      "title": "Performing arts centre",
+      "icon": "music",
+      "text": "Music rooms where budding musicians, actors and artists hone their craft."
+    }
+  ],
+  "BOARDING": [
+    {
+      "title": "Dormitories",
+      "icon": "bed",
+      "scene": "dorm",
+      "text": "Fully renovated; a delicate balance between home and school so your child feels safe, happy and welcome."
+    },
+    {
+      "title": "Dining hall",
+      "icon": "fork",
+      "scene": "dining",
+      "text": "Renovated hall for 300 diners; five meals a day with menus designed by a dietician."
+    },
+    {
+      "title": "Prayer hall",
+      "icon": "dome",
+      "scene": "prayer",
+      "text": "Call to prayer five times a day; basic Islamic education and Quran recitation are emphasised."
+    },
+    {
+      "title": "Sick bay",
+      "icon": "cross",
+      "scene": "sickbay",
+      "text": "A trained nurse on campus 24/7, regular doctor visits and in-house care."
+    },
+    {
+      "title": "Akbar Peerbhoy Sports Stadium",
+      "icon": "ball",
+      "scene": "field",
+      "text": "The largest sports ground in town, with separate grounds for football, kabaddi, volleyball and basketball."
+    },
+    {
+      "title": "Green campus",
+      "icon": "leaf",
+      "scene": "garden",
+      "text": "Rainwater harvesting and organic gardens across 174 acres of flora and fauna."
+    }
+  ],
+  "ACTIVITIES": [
+    {
+      "title": "Robotics & AI",
+      "category": "innov",
+      "icon": "chip",
+      "text": "Tinkering lab — introduced in 2024."
+    },
+    {
+      "title": "Basic Aviation",
+      "category": "innov",
+      "icon": "plane",
+      "text": "A new 2024 course."
+    },
+    {
+      "title": "Agriculture & gardening",
+      "category": "outdoor",
+      "icon": "leaf",
+      "text": "Organic gardens and hands-on farming."
+    },
+    {
+      "title": "Horse riding",
+      "category": "outdoor",
+      "icon": "star",
+      "text": "On-campus riding."
+    },
+    {
+      "title": "Archery & shooting",
+      "category": "outdoor",
+      "icon": "target",
+      "text": "Archery range and shooting range."
+    },
+    {
+      "title": "Sky gazing",
+      "category": "outdoor",
+      "icon": "sun",
+      "text": "Clear hill-station skies."
+    },
+    {
+      "title": "Team sports",
+      "category": "sport",
+      "icon": "ball",
+      "text": "Cricket, football, hockey, volleyball, basketball, kabaddi, athletics."
+    },
+    {
+      "title": "Fitness",
+      "category": "sport",
+      "icon": "trophy",
+      "text": "PT, gymnastics, yoga, open gym and a skating rink."
+    },
+    {
+      "title": "Pottery & ceramics",
+      "category": "arts",
+      "icon": "palette",
+      "text": "Studio work with clay."
+    },
+    {
+      "title": "Music & choir",
+      "category": "arts",
+      "icon": "music",
+      "text": "Music rooms and an annual musical choir."
+    },
+    {
+      "title": "Drama & storytelling",
+      "category": "arts",
+      "icon": "mic",
+      "text": "Inter-house dramatics and storytelling."
+    },
+    {
+      "title": "Knitting & sewing",
+      "category": "arts",
+      "icon": "heart",
+      "text": "Craft and creative expression."
+    },
+    {
+      "title": "Debate & JAM",
+      "category": "minds",
+      "icon": "mic",
+      "text": "Inter-house debate and Just-a-Minute."
+    },
+    {
+      "title": "Quiz & spell bee",
+      "category": "minds",
+      "icon": "book",
+      "text": "Primary, Islamic and general quizzes."
+    },
+    {
+      "title": "Community service",
+      "category": "minds",
+      "icon": "users",
+      "text": "Service opportunities and World NGO Day."
+    },
+    {
+      "title": "Hifz course",
+      "category": "minds",
+      "icon": "dome",
+      "text": "Available on demand."
+    }
+  ],
+  "DAY": [
+    {
+      "title": "Rise & pray",
+      "text": "Prayer hall, Quran recitation and breakfast."
+    },
+    {
+      "title": "Classes",
+      "text": "Digital classrooms, labs and practicals."
+    },
+    {
+      "title": "Lunch & rest",
+      "text": "Dietician-planned meals in the dining hall."
+    },
+    {
+      "title": "Games & clubs",
+      "text": "Sports, arts, robotics, riding, archery."
+    },
+    {
+      "title": "Study & wind down",
+      "text": "Peer tutors and the dorm in-charge."
+    }
+  ],
+  "JOURNEY": [
+    {
+      "title": "Arrive & settle",
+      "text": "Orientation for new students, a welcome assembly and the dorm in-charge as the first point of contact."
+    },
+    {
+      "title": "Build foundations",
+      "text": "Study habits, reading and core subjects, with peer tutors, advisors and regular unit tests."
+    },
+    {
+      "title": "Explore passions",
+      "text": "Robotics, riding, archery, debate, pottery and sport — inter-house contests let every child shine."
+    },
+    {
+      "title": "Rise to the board year",
+      "text": "Preliminary exams, practicals and one-to-one goal setting for Std X and XII."
+    },
+    {
+      "title": "Launch",
+      "text": "NEET, JEE, CET, NATA and CA guidance, the Annual Day prize distribution and a farewell."
+    }
+  ],
+  "UNIQUE": [
+    "NEET",
+    "JEE",
+    "CET",
+    "NATA",
+    "CA",
+    "Basic Aviation",
+    "Agriculture",
+    "AI & Robotics",
+    "Horse riding",
+    "Hifz course (on demand)",
+    "Skating rink",
+    "Gardening",
+    "Shooting range",
+    "Digital classroom",
+    "Open gym",
+    "Sky gazing"
+  ],
+  "DAYPLAN": [
+    {
+      "id": "wake",
+      "s": 5,
+      "e": 8,
+      "w": 1.2,
+      "kicker": "Rise & shine",
+      "title": "Wake up to a fresh day",
+      "text": "The hills are cool and quiet. Dormitories stir, the call to prayer rings out and the whole house starts the day together.",
+      "points": [
+        "Wake-up and morning prayer in the prayer hall",
+        "Group yoga and stretching on the lawns",
+        "Freshen up, tidy the dorm and a wholesome breakfast"
+      ],
+      "icon": "sun",
+      "scene": "garden"
+    },
+    {
+      "id": "school",
+      "s": 8,
+      "e": 16,
+      "kicker": "School hours",
+      "title": "A full day of learning",
+      "text": "",
+      "points": [],
+      "icon": "book",
+      "scene": "books",
+      "subs": [
+        {
+          "s": 8,
+          "e": 11,
+          "w": 0.9,
+          "label": "Morning classes",
+          "text": "Digital classrooms with a projector and AV set-up, teachers who love their subjects, labs and a library of e-materials."
+        },
+        {
+          "s": 11,
+          "e": 11.25,
+          "w": 0.4,
+          "label": "Healthy snack break",
+          "text": "Fifteen minutes to refuel with something light from the dietician-designed menu — and catch up with friends."
+        },
+        {
+          "s": 11.25,
+          "e": 13,
+          "w": 0.6,
+          "label": "Classes continue",
+          "text": "Lessons resume — discussion, hands-on activities, practicals and academic advisors checking progress."
+        },
+        {
+          "s": 13,
+          "e": 14,
+          "w": 0.55,
+          "label": "Lunch",
+          "text": "The renovated dining hall seats 300. Hygiene is paramount and meals are supervised for balance and nutrition."
+        },
+        {
+          "s": 14,
+          "e": 16,
+          "w": 0.65,
+          "label": "School continues",
+          "text": "Afternoon lessons, labs and coaching — including the NEET, JEE, CET, NATA and CA tracks."
+        }
+      ]
+    },
+    {
+      "id": "play",
+      "s": 16,
+      "e": 19,
+      "w": 1.2,
+      "kicker": "Play",
+      "title": "Play, practise, explore",
+      "text": "The golden hours belong to the outdoors: the largest sports ground in town, an archery range, horses, a skating rink and clubs for every passion.",
+      "points": [
+        "Cricket, football, hockey, volleyball, basketball, kabaddi, athletics",
+        "Archery, horse riding, skating, shooting range, gardening",
+        "Robotics, pottery, music, drama and debate clubs"
+      ],
+      "icon": "ball",
+      "scene": "field"
+    },
+    {
+      "id": "dinner",
+      "s": 19,
+      "e": 20,
+      "w": 0.7,
+      "kicker": "Dinner",
+      "title": "Dinner together",
+      "text": "The day’s last meal — warm food, stories from the day and a settled, family feeling.",
+      "points": [
+        "Dinner in the dining hall",
+        "Evening prayer and a quiet moment"
+      ],
+      "icon": "fork",
+      "scene": "dining"
+    },
+    {
+      "id": "study",
+      "s": 20,
+      "e": 22,
+      "w": 1.0,
+      "kicker": "Study time",
+      "title": "Study, homework & wind-down",
+      "text": "Supervised study sessions in the dormitories, supported by peer tutors and resident advisors.",
+      "points": [
+        "Homework and revision with peer tutors",
+        "Resident advisors and dorm in-charge on hand",
+        "Reading, reflection and getting ready for bed"
+      ],
+      "icon": "book",
+      "scene": "books"
+    },
+    {
+      "id": "sleep",
+      "s": 22,
+      "e": 29,
+      "w": 1.2,
+      "kicker": "Lights out",
+      "title": "Rest — and tomorrow begins again",
+      "text": "Quiet falls over the dormitories. The dorm in-charge is on duty and a trained nurse is on campus 24/7.",
+      "points": [
+        "Lights out and a good night’s sleep",
+        "Dorm in-charge on duty; nurse on campus 24/7"
+      ],
+      "icon": "moon",
+      "scene": "dorm"
+    }
+  ],
+  "DAYSKY": [
+    {
+      "hour": 5,
+      "top": "#3a3a6a",
+      "bottom": "#e59a7a"
+    },
+    {
+      "hour": 6.5,
+      "top": "#fbd0a5",
+      "bottom": "#ef8a6c"
+    },
+    {
+      "hour": 8,
+      "top": "#9fd3f2",
+      "bottom": "#e6f5ff"
+    },
+    {
+      "hour": 12,
+      "top": "#8ccbf2",
+      "bottom": "#e4f4ff"
+    },
+    {
+      "hour": 14,
+      "top": "#a9d6f0",
+      "bottom": "#fff0cf"
+    },
+    {
+      "hour": 16,
+      "top": "#ffd8a0",
+      "bottom": "#f4ab66"
+    },
+    {
+      "hour": 17.5,
+      "top": "#f39c5a",
+      "bottom": "#8e5ea0"
+    },
+    {
+      "hour": 19,
+      "top": "#4b3b7c",
+      "bottom": "#1e2250"
+    },
+    {
+      "hour": 20.5,
+      "top": "#18233f",
+      "bottom": "#0b1226"
+    },
+    {
+      "hour": 22,
+      "top": "#070b18",
+      "bottom": "#0d1430"
+    },
+    {
+      "hour": 27,
+      "top": "#0a0f24",
+      "bottom": "#101a3a"
+    },
+    {
+      "hour": 29,
+      "top": "#3a3a6a",
+      "bottom": "#e59a7a"
+    }
+  ]
+}

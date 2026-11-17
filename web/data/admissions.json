@@ -1,0 +1,68 @@
+{
+  "STEPS": [
+    {
+      "step": "Parents’ interview",
+      "note": ""
+    },
+    {
+      "step": "Child’s interview",
+      "note": ""
+    },
+    {
+      "step": "Written exam",
+      "note": ""
+    },
+    {
+      "step": "Medical history",
+      "note": ""
+    },
+    {
+      "step": "Blood investigation",
+      "note": "Std 8 onwards"
+    }
+  ],
+  "IMPORTANT": [
+    "Admission is subject to performance in the written exam.",
+    "Students with an addiction history will not be admitted.",
+    "An undertaking / indemnity on a ₹500 bond is mandatory.",
+    "Over-age students will not be enrolled.",
+    "Strict disciplinary action is taken against those who break the rules."
+  ],
+  "FEES": [
+    "Fees are collected in two terms.",
+    "The first instalment is paid once admission is confirmed.",
+    "The second instalment is paid in the second semester, after the Diwali holiday.",
+    "For the balance, parents submit a post-dated cheque along with a promissory note.",
+    "Competitive coaching courses attract extra fees."
+  ],
+  "FAQ": [
+    {
+      "question": "Which levels does the Panchgani campus offer?",
+      "answer": "Primary, High School (SSC) and Jr. College (HSC), all English-medium."
+    },
+    {
+      "question": "Is coaching for NEET, JEE, CET, NATA and CA included?",
+      "answer": "Coaching is offered on campus. Competitive courses attract extra fees."
+    },
+    {
+      "question": "What is the admission process?",
+      "answer": "Parents’ interview, child’s interview, written exam, medical history and — from Std 8 — a blood investigation."
+    },
+    {
+      "question": "How are fees paid?",
+      "answer": "In two terms: after admission is confirmed and after the Diwali holiday. A post-dated cheque and promissory note secure the balance."
+    },
+    {
+      "question": "What medical care is available?",
+      "answer": "A trained nurse is on campus 24/7, a doctor visits for check-ups and the sick bay can keep patients in-house."
+    },
+    {
+      "question": "Is prayer compulsory?",
+      "answer": "The call to prayer is given five times a day and Muslim students are expected to offer salah. Basic Islamic education and Quran recitation are emphasised."
+    },
+    {
+      "question": "Are there supports for students who struggle?",
+      "answer": "Yes — peer tutors, resident advisors, academic advisors and extra coaching for vernacular-medium students."
+    }
+  ]
+}

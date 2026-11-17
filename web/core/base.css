@@ -45,8 +45,9 @@ button,input,select,textarea{font:inherit;color:inherit}
 
 /* illustrated photo placeholders */
 .scene,.photo{position:relative;margin:0;overflow:hidden;aspect-ratio:var(--ar,4/3);background:var(--sc0,#cfe)}
-.scene svg{position:absolute;inset:0;width:100%;height:100%;display:block;transition:transform 1.2s cubic-bezier(.2,.7,.2,1)}
-.scene:hover svg,.photo:hover img{transform:scale(1.05)}
+.scene svg,.scene>img{position:absolute;inset:0;width:100%;height:100%;display:block;transition:transform 1.2s cubic-bezier(.2,.7,.2,1)}
+.scene>img{object-fit:cover}
+.scene:hover svg,.scene:hover>img,.photo:hover img{transform:scale(1.05)}
 .scene .s0{fill:var(--sc0)}.scene .s1{fill:var(--sc1)}.scene .s2{fill:var(--sc2)}.scene .s3{fill:var(--sc3)}.scene .s4{fill:var(--sc4)}.scene .s5{fill:var(--sc5)}
 .scene figcaption{position:absolute;left:12px;bottom:10px;font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.9);background:rgba(0,0,0,.28);padding:3px 9px;border-radius:99px;backdrop-filter:blur(4px)}
 .photo img{width:100%;height:100%;object-fit:cover;display:block;transition:transform 1.2s cubic-bezier(.2,.7,.2,1)}
@@ -68,6 +69,7 @@ button,input,select,textarea{font:inherit;color:inherit}
 .note{font-size:.82rem;opacity:.7;margin-top:14px}
 .star{color:var(--star,#d4a017);font-style:normal}
 .val{display:inline-block;min-width:2.2em;text-align:center;padding:1px 8px;border:1px dashed currentColor;border-radius:4px;font-weight:700;font-size:.9em;opacity:.9}
+.val.real{border:0;padding:0;opacity:1;font-size:1.25em}
 
 /* accordion */
 .acc summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;gap:16px;align-items:center}

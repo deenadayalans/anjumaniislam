@@ -1,0 +1,108 @@
+{
+  "HISTORY": [
+    {
+      "year": "1874",
+      "text": "Anjuman-I-Islam is founded in Mumbai by a small group of Muslims with a “desire to see the Musalmans rise higher in the moral, social and educational scale.”"
+    },
+    {
+      "year": "1880",
+      "text": "Presents a Memorandum to the Indian Education Commission urging vocational, industrial, commercial and agricultural education, physical education and education for girls."
+    },
+    {
+      "year": "1936",
+      "text": "Starts the first technical school for artisans — the seed of today’s technical hub at the M.H. Saboo Siddik campus."
+    },
+    {
+      "year": "1939",
+      "text": "Opens its first school for girls, which grows into the Saboo Baug girls’ education campus."
+    },
+    {
+      "year": "1946",
+      "text": "Incorporated on 20 November as a not-for-profit company; also registered under the Maharashtra Public Trusts Act, 1950."
+    },
+    {
+      "year": "2020",
+      "text": "The Panchgani school completes 100 years of imparting education — the Centenary celebration."
+    },
+    {
+      "year": "2024",
+      "text": "Dr. Zahir Kazi, President since 2009, receives the Padma award. Robotics, Agriculture and Basic Aviation are added at Panchgani."
+    }
+  ],
+  "GOALS": [
+    {
+      "numeral": "I",
+      "text": "Adequate infrastructure for all institutions",
+      "when": "by December 2027"
+    },
+    {
+      "numeral": "II",
+      "text": "Residential facility and new institutions — Schools, Health Care, Technical & Hospitality Management",
+      "when": "by December 2030"
+    },
+    {
+      "numeral": "III",
+      "text": "Build and enhance STEAM-based pedagogy in each institution",
+      "when": "by December 2027"
+    },
+    {
+      "numeral": "IV",
+      "text": "Obtain relevant accreditation for each institution",
+      "when": "by December 2027"
+    },
+    {
+      "numeral": "V",
+      "text": "Establish a Professional Development Centre (PDC)",
+      "when": "by December 2025"
+    },
+    {
+      "numeral": "VI",
+      "text": "Build capacity and competency of all professionals through a Performance Management System, including a Leadership Development Programme for all heads of institutions and CXO personnel",
+      "when": "ongoing"
+    }
+  ],
+  "ACHIEVEMENTS": [
+    {
+      "year": "2020",
+      "title": "Centenary celebration",
+      "detail": "Completion of 100 successful years of imparting education, producing leaders across the globe.",
+      "category": "Institution"
+    },
+    {
+      "year": "2020",
+      "title": "World Stick Fight Championship, Goa",
+      "detail": "3 Gold, 4 Silver and 3 Bronze medals.",
+      "category": "Sport"
+    },
+    {
+      "year": "2019",
+      "title": "World Thai Boxing Championship, Goa",
+      "detail": "Gold medal.",
+      "category": "Sport"
+    },
+    {
+      "year": "2019",
+      "title": "INSPIRE Award — Taluka Level",
+      "detail": "‘Innovation in Science Pursuit for Inspired Research’.",
+      "category": "Science"
+    },
+    {
+      "year": "2018–19",
+      "title": "Golden School Award",
+      "detail": "Awarded by Indian Talent Search.",
+      "category": "Award"
+    },
+    {
+      "year": "—",
+      "title": "District-level cycling competition",
+      "detail": "First Prize.",
+      "category": "Sport"
+    },
+    {
+      "year": "SSC",
+      "title": "Hindi Rashtrabhasha Puraskar",
+      "detail": "Miss Shamsheera Nadaf (Std X) secured 95% in Hindi in the SSC exam.",
+      "category": "Academic"
+    }
+  ]
+}

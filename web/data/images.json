@@ -1,0 +1,19 @@
+{
+  "_readme": "Photos used on the four main designs. Each value is either a file name inside web/assets/real/ or a full https:// image link. Google Drive share links (https://drive.google.com/file/d/<id>/view, shared as 'Anyone with the link') are converted automatically. Several entries under one scene are rotated so repeats on a page differ.",
+  "scenes": {
+    "campus": ["p-campus-building.jpg", "p-campus-stairs.jpg"],
+    "hills": ["p-ground-aerial.jpg", "p-campus-aerial.jpg"],
+    "garden": ["p-campus-aerial.jpg", "p-ground-aerial.jpg"],
+    "books": ["p-classroom.jpg"],
+    "lab": ["p-science-lab.jpg", "p-lab-bench.jpg", "p-lab-students.jpg"],
+    "arts": ["p-art-class.jpg"],
+    "dorm": ["p-dorm-hall.jpg", "p-dorm-room.jpg"],
+    "dining": ["p-dining-hall.jpg"],
+    "prayer": ["p-prayer-hall.jpg"],
+    "field": ["p-cricket.jpg", "p-volleyball.jpg", "p-court-aerial.jpg", "p-riding.jpg"],
+    "portrait": ["p-lab-bench.jpg", "p-science-lab.jpg"]
+  },
+  "named": {
+    "zahir-kazi.png": "zahir-kazi.png"
+  }
+}

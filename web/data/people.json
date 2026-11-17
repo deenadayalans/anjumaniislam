@@ -1,0 +1,119 @@
+{
+  "PRESIDENTS": [
+    {
+      "name": "Mr. Cumruddin Tyabji",
+      "tenure": "1875 – 1889",
+      "philanthropist": false
+    },
+    {
+      "name": "Mr. Nakhoda Mohd. Ali Roghay II",
+      "tenure": "1889 – 1890",
+      "philanthropist": true
+    },
+    {
+      "name": "Hon. Mr. Justice Badruddin Tyabji",
+      "tenure": "1890 – 1907",
+      "philanthropist": false
+    },
+    {
+      "name": "Sir Currimbhoy Ebrahim",
+      "tenure": "1907 – 1912",
+      "philanthropist": false
+    },
+    {
+      "name": "Haji Yusuf Haji Ismail Sobani",
+      "tenure": "1912 – 1917",
+      "philanthropist": true
+    },
+    {
+      "name": "Hon. Mr. Justice A. M. Kajiji",
+      "tenure": "1917 – 1932",
+      "philanthropist": false
+    },
+    {
+      "name": "Hon. Mr. Justice Faiz B. Tyabji",
+      "tenure": "1932 – 1934 & 1935",
+      "philanthropist": false
+    },
+    {
+      "name": "Hon. Sardar Sir Suleman Cassum Mitha",
+      "tenure": "1934 – 1935",
+      "philanthropist": false
+    },
+    {
+      "name": "Mr. Hussain B. Tyabji",
+      "tenure": "Jan – Mar 1935",
+      "philanthropist": false
+    },
+    {
+      "name": "Mr. Osman Sobani",
+      "tenure": "1935 – 1938",
+      "philanthropist": false
+    },
+    {
+      "name": "Mr. Mohd. Haji Ahmed",
+      "tenure": "1938 – 1941 & 1949 – 1954",
+      "philanthropist": false
+    },
+    {
+      "name": "Mr. A. E. Maskati",
+      "tenure": "1941 – 1944",
+      "philanthropist": false
+    },
+    {
+      "name": "Mr. Hadi C. Tyabji",
+      "tenure": "1944 – 1947",
+      "philanthropist": false
+    },
+    {
+      "name": "Mr. Saif F. B. Tyabji",
+      "tenure": "1947 – 1949 & 1954 – 1957",
+      "philanthropist": false
+    },
+    {
+      "name": "Mr. Akbar A. Peerbhoy",
+      "tenure": "1957 – 1974",
+      "philanthropist": true
+    },
+    {
+      "name": "Mr. A. K. Hafizka",
+      "tenure": "1974 – 1975",
+      "philanthropist": false
+    },
+    {
+      "name": "Mr. A. R. Antulay",
+      "tenure": "1975 – 1976",
+      "philanthropist": false
+    },
+    {
+      "name": "Mr. Moinuddin Harris",
+      "tenure": "1977 – 1983",
+      "philanthropist": true
+    },
+    {
+      "name": "Dr. M. Ishaq Jamkhanawala",
+      "tenure": "1983 – 2006",
+      "philanthropist": false
+    },
+    {
+      "name": "Mr. Sami Khatib",
+      "tenure": "2006 – 2009",
+      "philanthropist": false
+    },
+    {
+      "name": "Dr. Zahir I Kazi",
+      "tenure": "2009 – till date",
+      "philanthropist": false
+    }
+  ],
+  "BOARD": [
+    "Dr. Zahir Kazi",
+    "Mushtaq Antulay",
+    "Dr. Abdullah Shaikh",
+    "Moiz Miyajiwala",
+    "Shakil Shaikh",
+    "Aqeel Hafiz",
+    "Shoaib Jamkhanawala",
+    "Shohab Rais"
+  ]
+}

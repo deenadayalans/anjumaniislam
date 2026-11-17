@@ -1,0 +1,149 @@
+{
+  "STATS": [
+    {
+      "label": "Years of education",
+      "value": 100,
+      "suffix": "+"
+    },
+    {
+      "label": "Acres of campus",
+      "value": 174,
+      "suffix": ""
+    },
+    {
+      "label": "Competitive exam tracks",
+      "value": 5,
+      "suffix": ""
+    },
+    {
+      "label": "Seats in the dining hall",
+      "value": 300,
+      "suffix": ""
+    }
+  ],
+  "NETWORK_STATS": [
+    {
+      "label": "Learners reached every year",
+      "value": 100000,
+      "suffix": "+"
+    },
+    {
+      "label": "People receive health care each year",
+      "value": 50000,
+      "suffix": "+"
+    },
+    {
+      "label": "Orphans enriched each year",
+      "value": 400,
+      "suffix": "+"
+    },
+    {
+      "label": "Students get financial assistance",
+      "value": 15000,
+      "suffix": "+"
+    }
+  ],
+  "EDU_STATS": [
+    {
+      "label": "Learners in education institutes",
+      "value": 96000,
+      "suffix": "+"
+    },
+    {
+      "label": "Trained teaching and non-teaching staff",
+      "value": 3200,
+      "suffix": "+"
+    },
+    {
+      "label": "Education institutes run by Anjuman",
+      "value": 90,
+      "suffix": "+"
+    }
+  ],
+  "PLACE_FACTS": [
+    {
+      "value": "174",
+      "label": "acres of campus",
+      "text": "A hill campus home to a huge variety of flora and fauna, with organic gardens and rainwater harvesting."
+    },
+    {
+      "value": "300",
+      "label": "seats in the dining hall",
+      "text": "Five meals a day with menus designed by a dietician — hygiene and cleanliness come first."
+    },
+    {
+      "value": "24/7",
+      "label": "nurse on campus",
+      "text": "A trained nurse on the campus around the clock, plus regular doctor visits."
+    }
+  ],
+  "SSC_2026": {
+    "appeared": 2153,
+    "passed": 2136,
+    "distinction": 473,
+    "first_class": 793
+  },
+  "HSC_2026": {
+    "appeared": 2002,
+    "passed": 1697,
+    "distinction": 72,
+    "overall": 84.77,
+    "streams": [
+      {
+        "stream": "Science",
+        "appeared": 803,
+        "passed": 776,
+        "distinction": 30,
+        "percent": 96.64
+      },
+      {
+        "stream": "Commerce",
+        "appeared": 1040,
+        "passed": 785,
+        "distinction": 31,
+        "percent": 75.48
+      },
+      {
+        "stream": "Arts",
+        "appeared": 159,
+        "passed": 136,
+        "distinction": 11,
+        "percent": 85.53
+      }
+    ]
+  },
+  "EXAMS": [
+    {
+      "short": "JEE",
+      "full": "Joint Entrance Examination",
+      "field": "Engineering"
+    },
+    {
+      "short": "NEET",
+      "full": "National Eligibility cum Entrance Test",
+      "field": "Medical"
+    },
+    {
+      "short": "CET",
+      "full": "Common Entrance Test",
+      "field": "State entrance"
+    },
+    {
+      "short": "NATA",
+      "full": "National Aptitude Test in Architecture",
+      "field": "Architecture"
+    },
+    {
+      "short": "CA",
+      "full": "Chartered Accountancy",
+      "field": "Commerce & finance"
+    }
+  ],
+  "YEARS": [
+    "2025–26",
+    "2024–25",
+    "2023–24"
+  ],
+  "EXAM_TOTALS": {},
+  "EXAM_BY_YEAR": {}
+}

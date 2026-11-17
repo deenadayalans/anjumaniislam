@@ -2,6 +2,7 @@
 import json
 import math
 import random
+import re
 import urllib.parse
 from html import escape as esc
 import content as C
@@ -70,11 +71,29 @@ _SCENES = {
     "books": '<rect class="s1" width="400" height="300"/><rect class="s3" x="0" y="230" width="400" height="70"/><g><rect class="s2" x="110" y="190" width="180" height="40" rx="4"/><rect class="s4" x="124" y="150" width="152" height="40" rx="4"/><rect class="s5" x="138" y="110" width="124" height="40" rx="4"/><rect class="s2" x="152" y="70" width="96" height="40" rx="4"/></g>',
 }
 _SCENES["horse"] = _SCENES["field"]
+_SCENES["sickbay"] = '<rect class="s1" width="400" height="300"/><rect class="s3" y="235" width="400" height="65"/><rect class="s2" x="60" y="190" width="280" height="46" rx="8"/><rect class="s5" x="168" y="64" width="64" height="112" rx="10"/><rect class="s5" x="144" y="88" width="112" height="64" rx="10"/>'
+
+# Real campus photos come from data/images.json (file names in assets/real/ or https links), rotated so repeats differ.
+_used = {}
+
+
+def img_src(src):
+    """File name -> assets/real/<name>; https link -> itself; Google Drive share link -> a direct image link."""
+    if not re.match(r"https?://", src):
+        return "assets/real/" + src
+    m = re.search(r"drive\.google\.com/(?:file/d/|open\?id=|uc\?(?:export=\w+&)?id=)([\w-]+)", src)
+    return f"https://drive.google.com/thumbnail?id={m.group(1)}&sz=w1600" if m else src
 
 
 def scene(kind="hills", label="", cls="", ratio=None, caption=True):
-    body = _SCENES.get(kind, _SCENES["hills"])
     style = f' style="--ar:{ratio}"' if ratio else ""
+    # Unlabelled portraits are the presidents grid and map slots are not photographs, so those keep the illustration.
+    names = C.IMAGES["scenes"].get(kind) if label != "Map embed" and (kind != "portrait" or label) else None
+    if names:
+        n = _used[kind] = _used.get(kind, -1) + 1
+        cap = f"<figcaption>{esc(label)}</figcaption>" if caption and label else ""
+        return f'<figure class="scene {cls}"{style}><img src="{esc(img_src(names[n % len(names)]))}" alt="{esc(label)}" loading="lazy" referrerpolicy="no-referrer">{cap}</figure>'
+    body = _SCENES.get(kind, _SCENES["hills"])
     cap = f'<figcaption>Photo placeholder{" · " + esc(label) if label else ""}</figcaption>' if caption else ""
     return (f'<figure class="scene {cls}"{style}><svg viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice" aria-hidden="true">'
             f'<rect class="s0" width="400" height="300"/>{body}</svg>{cap}</figure>')
@@ -82,7 +101,7 @@ def scene(kind="hills", label="", cls="", ratio=None, caption=True):
 
 def photo(name, alt="", cls="", ratio=None):
     style = f' style="--ar:{ratio}"' if ratio else ""
-    return f'<figure class="photo {cls}"{style}><img src="assets/real/{name}" alt="{esc(alt)}" loading="lazy"></figure>'
+    return f'<figure class="photo {cls}"{style}><img src="{esc(img_src(C.IMAGES["named"].get(name, name)))}" alt="{esc(alt)}" loading="lazy" referrerpolicy="no-referrer"></figure>'
 
 
 # ---------- Reusable content blocks (generic classes; each theme's CSS styles them) ----------
@@ -181,19 +200,23 @@ def ssc_hsc_block():
 </div><p class="note">Network-wide figures published by Anjuman-I-Islam for 2026. Panchgani-specific results to be added.</p>'''
 
 
+def exam_value(v):
+    return '<span class="val" title="Placeholder — replace with verified results">00</span>' if v is None else f'<span class="val real">{esc(str(v))}</span>'
+
+
 def exam_tracks(cls="tracks"):
-    ph = '<span class="val" title="Placeholder — replace with verified results">00</span>'
     out = "".join(
-        f'<div class="track" data-r="up" data-i="{i}" data-spot><b>{n}</b><span>{esc(full)}</span><div class="trk-meta"><em>{esc(tag)}</em>{ph}<small>selections</small></div></div>'
+        f'<div class="track" data-r="up" data-i="{i}" data-spot><b>{n}</b><span>{esc(full)}</span><div class="trk-meta"><em>{esc(tag)}</em>{exam_value(C.EXAM_TOTALS.get(n))}<small>selections</small></div></div>'
         for i, (n, full, tag) in enumerate(C.EXAMS))
     return f'<div class="{cls}">{out}</div>'
 
 
 def exam_table():
-    ph = '<span class="val">00</span>'
     heads = "".join(f"<th>{n}</th>" for n, _, _ in C.EXAMS)
-    rows = "".join(f'<tr><td><b>{y}</b></td>' + "".join(f"<td>{ph}</td>" for _ in C.EXAMS) + "</tr>" for y in C.YEARS)
-    return f'<div class="tbl-wrap"><table class="tbl"><thead><tr><th>Year</th>{heads}</tr></thead><tbody>{rows}</tbody></table></div><p class="note">Placeholder figures (<span class="val">00</span>) — replace with verified Panchgani results before launch.</p>'
+    rows = "".join(f'<tr><td><b>{y}</b></td>' + "".join(f"<td>{exam_value(C.EXAM_BY_YEAR.get(y, {}).get(n))}</td>" for n, _, _ in C.EXAMS) + "</tr>" for y in C.YEARS)
+    missing = any(C.EXAM_BY_YEAR.get(y, {}).get(n) is None for y in C.YEARS for n, _, _ in C.EXAMS)
+    note = '<p class="note">Placeholder figures (<span class="val">00</span>) — replace with verified Panchgani results before launch.</p>' if missing else ""
+    return f'<div class="tbl-wrap"><table class="tbl"><thead><tr><th>Year</th>{heads}</tr></thead><tbody>{rows}</tbody></table></div>{note}'
 
 
 def steps(cls="steps"):

@@ -1,0 +1,417 @@
+{
+  "INSTITUTIONS": {
+    "Schooling": [
+      {
+        "city": "Bandra",
+        "medium": "Urdu",
+        "name": "Dr. M. I. Jamkhanawala Urdu Girls High School",
+        "funding": "Aided"
+      },
+      {
+        "city": "Bandra",
+        "medium": "English",
+        "name": "Dr. M. I. Jamkhanawala Girls Jr. College",
+        "funding": "Aided / Un-aided"
+      },
+      {
+        "city": "Bellasis Road",
+        "medium": "English",
+        "name": "Begum Sharifa Kalsekar Girls English Primary School",
+        "funding": "Un-aided"
+      },
+      {
+        "city": "Bellasis Road",
+        "medium": "Urdu",
+        "name": "Saif Tyabji Girls Urdu Primary School",
+        "funding": "Aided"
+      },
+      {
+        "city": "Bellasis Road",
+        "medium": "English",
+        "name": "Begum Sharifa Kalsekar Girls English High School",
+        "funding": "Un-aided"
+      },
+      {
+        "city": "Bellasis Road",
+        "medium": "Urdu",
+        "name": "Saif Tyabji Girls Urdu High School",
+        "funding": "Aided"
+      },
+      {
+        "city": "Bellasis Road",
+        "medium": "English",
+        "name": "Saif Tyabji Girls Jr. College of Arts & Science",
+        "funding": "Aided"
+      },
+      {
+        "city": "CSMT",
+        "medium": "English",
+        "name": "Allana English Primary School",
+        "funding": "Un-aided"
+      },
+      {
+        "city": "CSMT",
+        "medium": "English",
+        "name": "Allana English High School",
+        "funding": "Un-aided"
+      },
+      {
+        "city": "CSMT",
+        "medium": "Urdu",
+        "name": "Anjuman-I-Islam Urdu High School",
+        "funding": "Aided"
+      },
+      {
+        "city": "CSMT",
+        "medium": "English",
+        "name": "Allana Jr. College of Science & Commerce",
+        "funding": "Un-aided"
+      },
+      {
+        "city": "Kurla",
+        "medium": "English",
+        "name": "Allana English Primary School",
+        "funding": "Un-aided"
+      },
+      {
+        "city": "Kurla",
+        "medium": "Urdu",
+        "name": "Allana Urdu Primary School",
+        "funding": "Aided"
+      },
+      {
+        "city": "Kurla",
+        "medium": "English",
+        "name": "Allana English High School",
+        "funding": "Un-aided"
+      },
+      {
+        "city": "Kurla",
+        "medium": "Urdu",
+        "name": "Allana Urdu Girls High School",
+        "funding": "Aided"
+      },
+      {
+        "city": "Kurla",
+        "medium": "Urdu",
+        "name": "Allana Urdu Boys High School",
+        "funding": "Aided"
+      },
+      {
+        "city": "Kurla",
+        "medium": "English",
+        "name": "Allana Junior College of Science & Commerce",
+        "funding": "Un-aided"
+      },
+      {
+        "city": "Mahim",
+        "medium": "Urdu",
+        "name": "Khalifa Ziauddin Girls Urdu Primary School",
+        "funding": "Aided"
+      },
+      {
+        "city": "Maulana Shaukat",
+        "medium": "Urdu",
+        "name": "Abdus Sattar Shuaib Urdu Primary School",
+        "funding": "Aided"
+      },
+      {
+        "city": "Maulana Shaukat",
+        "medium": "Urdu",
+        "name": "Abdus Sattar Shuaib Urdu High School",
+        "funding": "Aided"
+      },
+      {
+        "city": "Maulana Shaukat",
+        "medium": "Urdu",
+        "name": "Jan Mohd. Cassum High School – Day",
+        "funding": "Aided"
+      },
+      {
+        "city": "Maulana Shaukat",
+        "medium": "Urdu",
+        "name": "Jan Mohd. Cassum High School – Night",
+        "funding": "Aided"
+      },
+      {
+        "city": "Maulana Shaukat",
+        "medium": "English",
+        "name": "Akbar Peerbhoy Jr. College of Commerce & Economics",
+        "funding": "Aided"
+      },
+      {
+        "city": "Nagpada",
+        "medium": "Urdu",
+        "name": "Ahmed Sailor Urdu Primary School",
+        "funding": "Aided"
+      },
+      {
+        "city": "Nagpada",
+        "medium": "Urdu",
+        "name": "Ahmed Sailor Urdu High School",
+        "funding": "Aided"
+      },
+      {
+        "city": "Panchgani",
+        "medium": "English",
+        "name": "Anjuman-I-Islam Public School – Primary",
+        "funding": "Un-aided"
+      },
+      {
+        "city": "Panchgani",
+        "medium": "English",
+        "name": "Anjuman-I-Islam Public School – High School",
+        "funding": "Aided"
+      },
+      {
+        "city": "Panchgani",
+        "medium": "English",
+        "name": "Anjuman-I-Islam Public School – Jr. College",
+        "funding": "Un-aided"
+      },
+      {
+        "city": "Pune",
+        "medium": "English",
+        "name": "Ahmed Peermohamed English Primary School",
+        "funding": "Un-aided"
+      },
+      {
+        "city": "Pune",
+        "medium": "Urdu",
+        "name": "Valimohamed & Dostmohamed Peermohamed Urdu Primary School",
+        "funding": "Aided"
+      },
+      {
+        "city": "Pune",
+        "medium": "English",
+        "name": "Ahmed Peermohamed English High School",
+        "funding": "Un-aided"
+      },
+      {
+        "city": "Pune",
+        "medium": "Urdu",
+        "name": "Valimohamed & Dostmohamed Peermohamed Urdu High School",
+        "funding": "Aided"
+      },
+      {
+        "city": "Pune",
+        "medium": "English",
+        "name": "Peer Mohamed High School & Junior College for Girls",
+        "funding": "Un-aided"
+      },
+      {
+        "city": "Turbhe",
+        "medium": "Urdu",
+        "name": "Zubeida Talib Urdu Primary School",
+        "funding": "Aided"
+      },
+      {
+        "city": "Turbhe",
+        "medium": "Urdu",
+        "name": "Mustafa Fakih Urdu High School",
+        "funding": "Aided"
+      },
+      {
+        "city": "Turbhe",
+        "medium": "English",
+        "name": "Mustafa Fakih Junior College",
+        "funding": "Un-aided"
+      },
+      {
+        "city": "Vashi",
+        "medium": "English",
+        "name": "Abdul Azim Khatkhatay English Primary School",
+        "funding": "Un-aided"
+      },
+      {
+        "city": "Vashi",
+        "medium": "English",
+        "name": "Abdul Azim Khatkhatay English Secondary School",
+        "funding": "Un-aided"
+      },
+      {
+        "city": "Versova",
+        "medium": "English",
+        "name": "Anjuman-I-Islam English Primary School",
+        "funding": "Un-aided"
+      },
+      {
+        "city": "Versova",
+        "medium": "Urdu",
+        "name": "Fazilabai Abdul Sattar Oomer Urdu Primary School",
+        "funding": "Aided"
+      },
+      {
+        "city": "Versova",
+        "medium": "English",
+        "name": "Anjuman-I-Islam English High School",
+        "funding": "Un-aided"
+      },
+      {
+        "city": "Versova",
+        "medium": "Urdu",
+        "name": "Begum Jamila Haji Abdul Haq Urdu High School for Girls",
+        "funding": "Aided"
+      },
+      {
+        "city": "Versova",
+        "medium": "English",
+        "name": "Begum Jamila Haji Abdul Haq Jr. College of Home Science",
+        "funding": "Un-aided"
+      }
+    ],
+    "Tertiary": [
+      {
+        "city": "CSMT",
+        "medium": "English",
+        "name": "Begum Jamila Haji Abdul Haq Degree College of Home Science",
+        "funding": "Un-aided"
+      },
+      {
+        "city": "CSMT",
+        "medium": "English",
+        "name": "Anjuman-I-Islam College of Hospitality Management Studies",
+        "funding": "Un-aided"
+      },
+      {
+        "city": "CSMT",
+        "medium": "English",
+        "name": "Anjuman-I-Islam College of Hotel & Tourism Management Studies & Research",
+        "funding": "Un-aided"
+      },
+      {
+        "city": "CSMT",
+        "medium": "English",
+        "name": "Anjuman-I-Islam Institute of Hospitality Management",
+        "funding": "Un-aided"
+      },
+      {
+        "city": "Maulana Shaukat",
+        "medium": "English",
+        "name": "Akbar Peerbhoy Degree College of Commerce & Economics",
+        "funding": "Un-aided"
+      },
+      {
+        "city": "Maulana Shaukat",
+        "medium": "English",
+        "name": "Akbar Peerbhoy Professional College of Commerce & Economics",
+        "funding": "Un-aided"
+      }
+    ],
+    "Technical & Professional": [
+      {
+        "city": "CSMT",
+        "medium": "English",
+        "name": "Allana Institute of Management Studies",
+        "funding": "Un-aided"
+      },
+      {
+        "city": "CSMT",
+        "medium": "English",
+        "name": "Barrister A. R. Antulay College of Law",
+        "funding": "Un-aided"
+      },
+      {
+        "city": "Panvel",
+        "medium": "English",
+        "name": "AIKTC – School of Architecture",
+        "funding": "Un-aided"
+      },
+      {
+        "city": "Panvel",
+        "medium": "English",
+        "name": "AIKTC – School of Engineering & Technology",
+        "funding": "Un-aided"
+      },
+      {
+        "city": "Panvel",
+        "medium": "English",
+        "name": "AIKTC – School of Pharmacy",
+        "funding": "Un-aided"
+      },
+      {
+        "city": "Saboo Siddik",
+        "medium": "English",
+        "name": "MHSS College of Engineering",
+        "funding": "Un-aided"
+      }
+    ],
+    "Skill & Vocational": [
+      {
+        "city": "CSMT",
+        "medium": "English",
+        "name": "Akbar Peerbhoy Girls Polytechnic",
+        "funding": "Un-aided"
+      },
+      {
+        "city": "Mahim",
+        "medium": "Urdu",
+        "name": "Mohinuddin Harris Jr. College of Education (D.Ed)",
+        "funding": "Un-aided"
+      },
+      {
+        "city": "Panvel",
+        "medium": "English",
+        "name": "Abdul Razzak Kalsekar Polytechnic",
+        "funding": "Un-aided"
+      },
+      {
+        "city": "Pune",
+        "medium": "English",
+        "name": "Anjuman-I-Islam Polytechnic for Girls",
+        "funding": "Un-aided"
+      },
+      {
+        "city": "Saboo Siddik",
+        "medium": "English",
+        "name": "MHSS Polytechnic",
+        "funding": "Aided / Un-aided"
+      },
+      {
+        "city": "Saboo Siddik",
+        "medium": "English",
+        "name": "MHSS Industrial Training Institute",
+        "funding": "Un-aided"
+      },
+      {
+        "city": "Saboo Siddik",
+        "medium": "English",
+        "name": "MHSS Technical High School",
+        "funding": "Un-aided"
+      },
+      {
+        "city": "Saboo Siddik",
+        "medium": "English",
+        "name": "MHSS Vocational Junior College",
+        "funding": "Aided / Un-aided"
+      },
+      {
+        "city": "Vashi",
+        "medium": "English",
+        "name": "Akbar Peerbhoy College of Education",
+        "funding": "Un-aided"
+      }
+    ],
+    "Healthcare": [
+      {
+        "city": "Versova",
+        "medium": "Urdu",
+        "name": "Dr. M. Ishaq Jamkhanawala Tibbia Unani Medical College",
+        "funding": "Un-aided"
+      }
+    ]
+  },
+  "MARQUEE_INSTITUTIONS": [
+    "Allana",
+    "Akbar Peerbhoy",
+    "Saif Tyabji",
+    "MHSS Saboo Siddik",
+    "AIKTC Panvel",
+    "Jamkhanawala",
+    "Mustafa Fakih",
+    "Peermohamed Pune",
+    "Khatkhatay Vashi",
+    "Kalsekar",
+    "Panchgani"
+  ]
+}

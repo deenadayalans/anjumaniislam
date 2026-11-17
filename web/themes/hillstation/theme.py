@@ -141,7 +141,7 @@ def life():
         + chap("02", "A day at Panchgani", f'<ol class="acts-list day">{day}</ol>', "day", "forest") \
         + chap("03", "Activities", f'{filt}<ul class="acts-list" style="margin-top:30px">{acts}</ul>', "activities") \
         + chap("04", "The student journey", f'<ol class="rows">{jr}</ol>', "journey", "sand") \
-        + f'<section class="sec"><div class="wrap"><div class="sec-top"><p class="kick">Gallery</p><h2 data-split>Moments from campus</h2></div><div class="gal">{"".join(f"<div class=g{i} data-r=zoom>{scene(k, l)}</div>" for i, (k, l) in enumerate([("hills", "Hills"), ("field", "Sports Day"), ("arts", "Art studio"), ("garden", "Gardens"), ("dining", "Dining"), ("lab", "Robotics lab")]))}</div></div></section>'
+        + f'<section class="sec"><div class="wrap"><div class="sec-top"><p class="kick">Gallery</p><h2 data-split>Moments from campus</h2></div><div class="gal">{"".join(f"<div class=g{i} data-r=zoom>{scene(k, l)}</div>" for i, (k, l) in enumerate([("hills", "Hills"), ("field", "Sports Day"), ("arts", "Art studio"), ("garden", "Gardens"), ("dining", "Dining"), ("lab", "Science lab")]))}</div></div></section>'
     return layout("life", "Campus Life", body, phero("Campus life", "Athletes, artists and <em>leaders in the making</em>", "Boarding, sport, arts, robotics, riding and more across 174 acres."))
 
 

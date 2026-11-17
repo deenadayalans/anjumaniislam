@@ -142,7 +142,7 @@ def academics():
 def life():
     bo = "".join(f'<article class="pg {COLS[i % 5]}" data-r="up" data-i="{i % 3}" data-tilt>{scene(k, "", ratio="4/3", caption=False)}<div>{ic(ico)}<h3>{t}</h3><p>{esc(d)}</p></div></article>' for i, (t, ico, k, d) in enumerate(C.BOARDING))
     jr = "".join(f'<li data-r="up"><span class="n">{i + 1}</span><div class="bub {COLS[i % 5]}"><h4>{esc(t)}</h4><p>{esc(d)}</p></div></li>' for i, (t, d) in enumerate(C.JOURNEY))
-    gal = "".join(f'<div class="g{i}" data-r="zoom" data-i="{i % 3}" data-tilt>{scene(k, l)}</div>' for i, (k, l) in enumerate([("hills", "Hills"), ("field", "Sports Day"), ("arts", "Art studio"), ("garden", "Gardens"), ("dining", "Dining"), ("lab", "Robotics lab")]))
+    gal = "".join(f'<div class="g{i}" data-r="zoom" data-i="{i % 3}" data-tilt>{scene(k, l)}</div>' for i, (k, l) in enumerate([("hills", "Hills"), ("field", "Sports Day"), ("arts", "Art studio"), ("garden", "Gardens"), ("dining", "Dining"), ("lab", "Science lab")]))
     body = f'''
 <section class="sec"><div class="wrap">{sh("A home <em>away from home</em>", "Boarding &amp; care", "Dorm design balances home and school so your child feels safe, happy and welcome.")}<div class="pgs three">{bo}</div></div></section>
 <section class="sec band-y" id="day"><div class="wrap">{sh("A day at <em>Panchgani</em>", "Boarding life")}{day_path()}</div></section>

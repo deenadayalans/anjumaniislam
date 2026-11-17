@@ -1,0 +1,74 @@
+{
+  "SCHOOL": {
+    "name": "Anjuman-I-Islam Public School & Jr. College",
+    "short": "Anjuman-I-Islam Panchgani",
+    "place": "Panchgani, Maharashtra",
+    "phones": [
+      "8275204302",
+      "8275205404"
+    ],
+    "email_admissions": "info@anjumanislampublicschoolpanchgani.in",
+    "emails": [
+      {
+        "role": "Admissions",
+        "email": "info@anjumanislampublicschoolpanchgani.in"
+      },
+      {
+        "role": "Principal",
+        "email": "principal@anjumanislampublicschoolpanchgani.in"
+      },
+      {
+        "role": "Executive Chairman",
+        "email": "chairmain@anjumanislampublicschoolpanchgani.in"
+      },
+      {
+        "role": "Accounts",
+        "email": "accounts@anjumanislampublicschool.in"
+      },
+      {
+        "role": "Careers",
+        "email": "careers@anjumanislampublicschoolpanchgani.in"
+      }
+    ],
+    "parent_url": "https://anjumaniislam.org",
+    "parent_email": "info@anjumaniislam.org"
+  },
+  "QUOTE": "Step into a world where education meets compassion, and learning goes beyond the books. A place where lifelong friendship begins and the future is bright.",
+  "VISION": "To enrich lives and develop model citizens through inclusive, globally competitive, quality education.",
+  "MISSION": "To create and nurture educational and social institutions with special focus on women and marginalized sections of society.",
+  "SCHOOL_VALUES": "To cultivate a dynamic learning community within our boarding school where every student is empowered to explore, discover and excel — fostering academic excellence, character development and global citizenship.",
+  "SCHOOL_MISSION": "A transformative education beyond the classroom: a holistic environment that nurtures intellectual curiosity, creativity and personal growth, preparing students for success in higher education and beyond.",
+  "ZAHIR_BIO": "Dr. Zahir Kazi is a distinguished educationist and recipient of the Padma award, one of India’s highest civilian honours. Born in Ponda, Goa, he has served as President of Anjuman-I-Islam since 2009. Under his leadership Anjuman runs around 97 schools, colleges, hostels, orphanages and institutions across Maharashtra, serving over one lakh students, primarily from minority communities. Though a successful radiologist, he reduced his medical practice to devote more time to philanthropic work.",
+  "PIONEER_NOTE": "Pioneering firsts: kindergarten, mid-day meals for students and subsidised fees for the needy.",
+  "OBJECTS": [
+    "Promote the educational, social, economic and general welfare of Muslims by all lawful means",
+    "Execute trusts and act as mutwalli (guardian) of waqfs recognised as valid in Muslim law",
+    "Acquire, construct and maintain buildings and property needed for its purposes",
+    "Accept gifts, donations and subscriptions in support of its objects",
+    "Publish newspapers, periodicals, books and leaflets that promote its objects",
+    "Establish and support associations and institutions that share its objects"
+  ],
+  "PANCHGANI_UNITS": [
+    {
+      "level": "Primary",
+      "medium": "English",
+      "funding": "Un-aided"
+    },
+    {
+      "level": "High School",
+      "medium": "English",
+      "funding": "Aided"
+    },
+    {
+      "level": "Jr. College",
+      "medium": "English",
+      "funding": "Un-aided"
+    }
+  ],
+  "MAP_QUERY": "Anjuman-I-Islam Public School & Junior College, Panchgani",
+  "MAP_LL": "17.924394,73.765705",
+  "PLACE_INTRO": "Panchgani is a hill station in the Sahyadri range of Maharashtra. Our campus spreads across 174 acres of hill country — cool mornings, clear night skies and room to roam.",
+  "COACHING_NOTE": "Competitive courses attract extra fees. Extra coaching is also provided for vernacular-medium students who need additional help.",
+  "CAL_NOTE": "Dates shown follow the 2024–25 school calendar and are tentative; parents should book tickets only after confirmation from the school office.",
+  "DAY_NOTE": "Indicative timetable — exact timings will be confirmed by the school."
+}

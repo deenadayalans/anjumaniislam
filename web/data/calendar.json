@@ -1,0 +1,316 @@
+{
+  "CAL_TYPES": {
+    "a": "Academic & admin",
+    "f": "Celebrations",
+    "c": "Competitions",
+    "e": "Exams",
+    "h": "Holidays & breaks"
+  },
+  "CALENDAR": [
+    {
+      "month": "May",
+      "events": [
+        {
+          "day": "15",
+          "title": "Teachers’ report and meeting",
+          "type": "a"
+        },
+        {
+          "day": "16",
+          "title": "Dorm in-charge report",
+          "type": "a"
+        },
+        {
+          "day": "18",
+          "title": "Students’ report",
+          "type": "a"
+        },
+        {
+          "day": "20",
+          "title": "Academic session begins",
+          "type": "a"
+        }
+      ]
+    },
+    {
+      "month": "June",
+      "events": [
+        {
+          "day": "1",
+          "title": "Welcome assembly",
+          "type": "f"
+        },
+        {
+          "day": "5",
+          "title": "World Environment Day",
+          "type": "f"
+        },
+        {
+          "day": "15",
+          "title": "Spell Bee competition",
+          "type": "c"
+        },
+        {
+          "day": "17",
+          "title": "Bakri Eid holiday (3 days)",
+          "type": "h"
+        },
+        {
+          "day": "21",
+          "title": "International Yoga Day",
+          "type": "f"
+        },
+        {
+          "day": "29",
+          "title": "Indoor games competition",
+          "type": "c"
+        }
+      ]
+    },
+    {
+      "month": "July",
+      "events": [
+        {
+          "day": "1",
+          "title": "Orientation for new students",
+          "type": "a"
+        },
+        {
+          "day": "13",
+          "title": "Art competition",
+          "type": "c"
+        },
+        {
+          "day": "16",
+          "title": "Islamic quiz competition",
+          "type": "c"
+        },
+        {
+          "day": "18",
+          "title": "Indoor games finals",
+          "type": "c"
+        },
+        {
+          "day": "20",
+          "title": "First unit test begins",
+          "type": "e"
+        }
+      ]
+    },
+    {
+      "month": "August",
+      "events": [
+        {
+          "day": "10",
+          "title": "Musical choir",
+          "type": "f"
+        },
+        {
+          "day": "10",
+          "title": "Monsoon break",
+          "type": "h"
+        },
+        {
+          "day": "15",
+          "title": "Independence Day",
+          "type": "f"
+        },
+        {
+          "day": "26",
+          "title": "Classes resume",
+          "type": "a"
+        }
+      ]
+    },
+    {
+      "month": "September",
+      "events": [
+        {
+          "day": "5",
+          "title": "Teachers’ Day celebration",
+          "type": "f"
+        },
+        {
+          "day": "9",
+          "title": "Inter-house JAM competition",
+          "type": "c"
+        },
+        {
+          "day": "14",
+          "title": "National Hindi Divas",
+          "type": "f"
+        },
+        {
+          "day": "16",
+          "title": "Eid-e-Milad celebration",
+          "type": "f"
+        },
+        {
+          "day": "17",
+          "title": "Anant Chaturthi (holiday)",
+          "type": "h"
+        },
+        {
+          "day": "21",
+          "title": "Inter-house dramatics",
+          "type": "c"
+        },
+        {
+          "day": "28",
+          "title": "Inter-house football",
+          "type": "c"
+        }
+      ]
+    },
+    {
+      "month": "October",
+      "events": [
+        {
+          "day": "1",
+          "title": "Inter-house badminton",
+          "type": "c"
+        },
+        {
+          "day": "2",
+          "title": "Gandhi Jayanti (holiday)",
+          "type": "h"
+        },
+        {
+          "day": "7",
+          "title": "Half-yearly exam",
+          "type": "e"
+        },
+        {
+          "day": "15",
+          "title": "Inter-house cross country",
+          "type": "c"
+        },
+        {
+          "day": "28",
+          "title": "Annual Sports Day",
+          "type": "c"
+        },
+        {
+          "day": "28",
+          "title": "Students leave for Diwali break",
+          "type": "h"
+        }
+      ]
+    },
+    {
+      "month": "November",
+      "events": [
+        {
+          "day": "17",
+          "title": "Students report back",
+          "type": "a"
+        },
+        {
+          "day": "30",
+          "title": "Inter-house debate competition",
+          "type": "c"
+        }
+      ]
+    },
+    {
+      "month": "December",
+      "events": [
+        {
+          "day": "1–5",
+          "title": "Educational excursion",
+          "type": "f"
+        },
+        {
+          "day": "7",
+          "title": "Prelim 1 for Std X begins",
+          "type": "e"
+        },
+        {
+          "day": "14",
+          "title": "Storytelling competition",
+          "type": "c"
+        },
+        {
+          "day": "16",
+          "title": "Second unit test",
+          "type": "e"
+        },
+        {
+          "day": "31",
+          "title": "Anjuman Talent Show",
+          "type": "f"
+        }
+      ]
+    },
+    {
+      "month": "January",
+      "events": [
+        {
+          "day": "1",
+          "title": "Prelim II for Std X and XII",
+          "type": "e"
+        },
+        {
+          "day": "14",
+          "title": "Kite Flying Festival",
+          "type": "f"
+        },
+        {
+          "day": "18",
+          "title": "Quiz competition",
+          "type": "c"
+        }
+      ]
+    },
+    {
+      "month": "February",
+      "events": [
+        {
+          "day": "10",
+          "title": "HSC practicals",
+          "type": "e"
+        },
+        {
+          "day": "15",
+          "title": "SSC practicals",
+          "type": "e"
+        },
+        {
+          "day": "19",
+          "title": "Shiv Jayanti (holiday)",
+          "type": "h"
+        },
+        {
+          "day": "27",
+          "title": "World NGO Day",
+          "type": "f"
+        }
+      ]
+    },
+    {
+      "month": "March",
+      "events": [
+        {
+          "day": "1",
+          "title": "Annual Day and prize distribution",
+          "type": "f"
+        },
+        {
+          "day": "3",
+          "title": "Final exams",
+          "type": "e"
+        },
+        {
+          "day": "8",
+          "title": "Mahashivratri (holiday)",
+          "type": "h"
+        },
+        {
+          "day": "20",
+          "title": "Boarders depart",
+          "type": "a"
+        }
+      ]
+    }
+  ]
+}

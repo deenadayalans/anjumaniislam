@@ -78,14 +78,13 @@ def rail_presidents():
 def results_tabs():
     h, s = C.HSC_2026, C.SSC_2026
     pp = round(s["passed"] / s["appeared"] * 100, 1)
-    ph = '<span class="val">00</span>'
-    exams = "".join(f'<div class="ex" data-spot><b>{n}</b><span>{esc(f)}</span>{ph}</div>' for n, f, _ in C.EXAMS)
+    exams = "".join(f'<div class="ex" data-spot><b>{n}</b><span>{esc(f)}</span>{exam_value(C.EXAM_TOTALS.get(n))}</div>' for n, f, _ in C.EXAMS)
     return f'''<div class="tabs" data-tabs><div class="filters tabbar"><button data-tab="ssc">SSC 2026</button><button data-tab="hsc">HSC 2026</button><button data-tab="ent">Entrance exams</button></div>
 <div data-pane="ssc"><div class="kp"><div><b data-count="{s['appeared']}">{s['appeared']:,}</b><span>Appeared</span></div><div><b data-count="{s['passed']}">{s['passed']:,}</b><span>Passed</span></div><div><b data-count="{s['distinction']}">{s['distinction']}</b><span>Distinction</span></div><div><b data-count="{s['first_class']}">{s['first_class']}</b><span>First class</span></div></div>
  <div class="chart"><div class="barrow"><span>Pass rate</span><div class="bar" style="--w:{pp}%"><i></i></div><b>{pp}%</b></div></div></div>
 <div data-pane="hsc"><div class="kp"><div><b data-count="{h['appeared']}">{h['appeared']:,}</b><span>Appeared</span></div><div><b data-count="{h['passed']}">{h['passed']:,}</b><span>Passed</span></div><div><b data-count="{h['distinction']}">{h['distinction']}</b><span>Distinction</span></div><div><b>{h['overall']}%</b><span>Overall</span></div></div>
  <div class="chart">{"".join(f'<div class="barrow"><span>{n}</span><div class="bar" style="--w:{pc}%"><i></i></div><b>{pc}%</b></div>' for n, a, p, d, pc in h['streams'])}</div></div>
-<div data-pane="ent"><div class="exs">{exams}</div><p class="note">Placeholder figures — replace with verified Panchgani results.</p></div></div>
+<div data-pane="ent"><div class="exs">{exams}</div><p class="note">{"Placeholder figures — replace with verified Panchgani results." if any(C.EXAM_TOTALS.get(n) is None for n, _, _ in C.EXAMS) else ""}</p></div></div>
 <p class="note">Board results are network-wide figures published by Anjuman-I-Islam (2026).</p>'''
 
 
@@ -205,7 +204,7 @@ def life():
 <section class="sec dark" id="day"><div class="mesh sm"><i></i><i></i></div><div class="wrap">{sh("A day at Panchgani", "The rhythm of <em>boarding life</em>")}<div class="daystrip">{"".join(f'<div class="dd" data-r="up" data-spot><span>{i + 1:02d}</span><h4>{esc(t)}</h4><p>{esc(d)}</p></div>' for i, (t, d) in enumerate(C.DAY))}</div></div></section>
 <section class="sec" id="activities"><div class="wrap">{sh("Extracurricular activities", "Athletes, artists and <em>leaders in the making</em>")}{filt}<div class="acts">{acts}</div></div></section>
 <section class="sec alt" id="journey"><div class="wrap">{sh("Student journey", "How our students <em>evolve</em>")}<ol class="jr" data-stagger>{jr}</ol></div></section>
-<section class="sec"><div class="wrap">{sh("Gallery", "Moments from <em>campus</em>")}<div class="masonry">{"".join(f'<div data-r="zoom" class="m{i}">{scene(k, l)}</div>' for i, (k, l) in enumerate([("hills", "Hills"), ("field", "Sports Day"), ("arts", "Art studio"), ("garden", "Gardens"), ("dining", "Dining"), ("lab", "Robotics lab")]))}</div></div></section>'''
+<section class="sec"><div class="wrap">{sh("Gallery", "Moments from <em>campus</em>")}<div class="masonry">{"".join(f'<div data-r="zoom" class="m{i}">{scene(k, l)}</div>' for i, (k, l) in enumerate([("hills", "Hills"), ("field", "Sports Day"), ("arts", "Art studio"), ("garden", "Gardens"), ("dining", "Dining"), ("lab", "Science lab")]))}</div></div></section>'''
     return layout("life", "Campus Life", body, phero("Campus life", "Athletes, artists and <em>leaders in the making</em>", "Boarding, sport, arts, robotics, riding and more across 174 acres."))
 
 
