@@ -23,6 +23,7 @@ PALETTES = [
     dict(id="bubblegum", name="Bubblegum", sw=["#7c3aed", "#ffd84d", "#ff5fa2"], css="--g:#7c3aed;--gd:#2a1052;--y:#ffd84d;--c:#ff5fa2;--s:#5ce1e6;--l:#c4b5fd;--cream:#fff4fb;--ink:#241036;--muted:#6b5a80;--confetti:#ffd84d,#ff5fa2,#5ce1e6,#c4b5fd,#7c3aed;--sc0:#fde7f3;--sc1:#5ce1e6;--sc2:#7c3aed;--sc3:#2a1052;--sc4:#ff5fa2;--sc5:#ffd84d"),
 ]
 ARROW = ic("arrow")
+O, V, SS = C.STORY["outcomes"], C.STORY["voices"], C.STORY["school_story"]
 COLS = ["y", "c", "s", "l", "g"]
 
 
@@ -85,8 +86,8 @@ def passions(n=None):
 def home():
     hero = f'''<section class="hero"><div class="wrap hero-in"><div class="hero-t">
   <span class="pill" data-r>Boarding school · Panchgani hills</span>
-  <h1 data-r data-i="1">Your next big <span class="word" data-rotate="adventure|breakthrough|friendship|career">adventure</span> starts here.</h1>
-  <p class="lead" data-r data-i="3">Robotics, horse riding, aviation, archery and NEET / JEE coaching — on a 174-acre hill campus where lifelong friendships begin and the future is bright.</p>
+  <h1 data-r data-i="1">{C.HEROES["index"]["vibrant"]["h1"]}</h1>
+  <p class="lead" data-r data-i="3">{C.HEROES["index"]["vibrant"]["lead"]}</p>
   <div class="cta" data-r data-i="4"><a class="btn y" href="admissions.html#enquire">Apply for admission {ARROW}</a><a class="btn w" href="life.html">See what we do</a></div></div>
   <div class="collage" data-r="zoom" data-i="2" data-collage>
     <div class="tile t1" data-par=".05">{ic("chip")}<b>Robotics &amp; AI</b></div><div class="tile t2" data-par="-.06">{ic("plane")}<b>Basic Aviation</b></div><div class="tile t3" data-par=".08">{ic("target")}<b>Archery</b></div><div class="tile t4" data-par="-.04">{ic("star")}<b>Horse riding</b></div>
@@ -95,6 +96,8 @@ def home():
 <div class="tick">{marquee(["Robotics", "Aviation", "Agriculture", "Horse riding", "Archery", "Pottery", "Sky gazing", "Debate", "Skating", "Shooting", "Kite flying", "Quiz"], "mq")}</div>'''
     body = f'''
 <section class="sec"><div class="wrap">{stat_row(C.STATS, "stats")}</div></section>
+
+<section class="sec band-y"><div class="wrap">{sh(O["title"], O["eyebrow"], O["sub"])}{outcomes_block()}</div></section>
 
 <section class="sec"><div class="wrap">{sh("Pick your <em>passion.</em>", "Beyond the classroom", "Teamwork, leadership and time management are learned on the field and in the studio. Tap a chip to explore.")}{passions(8)}<p class="center"><a class="btn g" href="life.html#activities">All 16 activities {ARROW}</a></p></div></section>
 
@@ -105,6 +108,8 @@ def home():
 <section class="sec band-g"><div class="wrap">{sh("The <em>scoreboard</em>", "Results 2026", "Board results across the Anjuman-I-Islam network.")}{ssc_hsc_block()}</div></section>
 
 <section class="sec"><div class="wrap">{sh("A day at <em>Panchgani</em>", "Boarding life")}{day_path()}<p class="center"><a class="btn y" href="day.html">Watch the clock turn {ARROW}</a></p></div></section>
+
+<section class="sec band-g"><div class="wrap">{sh(V["title"], V["eyebrow"], V["sub"])}{voices_block()}</div></section>
 
 <section class="sec alt"><div class="wrap">{sh("What’s <em>happening</em>", "News from the Anjuman family")}{news_cards("news")}</div></section>
 
@@ -117,13 +122,14 @@ def about():
     goals = "".join(f'<li class="{COLS[i % 5]}" data-r="zoom" data-i="{i % 3}"><span>{r}</span><p>{esc(t)}</p><em>{esc(w)}</em></li>' for i, (r, t, w) in enumerate(C.GOALS))
     body = f'''
 <section class="sec"><div class="wrap narrow center">{sh("A desire to see the <em>community rise</em>", "Our founders")}<p class="lead" data-r>Anjuman-I-Islam was founded in 1874 by a small group of Muslims animated by a “desire to see the Musalmans rise higher in the moral, social and educational scale.”</p><p data-r>As early as 1880 it urged the Indian Education Commission to support vocational, industrial, commercial and agricultural education, physical education — and education for girls.</p></div></section>
+<section class="sec" id="panchgani"><div class="wrap">{sh(SS["title"], SS["eyebrow"], SS["sub"])}{story_block()}</div></section>
 <section class="sec band-y" id="history"><div class="wrap">{sh("From 1874 to <em>today</em>", "History")}<div class="hcards" data-stagger>{hist}</div><p class="center note-b">{esc(C.PIONEER_NOTE)}</p></div></section>
 <section class="sec" id="vision"><div class="wrap">{sh("Vision, mission &amp; <em>values</em>", "Our purpose")}<div class="vm"><div class="big y" data-r="zoom"><h3>Vision</h3><p>{esc(C.VISION)}</p></div><div class="big c" data-r="zoom" data-i="1"><h3>Mission</h3><p>{esc(C.MISSION)}</p></div><div class="big s" data-r="zoom" data-i="2"><h3>School values</h3><p>{esc(C.SCHOOL_VALUES)}</p></div><div class="big l" data-r="zoom" data-i="3"><h3>School mission</h3><p>{esc(C.SCHOOL_MISSION)}</p></div></div></div></section>
 <section class="sec alt" id="goals"><div class="wrap">{sh("Six goals for the <em>decade</em>", "Goals")}<ol class="goals">{goals}</ol></div></section>
 <section class="sec" id="presidents"><div class="wrap">{sh("Hall of <em>fame</em>", "Founders &amp; past presidents", "All twenty-one presidents of Anjuman-I-Islam, 1875 to today.")}{hall_cards()}<p class="note center"><i class="star">★</i> Presidents who contributed funds as philanthropists.</p></div></section>
 <section class="sec band-g" id="leadership"><div class="wrap split"><div data-r="zoom" class="frame">{photo("zahir-kazi.png", "Dr. Zahir Kazi", ratio="4/5")}</div><div><span class="pill y" data-r>Leadership</span><h2 data-split>Dr. Zahir Kazi</h2><p class="lead" data-r>President, Anjuman-I-Islam since 2009 · Padma awardee</p><p data-r>{esc(C.ZAHIR_BIO)}</p><h4 style="margin:26px 0 10px">Board of Directors</h4>{board("board")}</div></div></section>
 <section class="sec" id="network"><div class="wrap">{sh("Institutions across <em>Maharashtra</em>", "The Anjuman network", "About 90 education institutes from kindergarten to PhD. Panchgani is highlighted.")}{stat_row(C.EDU_STATS, "stats three")}<div style="margin-top:40px">{institutions_explorer()}</div></div></section>'''
-    return layout("about", "About", body, phero("A century and a half of <em>education.</em>", "Part of Anjuman-I-Islam — one of India’s largest minority educational and social institutions.", "s"))
+    return layout("about", "About", body, phero(C.HEROES["about"]["h1"], C.HEROES["about"]["lead"], "s"))
 
 
 def academics():
@@ -136,7 +142,7 @@ def academics():
 <section class="sec band-g" id="coaching"><div class="wrap">{sh("Dream big. We’ll <em>coach you there.</em>", "Competitive coaching", esc(C.COACHING_NOTE))}{exam_tracks("tracks")}</div></section>
 <section class="sec" id="facilities"><div class="wrap">{sh("Spaces for <em>discovery</em>", "Facilities")}<div class="facs">{fac}</div></div></section>
 <section class="sec band-y"><div class="wrap split"><div><span class="pill" data-r>Faculty &amp; staff</span><h2 data-split>Mentors, role models and <em>pillars of support</em></h2><p data-r>Teachers with a passion for their subjects, dorm in-charges who offer a listening ear, and staff who keep campus safe, clean and welcoming.</p></div><div class="frame" data-r="zoom">{scene("portrait", "Faculty", ratio="4/3")}</div></div></section>'''
-    return layout("academics", "Academics", body, phero("Learning that goes <em>beyond the books.</em>", "Rigorous academics, personal advising and entrance coaching on one campus.", "l"))
+    return layout("academics", "Academics", body, phero(C.HEROES["academics"]["h1"], C.HEROES["academics"]["lead"], "l"))
 
 
 def life():
@@ -149,7 +155,7 @@ def life():
 <section class="sec" id="activities"><div class="wrap">{sh("Athletes, artists &amp; <em>leaders in the making</em>", "Extracurricular activities")}{passions()}</div></section>
 <section class="sec alt" id="journey"><div class="wrap">{sh("How our students <em>evolve</em>", "Student journey")}<ol class="path">{jr}</ol></div></section>
 <section class="sec"><div class="wrap">{sh("Moments from <em>campus</em>", "Gallery")}<div class="gal">{gal}</div></div></section>'''
-    return layout("life", "Campus Life", body, phero("Athletes, artists and <em>leaders in the making.</em>", "Boarding, sport, arts, robotics, riding and more across 174 acres.", "c"))
+    return layout("life", "Campus Life", body, phero(C.HEROES["life"]["h1"], C.HEROES["life"]["lead"], "c"))
 
 
 def results():
@@ -170,7 +176,7 @@ def admissions():
 <section class="sec band-c" id="enquire"><div class="wrap split"><div><span class="pill y" data-r>Admission enquiry</span><h2 data-split>Tell us about <em>your child</em></h2><p data-r>Our admissions office will call you within one working day.</p><p data-r><b>{C.SCHOOL['phones'][0]} / {C.SCHOOL['phones'][1]}</b><br>{C.SCHOOL['email_admissions']}</p></div><div class="formbox" data-r="zoom">{enquiry_form(True)}</div></div></section>
 <section class="sec" id="calendar"><div class="wrap">{sh("The year <em>at a glance</em>", "School calendar")}{calendar_block()}</div></section>
 <section class="sec alt" id="faq"><div class="wrap narrow">{sh("Questions parents <em>ask</em>", "FAQs")}{faq()}</div></section>'''
-    return layout("admissions", "Admissions", body, phero("Begin your journey at <em>Panchgani.</em>", "A clear five-step enrolment process — and a team to guide you.", "y"))
+    return layout("admissions", "Admissions", body, phero(C.HEROES["admissions"]["h1"], C.HEROES["admissions"]["lead"], "y"))
 
 
 def contact():
@@ -178,7 +184,7 @@ def contact():
     body = f'''
 <section class="sec"><div class="wrap">{sh("Get in <em>touch</em>", "Reach the right office")}<div class="vm three">{cards}</div></div></section>
 <section class="sec alt"><div class="wrap split"><div><span class="pill" data-r>Visit &amp; call</span><h2 data-split>Panchgani <em>campus</em></h2><p data-r>Panchgani, Maharashtra<br><small>(full postal address and PIN to be added)</small></p><p data-r><b>{C.SCHOOL['phones'][0]} / {C.SCHOOL['phones'][1]}</b></p><div class="frame">{scene("hills", "Map embed", ratio="16/10")}</div></div>
-<div class="formbox" data-r="zoom"><form class="form" data-demo data-confetti novalidate><div><label for="c1">Name *</label><input id="c1" required></div><div><label for="c2">Phone *</label><input id="c2" required type="tel"></div><div class="full"><label for="c3">Email *</label><input id="c3" type="email" required></div><div class="full"><label for="c4">Subject</label><select id="c4"><option>Admission enquiry</option><option>Hostel enquiry</option><option>Fees &amp; accounts</option><option>General information</option></select></div><div class="full"><label for="c5">Message *</label><textarea id="c5" required></textarea></div><div class="full"><button class="btn y" type="submit">Send message {ARROW}</button></div></form></div></div></section>
+<div class="formbox" data-r="zoom"><form class="form" data-demo{form_attrs()} data-confetti novalidate><div><label for="c1">Name *</label><input id="c1" required></div><div><label for="c2">Phone *</label><input id="c2" required type="tel"></div><div class="full"><label for="c3">Email *</label><input id="c3" type="email" required></div><div class="full"><label for="c4">Subject</label><select id="c4"><option>Admission enquiry</option><option>Hostel enquiry</option><option>Fees &amp; accounts</option><option>General information</option></select></div><div class="full"><label for="c5">Message *</label><textarea id="c5" required></textarea></div><div class="full"><button class="btn y" type="submit">Send message {ARROW}</button></div></form></div></div></section>
 <section class="sec" id="careers"><div class="wrap split"><div><span class="pill" data-r>Careers</span><h2 data-split>Join our <em>team</em></h2><p data-r>Teachers, dorm in-charges, coaching faculty and support staff who care about students.</p><p data-r><b>{C.SCHOOL['emails'][4][1]}</b></p></div><div class="frame" data-r="zoom">{scene("portrait", "Staff", ratio="4/3")}</div></div></section>
 <section class="sec band-y"><div class="wrap center narrow"><span class="pill">Part of a larger family</span><h2 data-split>Anjuman-I-Islam</h2><p data-r>Founded in 1874 · head office: <b>{C.SCHOOL['parent_email']}</b></p><a class="btn g" href="{C.SCHOOL['parent_url']}" target="_blank" rel="noopener">Visit anjumaniislam.org {ARROW}</a></div></section>'''
     return layout("contact", "Contact", body, phero("We’d love to <em>hear from you.</em>", "Reach the right office directly, or send us a message.", "s"))

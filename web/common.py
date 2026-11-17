@@ -154,9 +154,15 @@ def faq(n=None):
     return '<div class="faq">' + "".join(f'<details class="acc"><summary>{esc(q)}</summary><div class="a">{esc(a)}</div></details>' for q, a in items) + "</div>"
 
 
+def form_attrs():
+    """Where a form sends: an endpoint if FORM_ENDPOINT is set in school.json, otherwise an email to admissions."""
+    return f' data-mailto="{esc(C.SCHOOL["email_admissions"])}"' + (f' data-endpoint="{esc(C.FORM_ENDPOINT)}"' if C.FORM_ENDPOINT else "")
+
+
 def enquiry_form(confetti=False):
     c = " data-confetti" if confetti else ""
-    return f'''<form class="form" data-demo{c} novalidate>
+    note = "" if C.FORM_ENDPOINT else '<p class="note">Sends an email to the admissions office from your mail app.</p>'
+    return f'''<form class="form" data-demo{form_attrs()}{c} novalidate>
   <div><label for="f-name">Parent / guardian name *</label><input id="f-name" required autocomplete="name"></div>
   <div><label for="f-phone">Phone *</label><input id="f-phone" type="tel" required autocomplete="tel"></div>
   <div><label for="f-mail">Email *</label><input id="f-mail" type="email" required autocomplete="email"></div>
@@ -164,8 +170,30 @@ def enquiry_form(confetti=False):
   <div><label for="f-class">Class applying for *</label><input id="f-class" required placeholder="e.g. Std VIII"></div>
   <div><label for="f-int">Interested in</label><select id="f-int"><option>Primary</option><option>High School (SSC)</option><option>Jr. College (HSC)</option><option>NEET / JEE / CET coaching</option><option>NATA / CA</option><option>Hifz course</option></select></div>
   <div class="full"><label for="f-msg">Message</label><textarea id="f-msg"></textarea></div>
-  <div class="full"><button class="btn solid" type="submit" data-mag>Submit enquiry {ic("arrow")}</button><p class="note">Demo only — nothing is sent.</p></div>
+  <div class="full"><button class="btn solid" type="submit" data-mag>Submit enquiry {ic("arrow")}</button>{note}</div>
 </form>'''
+
+
+# ---------- Persuasion blocks (copy lives in data/story.json; each theme wraps them in its own section) ----------
+def outcomes_block():
+    items = "".join(
+        f'<article class="po-i" data-r="up" data-i="{i % 3}"><span class="po-ic">{ic(o["icon"])}</span><h3>{esc(o["promise"])}</h3><p>{esc(o["how"])}</p><small class="po-proof">{esc(o["proof"])}</small></article>'
+        for i, o in enumerate(C.STORY["outcomes"]["items"]))
+    return f'<div class="po">{items}</div>'
+
+
+def voices_block():
+    items = "".join(
+        f'<figure class="vc-i" data-r="up" data-i="{i}"><blockquote>“{esc(v["quote"])}”</blockquote><figcaption><b>{esc(v["who"])}</b><small>{esc(v["note"])}</small></figcaption></figure>'
+        for i, v in enumerate(C.STORY["voices"]["items"]))
+    return f'<div class="vc">{items}</div>'
+
+
+def story_block():
+    s = C.STORY["school_story"]
+    tl = "".join(f'<li data-r="up"><b>{esc(i["year"])}</b><p>{esc(i["text"])}</p></li>' for i in s["items"])
+    facts = "".join(f"<span>{esc(f)}</span>" for f in s["facts"])
+    return f'<ol class="po-tl">{tl}</ol><div class="po-facts">{facts}</div><p class="po-src">{esc(s["source"])}</p>'
 
 
 def news_cards(cls="news"):

@@ -29,6 +29,9 @@ PATTERN = '<svg class="pat" width="100%" height="100%" aria-hidden="true"><defs>
 def orn(): return f'<div class="orn" data-r="zoom"><span></span>{STAR}<span></span></div>'
 
 
+O, V, SS = C.STORY["outcomes"], C.STORY["voices"], C.STORY["school_story"]
+
+
 def sh(eyebrow, title, sub="", center=True):
     c = " center" if center else ""
     return f'<div class="sh{c}"><p class="eyebrow" data-r>{eyebrow}</p><h2 data-split>{title}</h2>{orn() if center else ""}{f"<p class=sub data-r>{sub}</p>" if sub else ""}</div>'
@@ -73,8 +76,8 @@ def home():
     hero = f'''<section class="hero"><div class="pat-wrap" data-par="-.06">{PATTERN}</div>
 <div class="container hero-in">
   <div class="hero-t"><p class="eyebrow" data-r>Boarding school &amp; Jr. College · Panchgani</p>
-    <h1 data-split>A century of learning, <em>rooted in values</em></h1>
-    <p class="lead" data-r data-i="4">Where education meets compassion. A residential school on 174 acres of the Panchgani hills — one of the family of Anjuman-I-Islam institutions, serving education since 1874.</p>
+    <h1 data-split>{C.HEROES["index"]["heritage"]["h1"]}</h1>
+    <p class="lead" data-r data-i="4">{C.HEROES["index"]["heritage"]["lead"]}</p>
     <div class="cta" data-r data-i="5"><a class="btn gold" href="admissions.html#enquire">Begin admission {ic("arrow")}</a><a class="btn ghost" href="life.html">Explore the campus</a></div></div>
   <div class="hero-a" data-r="arch"><div class="arch" data-par=".05">{scene("campus", "Main academic block", ratio="3/4")}</div>
     <div class="seal" data-r="zoom" data-i="4"><b data-count="100">100</b><span>years of<br>learning</span></div></div>
@@ -90,6 +93,8 @@ def home():
     <p data-r>With over a century of quality education, our boarding school empowers every student to explore, discover and excel — fostering academic excellence, character development and global citizenship.</p>
     <a class="link" href="about.html">Read our story {ic("arrow")}</a></div>
 </div></section>
+
+<section class="sec alt"><div class="container">{sh(O["eyebrow"], O["title"], O["sub"])}{outcomes_block()}</div></section>
 
 <section class="sec emerald"><div class="pat-wrap">{PATTERN}</div><div class="container">
   {sh("Vision &amp; Mission", "What Anjuman-I-Islam stands for")}
@@ -132,6 +137,8 @@ def home():
   {ssc_hsc_block()}
 </div></section>
 
+<section class="sec"><div class="container">{sh(V["eyebrow"], V["title"], V["sub"])}{voices_block()}</div></section>
+
 <section class="sec alt"><div class="container">
   {sh("From the Anjuman family", "Latest news")}
   {news_cards("news")}
@@ -148,6 +155,8 @@ def about():
   <blockquote class="big" data-r>“…a desire to see the Musalmans rise higher in the moral, social and educational scale.”</blockquote>
   <p data-r>Anjuman-I-Islam was founded in 1874 by a small group of Muslims. As early as 1880 it presented a Memorandum to the Indian Education Commission emphasising vocational, industrial, commercial and agricultural education, physical education and education for girls — a vision it has followed ever since.</p>
 </div></section>
+
+<section class="sec" id="panchgani"><div class="container">{sh(SS["eyebrow"], SS["title"], SS["sub"])}{story_block()}</div></section>
 
 <section class="sec alt" id="vision"><div class="container">
   {sh("Vision, Mission &amp; Values", "Our purpose")}
@@ -186,7 +195,7 @@ def about():
   <div style="margin-top:48px">{institutions_explorer()}</div>
   <div class="objects" style="margin-top:56px"><h3 data-r>Objects of the Anjuman</h3><ul class="list">{"".join(f'<li data-r="up">{esc(o)}</li>' for o in C.OBJECTS)}</ul></div>
 </div></section>'''
-    return layout("about", "About", body, page_hero("About us", "Rooted in <em>150 years</em> of service", "Part of Anjuman-I-Islam — one of India’s largest minority educational and social institutions.", "campus"))
+    return layout("about", "About", body, page_hero("About us", C.HEROES["about"]["h1"], C.HEROES["about"]["lead"], "campus"))
 
 
 def academics():
@@ -215,7 +224,7 @@ def academics():
   <div data-r="arch" class="arch">{scene("portrait", "Faculty portrait", ratio="4/5")}</div>
 </div></section>
 <section class="cta-band"><div class="pat-wrap">{PATTERN}</div><div class="container"><h2 data-split>Find the right programme for your child</h2><div class="cta" data-r><a class="btn gold" href="admissions.html#enquire">Enquire now</a><a class="btn ghost" href="results.html">See results</a></div></div></section>'''
-    return layout("academics", "Academics", body, page_hero("Academics", "Learning that goes <em>beyond the books</em>", "Rigorous academics, personal advising and competitive coaching — on one campus.", "books"))
+    return layout("academics", "Academics", body, page_hero("Academics", C.HEROES["academics"]["h1"], C.HEROES["academics"]["lead"], "books"))
 
 
 def life():
@@ -231,7 +240,7 @@ def life():
 <section class="sec alt" id="journey"><div class="container">{sh("Student journey", "How our students evolve")}<ol class="journey" data-line><i class="jr-fill"></i>{jr}</ol></div></section>
 <section class="sec"><div class="container">{sh("Gallery", "Moments from campus")}<div class="mosaic g6" data-stagger>{"".join(f'<div class="arch m{i % 4 + 1}" data-r="arch">{scene(k, l, ratio="3/4")}</div>' for i, (k, l) in enumerate([("hills", "Panchgani hills"), ("field", "Sports Day"), ("arts", "Art studio"), ("garden", "Organic gardens")]))}</div></div></section>
 <section class="cta-band"><div class="pat-wrap">{PATTERN}</div><div class="container"><h2 data-split>Plan a campus visit</h2><div class="cta" data-r><a class="btn gold" href="admissions.html#enquire">Enquire now</a></div></div></section>'''
-    return layout("life", "Campus Life", body, page_hero("Campus life", "Athletes, artists and <em>leaders in the making</em>", "Boarding, sport, arts, robotics, riding and more across 174 acres.", "field"))
+    return layout("life", "Campus Life", body, page_hero("Campus life", C.HEROES["life"]["h1"], C.HEROES["life"]["lead"], "field"))
 
 
 def results():
@@ -255,7 +264,7 @@ def admissions():
 <section class="sec" id="enquire"><div class="container split"><div><p class="eyebrow" data-r>Admission enquiry</p><h2 data-split>Tell us about your child</h2>{orn().replace("center","")}<p data-r>Our admissions office will contact you within one working day.</p><p data-r><b>{C.SCHOOL['phones'][0]} / {C.SCHOOL['phones'][1]}</b><br>{C.SCHOOL['email_admissions']}</p></div><div class="formbox" data-r>{enquiry_form()}</div></div></section>
 <section class="sec emerald" id="calendar"><div class="pat-wrap">{PATTERN}</div><div class="container">{sh("School calendar", "The academic year at a glance")}<div class="light-cal">{calendar_block()}</div></div></section>
 <section class="sec" id="faq"><div class="container narrow">{sh("FAQs", "Questions parents ask")}{faq()}</div></section>'''
-    return layout("admissions", "Admissions", body, page_hero("Admissions", "Begin your journey at <em>Panchgani</em>", "A clear five-step enrolment process — and a team to guide you through it.", "hills"))
+    return layout("admissions", "Admissions", body, page_hero("Admissions", C.HEROES["admissions"]["h1"], C.HEROES["admissions"]["lead"], "hills"))
 
 
 def contact():
@@ -263,7 +272,7 @@ def contact():
     body = f'''
 <section class="sec"><div class="container">{sh("Reach the right office", "Get in touch")}<div class="quad five" data-stagger>{cards}</div></div></section>
 <section class="sec alt"><div class="container split"><div><p class="eyebrow" data-r>Visit &amp; call</p><h2 data-split>Panchgani campus</h2>{orn().replace("center","")}<p data-r>Panchgani, Maharashtra<br><small>(full postal address and PIN to be added)</small></p><p data-r><b>{C.SCHOOL['phones'][0]} / {C.SCHOOL['phones'][1]}</b></p><div data-r class="arch sm" style="margin-top:24px">{scene("hills", "Map embed", ratio="16/10")}</div></div>
-<div class="formbox" data-r><form class="form" data-demo novalidate><div><label for="c1">Name *</label><input id="c1" required></div><div><label for="c2">Phone *</label><input id="c2" required type="tel"></div><div class="full"><label for="c3">Email *</label><input id="c3" type="email" required></div><div class="full"><label for="c4">Subject</label><select id="c4"><option>Admission enquiry</option><option>Hostel enquiry</option><option>Fees &amp; accounts</option><option>General information</option></select></div><div class="full"><label for="c5">Message *</label><textarea id="c5" required></textarea></div><div class="full"><button class="btn solid" type="submit">Send message {ic("arrow")}</button></div></form></div></div></section>
+<div class="formbox" data-r><form class="form" data-demo{form_attrs()} novalidate><div><label for="c1">Name *</label><input id="c1" required></div><div><label for="c2">Phone *</label><input id="c2" required type="tel"></div><div class="full"><label for="c3">Email *</label><input id="c3" type="email" required></div><div class="full"><label for="c4">Subject</label><select id="c4"><option>Admission enquiry</option><option>Hostel enquiry</option><option>Fees &amp; accounts</option><option>General information</option></select></div><div class="full"><label for="c5">Message *</label><textarea id="c5" required></textarea></div><div class="full"><button class="btn solid" type="submit">Send message {ic("arrow")}</button></div></form></div></div></section>
 <section class="sec" id="careers"><div class="container split"><div><p class="eyebrow" data-r>Careers</p><h2 data-split>Join our team</h2>{orn().replace("center","")}<p data-r>Teachers, dorm in-charges, coaching faculty and support staff who care about students.</p><p data-r><b>{C.SCHOOL['emails'][4][1]}</b></p></div><div data-r="arch" class="arch sm">{scene("portrait", "Staff", ratio="4/3")}</div></div></section>
 <section class="sec emerald"><div class="pat-wrap">{PATTERN}</div><div class="container center narrow"><p class="eyebrow">Part of a larger family</p><h2 data-split>Anjuman-I-Islam</h2><p data-r>Founded in 1874. Head office enquiries: <b>{C.SCHOOL['parent_email']}</b></p><a class="btn gold" style="margin-top:20px" href="{C.SCHOOL['parent_url']}" target="_blank" rel="noopener">Visit anjumaniislam.org</a></div></section>'''
     return layout("contact", "Contact", body, page_hero("Contact", "We’d love to <em>hear from you</em>", "Reach the right office directly, or send us a message.", "campus"))

@@ -117,3 +117,7 @@ h1 em,h2 em{font-style:italic;color:var(--clay)}p{margin:0 0 1.1em}.wrap{max-wid
 .dt-time{color:var(--clay);letter-spacing:.14em;text-transform:uppercase;font-size:.74rem}.dt-row b{font-family:var(--serif);font-weight:400;font-size:1.6rem;color:var(--forest)}.mapbox{border-radius:0}.maplink{color:var(--forest)}
 @media(max-width:1020px){.facts{grid-template-columns:1fr}.dc-clockbox{order:0}}
 @media(max-width:900px){.dayclock .dc-wrap{grid-template-columns:1fr}.dc-digital b{font-size:3.4rem}}
+
+/* persuasion blocks */
+.po,.vc,.po-tl,.po-facts{--po-font:var(--serif);--po-r:0;--po-bg:transparent}
+.po-i{padding:30px 0 28px;border-width:1px 0 0}

@@ -1,0 +1,138 @@
+{
+  "_readme": "Persuasion copy for the four main designs. Anything in [square brackets] is a placeholder to be replaced with real material from the school.",
+  "outcomes": {
+    "eyebrow": "Why families choose Panchgani",
+    "title": "What your child gets, <em>and who they become</em>",
+    "sub": "Six things a child takes away from growing up on this campus.",
+    "items": [
+      {
+        "icon": "heart",
+        "promise": "Cared for like family",
+        "how": "A dorm in-charge looks after every dormitory, meals are planned by a dietician, and a trained nurse is on campus around the clock.",
+        "proof": "Nurse 24/7 · 300-seat dining hall"
+      },
+      {
+        "icon": "cap",
+        "promise": "Results that open doors",
+        "how": "Academic advisors set goals and track progress with every student, and NEET, JEE, CET, NATA and CA coaching runs alongside the Jr. College timetable.",
+        "proof": "5 entrance-exam tracks on campus"
+      },
+      {
+        "icon": "dome",
+        "promise": "Faith lived every day",
+        "how": "Five daily prayers in the prayer hall, Qur’an recitation and basic Islamic education, with a Hifz course available on request.",
+        "proof": "Prayer hall · Hifz on request"
+      },
+      {
+        "icon": "ball",
+        "promise": "Healthy, confident, full of interests",
+        "how": "Cricket, football, hockey, archery, horse riding, skating and a shooting range, on the largest sports ground in town.",
+        "proof": "174 acres · Akbar Peerbhoy Sports Stadium"
+      },
+      {
+        "icon": "chip",
+        "promise": "Ready for the world they will work in",
+        "how": "A robotics and AI tinkering lab, a computer lab, and Basic Aviation and Agriculture courses added in 2024.",
+        "proof": "New in 2024: Robotics, Agriculture, Aviation"
+      },
+      {
+        "icon": "users",
+        "promise": "Friends and mentors for life",
+        "how": "Peer tutors, resident advisors and inter-house contests in dramatics, debate, football and more build teamwork and lasting friendships.",
+        "proof": "Inter-house contests all year"
+      }
+    ]
+  },
+  "voices": {
+    "eyebrow": "In their words",
+    "title": "What parents and students <em>say</em>",
+    "sub": "Real words from our families will appear here.",
+    "items": [
+      {
+        "quote": "[Placeholder] A parent describes how their child changed in the first year at Panchgani.",
+        "who": "[Parent name] · Class [__]",
+        "note": "Placeholder: real quote to come"
+      },
+      {
+        "quote": "[Placeholder] An alumnus or alumna describes what the school gave them for life after Class XII.",
+        "who": "[Alumni name] · Batch [____]",
+        "note": "Placeholder: real quote to come"
+      },
+      {
+        "quote": "[Placeholder] A current student describes an ordinary day, and the friends they made.",
+        "who": "[Student name] · Class [__]",
+        "note": "Placeholder: real quote to come"
+      }
+    ]
+  },
+  "school_story": {
+    "eyebrow": "Our story",
+    "title": "From thirty students in 1920 to <em>a hundred years of trust</em>",
+    "sub": "The Panchgani school began with the aim of building a school on the model of Harrow and Eton.",
+    "items": [
+      {
+        "year": "1920",
+        "text": "Mr. Hoonseinbhoy Laljee and others form the Darul-Uloom Trust. Darul-Uloom Muslim High School opens in Panchgani, in a bungalow lent by the Nawab of Wai, with thirty students."
+      },
+      {
+        "year": "1922",
+        "text": "The school moves to an estate of over 168 acres on the Panchgani–Mahabaleshwar road."
+      },
+      {
+        "year": "1958",
+        "text": "The trust passes to Anjuman-I-Islam. Under President Mr. Akbar Peerbhoy and Mrs. Homai Peerbhoy the school grows into a premier seat of learning for boys and girls."
+      },
+      {
+        "year": "2020",
+        "text": "The school completes 100 years of education, with former students leading across the globe."
+      },
+      {
+        "year": "2024",
+        "text": "Robotics, Agriculture and Basic Aviation join horse riding, pottery and archery on campus."
+      }
+    ],
+    "facts": [
+      "Motto: Forward & Onward",
+      "Prepares for the Maharashtra SSC (Std X) and HSC (Std XII)",
+      "Boys and girls, boarding",
+      "174 acres"
+    ],
+    "source": "From the school’s own history. To be confirmed by the school before launch."
+  },
+  "heroes": {
+    "index": {
+      "heritage": {
+        "h1": "A century of shaping <em>confident, capable</em> young people",
+        "lead": "Your child lives, learns and grows on 174 acres of the Panchgani hills, with strong academics, Qur’anic values and a family of teachers around them. Part of Anjuman-I-Islam, serving education since 1874."
+      },
+      "hillstation": {
+        "h1": "Above the clouds, <em>children thrive.</em>",
+        "lead": "A residential school and junior college across 174 acres of hill country, where children grow in confidence, faith and skill. Part of Anjuman-I-Islam, serving education since 1874."
+      },
+      "modern": {
+        "h1": "Learn beyond the classroom. <em>Grow beyond limits.</em>",
+        "lead": "A residential school on 174 acres in the hills of Panchgani. Robotics, aviation, agriculture and NEET / JEE coaching, with a dorm family that looks after your child, grounded in a century of values."
+      },
+      "vibrant": {
+        "h1": "Where your child grows up <em>curious, confident and cared for</em>",
+        "lead": "Robotics, riding, archery and friends for life on 174 acres in the Panchgani hills, with teachers and a dorm family looking after every child."
+      }
+    },
+    "about": {
+      "h1": "A school with <em>a century of trust</em> behind it",
+      "lead": "Founded in Panchgani in 1920 and part of Anjuman-I-Islam, which has served education since 1874."
+    },
+    "academics": {
+      "h1": "Marks that matter, <em>and minds that keep asking why</em>",
+      "lead": "Advisors who know your child’s goals, peer tutors in the dorm, labs that reward curiosity, and entrance coaching on the same campus."
+    },
+    "life": {
+      "h1": "Where friendships, faith and talent <em>grow together</em>",
+      "lead": "Sport, art, robotics, riding and prayer shape the rounded person your child becomes, across 174 acres."
+    },
+    "admissions": {
+      "h1": "Begin your child’s journey at <em>Panchgani</em>",
+      "lead": "Five clear steps, honest conversations and a team that guides you from the first call to the first day."
+    }
+  }
+}

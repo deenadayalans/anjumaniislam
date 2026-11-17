@@ -227,3 +227,6 @@ blockquote.big{font-size:clamp(1.8rem,3.6vw,2.8rem)}
 /* no page wipe in this theme: a quick fade-in instead */
 @keyframes pagein{from{opacity:0}to{opacity:1}}
 .js main{animation:pagein .45s ease both}
+
+/* persuasion blocks */
+.po,.vc,.po-tl,.po-facts{--po-font:var(--serif);--po-r:2px;--po-bg:#fff}

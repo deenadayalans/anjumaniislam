@@ -206,6 +206,19 @@
     e.preventDefault();
     if (!f.checkValidity()) { f.reportValidity(); return; }
     const ok = document.createElement('div'); ok.className = 'form-ok'; ok.setAttribute('role', 'status');
+    const fields = [...f.querySelectorAll('input,select,textarea')].map(el => [(f.querySelector(`label[for="${el.id}"]`) || {}).textContent || el.id, el.value]);
+    const thanks = msg => { ok.innerHTML = `<h3>Thank you</h3><p>${msg}</p>`; f.replaceWith(ok); };
+    if (f.dataset.endpoint) {
+      fetch(f.dataset.endpoint, { method: 'POST', headers: { 'Content-Type': 'application/json', Accept: 'application/json' }, body: JSON.stringify(Object.fromEntries(fields)) })
+        .then(r => r.ok ? thanks('Your enquiry has reached the admissions office. We will contact you within one working day.') : Promise.reject())
+        .catch(() => alert('Sorry, the enquiry could not be sent. Please call or email the admissions office.'));
+      return;
+    }
+    if (f.dataset.mailto) {
+      location.href = `mailto:${f.dataset.mailto}?subject=${encodeURIComponent('Admission enquiry')}&body=${encodeURIComponent(fields.map(([k, v]) => `${k.replace(/\s*\*$/, '')}: ${v}`).join('\n'))}`;
+      thanks(`Your email app should now open with the enquiry ready to send. If it did not, please write to <b>${f.dataset.mailto}</b>.`);
+      return;
+    }
     ok.innerHTML = '<h3>Thank you</h3><p>This is a design demo, so nothing was sent. On the live site this enquiry goes to the admissions office.</p>';
     if (f.hasAttribute('data-confetti') && !reduce) {
       const cols = getComputedStyle(root).getPropertyValue('--confetti').split(',').map(s => s.trim()).filter(Boolean);

@@ -246,3 +246,26 @@ main p,main li,main h3,main h4,.ftr p,.ftr a{overflow-wrap:anywhere}
 .dc-subtext{margin:0!important;min-height:4.6em;font-size:.95rem}
 @media(max-height:760px){.dc-panel .dc-sub li{padding:3px 8px;font-size:.88rem}.dc-subtext{min-height:3.4em;font-size:.88rem}}
 @media(max-height:640px){.dc-subtext{display:none}}
+
+/* persuasion blocks: outcomes, voices, school story (themes tune --po-font / --po-r) */
+.po,.vc,.po-tl,.po-facts{--po-ac:var(--accent,var(--blue,currentColor))}
+.po{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:22px}
+.po-i{display:flex;flex-direction:column;gap:10px;padding:28px 26px;border:1px solid var(--line);border-radius:var(--po-r,14px);background:var(--po-bg,transparent);transition:transform .3s,box-shadow .3s}
+.po-i:hover{transform:translateY(-4px)}
+.po-ic{width:46px;height:46px;border-radius:50%;display:grid;place-items:center;background:var(--po-ac);color:#fff}
+.po-i h3{margin:4px 0 0;font-family:var(--po-font,inherit);font-size:1.35rem;line-height:1.2}
+.po-i p{margin:0;opacity:.85;line-height:1.6;font-size:.95rem}
+.po-proof{margin-top:auto;padding-top:12px;border-top:1px dashed var(--line);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;font-weight:700;color:var(--po-ac)}
+.vc{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:22px}
+.vc-i{margin:0;padding:28px;border:1px solid var(--line);border-radius:var(--po-r,14px);background:var(--po-bg,transparent)}
+.vc-i blockquote{margin:0 0 18px;font-family:var(--po-font,inherit);font-size:1.15rem;line-height:1.55;font-style:italic;opacity:.9}
+.vc-i figcaption b{display:block}
+.vc-i figcaption small{display:inline-block;margin-top:8px;padding:2px 10px;border:1px dashed currentColor;border-radius:99px;font-size:.68rem;letter-spacing:.08em;text-transform:uppercase;opacity:.7}
+.po-tl{position:relative;max-width:860px;margin:0 auto;border-left:2px solid var(--po-ac);padding-left:30px}
+.po-tl li{position:relative;padding:0 0 28px}
+.po-tl li::before{content:"";position:absolute;left:-38px;top:.5em;width:14px;height:14px;border-radius:50%;background:var(--po-ac)}
+.po-tl b{display:block;font-family:var(--po-font,inherit);font-size:1.6rem;color:var(--po-ac)}
+.po-tl p{margin:4px 0 0;line-height:1.65}
+.po-facts{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin:28px 0 8px}
+.po-facts span{padding:8px 16px;border:1px solid var(--line);border-radius:99px;font-size:.82rem;font-weight:600}
+.po-src{text-align:center;font-size:.8rem;opacity:.65}

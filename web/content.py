@@ -40,6 +40,7 @@ PLACE_INTRO = _school["PLACE_INTRO"]
 COACHING_NOTE = _school["COACHING_NOTE"]
 CAL_NOTE = _school["CAL_NOTE"]
 DAY_NOTE = _school["DAY_NOTE"]
+FORM_ENDPOINT = _school.get("FORM_ENDPOINT", "")
 
 _num = _read("numbers.json")
 STATS = _t(_num["STATS"], ["label", "value", "suffix"])
@@ -90,3 +91,5 @@ CALENDAR = [(m["month"], _t(m["events"], ["day", "title", "type"])) for m in _ca
 
 NEWS = _t(_read("news.json")["NEWS"], ["date", "title", "tag", "url", "image"])
 IMAGES = _read("images.json")
+STORY = _read("story.json")
+HEROES = STORY["heroes"]

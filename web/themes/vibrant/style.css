@@ -124,3 +124,9 @@ h1 em,h2 em{font-style:italic;color:var(--c)}p{margin:0 0 1em}.wrap{max-width:12
 @supports (height:100dvh){.dc-stage{height:calc(100dvh - 81px)}}
 .aerial{--stage-top:81px}
 .dc-panel .dc-sub li.on{background:var(--y);border:2px solid var(--gd);padding:4px 8px}.dc-panel .dc-sub li{border:2px solid transparent}
+
+/* persuasion blocks */
+.po,.vc,.po-tl,.po-facts{--po-font:var(--disp);--po-r:var(--r);--po-bg:#fff}
+.po-i,.vc-i{border:var(--bw) solid var(--gd);box-shadow:var(--sh);color:var(--gd)}
+.po-i:hover{box-shadow:var(--sh-h)}
+.po-facts span{background:#fff;border:var(--bw) solid var(--gd)}
